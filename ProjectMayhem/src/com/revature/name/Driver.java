@@ -20,5 +20,9 @@ public class Driver {
 		// void- doesn't return anything
 		// main- name of method
 		// String [] args-  an array of Strings called args
+		int a=3;
+		int b=46;
+		int c= a+b;
+		System.out.println("I like to eat "+ c + " tacos" );
 	}
 }
