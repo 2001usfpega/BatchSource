@@ -1,39 +1,36 @@
 package com.revature.constructor;
 /*
- * Constructors 
+ * Constructors
  * How we instantiate an object
  * No return type, not specified anyway. returns instance of class
- * If we don"t include a constructor in a class, a default constructor is 
- * automatically created.
- * If we make a constructor, we lose the default constructor
+ * If we we don't include a constructor in a class, a default constructor is automatically
+ * created
+ * If we make a constructor, we lose the default
  */
 public class ConstructorDemo {
-	public static void main(String[] ralph) {
+	public static void main(String [] ralph) {
 		C c = new C();
+		
 	}
 }
-
 class A{
 	A(){
-			System.out.println("Inside of A's constructor");
+		System.out.println("Inside of A's Constructor");
 	}
 }
-
 class B extends A{
-	/* 
-	 * Example of default constructor:
+	/* Example of default constructor
 	 * B(){
-	 * 	super(); <-- implicit
+	 *   super() <- implicit
 	 * }
 	 */
-	
 	B(){
-	}
-}
-	
-class C extends B{
-	C(){
-		System.out.println("Inside of C's constructor");
+		System.out.println("Inside of B's Constructor");
 	}
 }
 
+class C extends B{
+	C(){
+		System.out.println("Inside of C's Constructor");
+	}
+}
