@@ -1,45 +1,34 @@
 package com.revature.bean;
 
 public class Person {
-/*Code Blocks - defined by {} 
- * static code block -runs once when the class is first used by compiler
- * instance code block - run every time an object is instantiated (for that class)
+/*Code Block- defined by {}  {Things between}
+ * static code block - runs once when class is used by compiler
+ * instance code block-  run every time an object is instantiated (for that class)
+ * 
+ * Java Bean
+ * Represents some entity
+ * More for data structure than logic
+ * Made up of:
+ * 				private fields
+ * 				No-Arg Constructor
+ * 				Constructor w/ fields
+ * 				Getters and Setters
+ * 				toString()
+ * 				equals()
  */
-	/* Java Bean
-	 * Represents some entity
-	 * More for data structure than logic
-	 * made up of:
-	 * 				private fields
-	 * 				No-arg Constructor
-	 * 				Constructor w/ fields
-	 * 				Getters and Setters
-	 * 				toString()
-	 * 				equal()
-	 * 
-	 *  
-	 */
 	//Static code block
-		static {System.out.println("Im in a static code block");}
-		
-	    {System.out.println("Im in a instance code block");}
-
+	static {System.out.println("I'm in a static code block");}
+	//Instance code block
+	{System.out.println("I'm in an instance code block");}
 	private String name;
 	private int age;
 	private int weight;
 	
-	//No- Arg Constructor
+	//No Args Constructor
 	public Person() {
 		//super(); implicitly there
 	}
-	// Constructor w/ fields
-	public Person(String name, int age, int weight) {
-		//this is referring to the object
-		//=name is referring to the parameter
-		System.out.println("Inside Person Constructor");
-		this.name =name;
-		this.age =age;
-		this.weight =weight;
-	}
+	
 	public void setName(String name) {
 		this.name=name;
 	}
@@ -47,17 +36,17 @@ public class Person {
 	public String getName() {
 		return name;
 	}
-	public void setAge(int age) {
-		this.age=age;	
-	}
 	public int getAge() {
 		return age;
 	}
-	public void setWeight(int weight) {
-		this.weight=weight;
+	public void setAge(int age) {
+		this.age = age;
 	}
 	public int getWeight() {
 		return weight;
+	}
+	public void setWeight(int weight) {
+		this.weight = weight;
 	}
 	@Override
 	public String toString() {
@@ -92,5 +81,14 @@ public class Person {
 			return false;
 		return true;
 	}
+	//Constructor w/ fields
+		public Person(String name, int age, int weight) {
+			//this. is referring to the object
+			//=name is referring to the parameter
+			System.out.println("Inside Person Constructor");
+			this.name=name;
+			this.age=age;
+			this.weight=weight;
+		}
+	
 }
-
