@@ -1,5 +1,6 @@
 package com.revature.name;
 
+import com.revature.bean.Person; //<-- Fully qualified class name
 
 public class Driver {
 	
@@ -27,7 +28,20 @@ public class Driver {
 		int a = 3;
 		int b = 46;
 		int c = a + b;
-		System.out.println(c);
-		
+		System.out.println("I like to eat " + c + " tacos");
+		/*
+		 * Members of a class - can be different forms
+		 * Variables, Methods, and Constructors
+		 * Instance variables - property belongs to specific object
+		 * Static variables - belong to class/all instances
+		 * Instance methods - behavior related to a specific object
+		 * Static method - relative to the entire class
+		 * Constructors - instantiates the class using the keyword "new"
+		 */
+		Person p = new Person();
+		p.setName("Jim");
+		System.out.println(p);
+		Person q = new Person("BobPam", 81, 27);
+		System.out.println(q);
 	}
 }
