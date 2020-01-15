@@ -1,6 +1,6 @@
-package com.revature;
+package com.Revature;
 
-public class GoodByeEarth {
+public class GooByeEarth {
 
 	public static void main(String[] args) {
 		System.out.print("GoodBye Earth");
