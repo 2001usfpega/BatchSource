@@ -43,6 +43,7 @@ public class Person {
 		this.name=name;
 		
 	}
+	//Example of Shadowing
 	public void setAge(int age) {
 		this.age=age;
 	}
