@@ -41,6 +41,9 @@ public class Person {
 	public int getAge() {
 		return age;
 	}
+	
+	//Example of Shadowing when variables in different scopes
+	//have the same identifiers
 	public void setAge(int age) {
 		this.age = age;
 	}

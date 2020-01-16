@@ -2,6 +2,7 @@ package com.revature.name;
 
 
 import com.revature.bean.Person; //<-- Fully Qualified Class Name
+import com.revature.staticfun.FunWithStatic;
 
 public class Driver {
 	//single line comment
@@ -42,6 +43,11 @@ public class Driver {
 		Person q= new Person("BobPam", 81, 27);
 		System.out.println(q);
 		
+		FunWithStatic fws = new FunWithStatic();
+		fws.nonStaticMethod();
+		FunWithStatic.staticMethod();
+		fws.staticMethod();//doesn't like this but it works because
+		//Although the static method belongs to the class it also belongs to the object
 		
 		
 	}
