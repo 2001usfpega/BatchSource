@@ -16,6 +16,10 @@ public class Overriding {
 		animal.eat();
 		olive.eat();
 		olive.eat1();
+		olive.str = "wooo!";
+		olive = new Pitbull();
+		System.out.println(olive.str);
+		
 		
 	}
 }
