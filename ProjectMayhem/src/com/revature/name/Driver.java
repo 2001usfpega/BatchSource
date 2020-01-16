@@ -1,6 +1,7 @@
 package com.revature.name;
 
 import com.revature.bean.Person;// <-- Fully Qualified Class Name
+import com.revature.staticfun.FunWithStatic;
 
 public class Driver {
 
@@ -42,5 +43,10 @@ public class Driver {
 		System.out.println(p);
 		Person q = new Person("BobPam",81, 27);
 		System.out.println(q);
+		
+		FunWithStatic fws= new FunWithStatic();
+		fws.nonStaticMethod();
+		FunWithStatic.staticMethod();
+		fws.staticMethod();
 	}
 }

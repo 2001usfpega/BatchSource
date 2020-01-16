@@ -43,6 +43,7 @@ public class Person {
 		public String getName() {
 			return name;
 		}
+		//Example of Shadowing
 		public void setAge(int age) {
 			this.age= age;
 		}
