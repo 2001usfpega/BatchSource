@@ -27,6 +27,8 @@ public class Person {
 	//No Args Constructor
 	public Person() {
 		//super(); implicitly there
+		
+		System.out.println("Some words");//Is this an instance initializer?
 	}
 	
 	public void setName(String name) {
