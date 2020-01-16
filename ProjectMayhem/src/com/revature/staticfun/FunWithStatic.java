@@ -11,6 +11,7 @@ public class FunWithStatic {
 		
 	}
 	public static void staticMethod(){
+		System.out.println("is static, belongs to a class");
 		
 	}
 
