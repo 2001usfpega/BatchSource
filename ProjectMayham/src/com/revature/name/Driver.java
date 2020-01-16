@@ -1,5 +1,8 @@
 package com.revature.name;
 
+import com.revature.bean.Person;
+import com.revature.staticfun.FunWithStatic;
+
 public class Driver {
 	
 	//single
@@ -29,6 +32,22 @@ public class Driver {
 		int c=a+b;
 		System.out.println("i like to eat " + c + " tacos");
 		
+		/*
+		 * members of a class- can diff forms
+		 * instance variables- properties belong to object
+		 * static variable - properties belong to class
+		 * instance method- behavior
+		 */
+		Person p = new Person();
+		p.setName("jim");
+		System.out.println(p);
+		
+		Person q= new Person("jeff",18,150);
+		System.out.println(q);
+		
+		FunWithStatic fws=new FunWithStatic();
+		fws.nonStaticMethod();
+		FunWithStatic.staticMethod();
 	}
 	
 }
