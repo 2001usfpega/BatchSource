@@ -1,5 +1,9 @@
 package com.revature.name;
 
+//wild card
+//import static java.util.*;
+import java.sql.Date;
+
 import com.revature.bean.Person; //<-- Fully Qualified Class Name
 import com.revature.staticfun.FunWithStatic;
 
@@ -26,6 +30,9 @@ public class Driver {
 		int a=3;
 		int b=46;
 		int c= a+b;
+		Date d= new Date((long) 5.0);
+		java.util.Date e= new java.util.Date();
+		
 		System.out.println("I like to eat "+ c + " tacos" );
 		/*
 		 * Members of a class- can diff forms
@@ -42,9 +49,10 @@ public class Driver {
 		Person q= new Person("BobPam", 81, 27);
 		System.out.println(q);
 		
-		FunWithStatic fws = new FunWithStatic();
+		FunWithStatic fws= new FunWithStatic();
 		fws.nonStaticMethod();
 		FunWithStatic.staticMethod();
+		fws.staticMethod();
 		
 	}
 }

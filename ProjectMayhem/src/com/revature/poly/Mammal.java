@@ -1,10 +1,8 @@
 package com.revature.poly;
 
 public class Mammal {
-	static String s = "Popsicle";
-
+	public String s="Popsicle";
 	public void eat() {
-		System.out.println("Im a mammel who is eating ");
+		System.out.println("Im a mammal who is eating");
 	}
-
 }
