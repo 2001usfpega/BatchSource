@@ -39,6 +39,8 @@ public class Person {
 	public int getAge() {
 		return age;
 	}
+	
+	// Example of shadowing 
 	public void setAge(int age) {
 		this.age = age;
 	}
