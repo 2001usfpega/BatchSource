@@ -1,9 +1,12 @@
 package com.revature.homework;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Scanner;
 
 import com.revature.otherpackage.Princess;
@@ -31,14 +34,20 @@ public class Classy {
 		calculations(53.5,33.2);				//Q15
 		countLetters(cheese);					//Q16
 		interesting();							//Q17
+		konctete("goldfishY");					//Q18
+		numbersAndSums(10);						//Q19
+		dataReader();							//Q20
 	}
 
 	//Q1 bubble sort
 	public static void bubbleSort(int ... list) {
 		System.out.println("Q1. Bubble Sort");
 		printArray(list);
+		
+		//sort the bubbles
 		for(int i=0;i<list.length-1;i++) {
 			for(int j=0;j<list.length-i-1;j++) {
+				//switch if necessary
 				if(list[j]>list[j+1]) {
 					int temp=list[j];
 					list[j]=list[j+1];
@@ -49,7 +58,6 @@ public class Classy {
 		printArray(list);
 		System.out.println();
 	}
-	
 	
 	//Q2 fibonacci
 	public static void fib(int x) {
@@ -62,12 +70,13 @@ public class Classy {
 		}
 		else {
 			int [] arr=new int [x];
+			//initalize the first two elements
 			arr[0]=0;
 			arr[1]=1;
+			//build the fibonacci array
 			for(int i=2;i<x;i++) {
 				arr[i]=arr[i-1]+arr[i-2];
 			}
-			
 			printArray(arr);
 		}
 		System.out.println();
@@ -77,6 +86,7 @@ public class Classy {
 	public static void reverseString(String s) {
 		System.out.println("Q3. Reverse String");
 		System.out.println(s);
+		//print string starting with the last char
 		for(int i= s.length()-1;i>=0;i--) {
 			System.out.print(s.charAt(i));
 		}
@@ -101,17 +111,19 @@ public class Classy {
 	//Q5 sub string
 	public static void subString(String s, int idx) {
 		System.out.println("Q5. Substring");
+		//print the first idx chars one by one
 		for(int i=0;i<idx;i++) {
 			System.out.print(s.charAt(i));
 		}
 		System.out.println('\n');		
 	}
 	
-	
 	//Q6 Even 
 	public static void evenOdd(int x) {
 		System.out.println("Q6. Even or Odd?");
 		System.out.print(x+" is ");
+
+		//divide by 2 and multiply by 2 to see if its the same
 		int t = x/2;
 		if(t*2==x) {
 			System.out.println("even!");
@@ -131,12 +143,15 @@ public class Classy {
 
 		System.out.println("\tOriginal");
 		printEmployees(roster);
+		//sort by name
 		Collections.sort(roster, new SortByName());
 		System.out.println("\tSort by name");
 		printEmployees(roster);
+		//sort by department
 		Collections.sort(roster, new SortByDepartment());
 		System.out.println("\tSort by department");
 		printEmployees(roster);
+		//sort by age
 		Collections.sort(roster, new SortByAge());
 		System.out.println("\tSort by age");
 		printEmployees(roster);
@@ -152,11 +167,13 @@ public class Classy {
 		for(String test:a) {
 			boolean isPal=true;
 			for(int i=0; i<test.length()/2;i++) {
+				//compare first and last char, working inward
 				if(test.charAt(i)!=test.charAt(test.length()-1-i)) {
 					isPal=false;
 					break;
 				}
 			}
+			//add to list if still true
 			if(isPal) {
 				pally.add(test);
 			}
@@ -170,23 +187,28 @@ public class Classy {
 	//Q9 Primes
 	public static void primeNums(int x) {
 		System.out.println("Q9. Primes");
+		printArray(getPrimes(x));
+		System.out.println();
+	}
+	
+	//return all the primes between 0 and x
+	static ArrayList<Integer> getPrimes(int x){
 		ArrayList<Integer> primes = new ArrayList<>();
 		for(int i=2;i<=x;i++) {
 			boolean isPrime = true;
+			//check if divisable by other primes
 			for(int j:primes) {
 				if(i%j==0) {
 					isPrime=false;
 					break;				
 				}
 			}
+			//add to list of primes
 			if(isPrime) {
 				primes.add(i);
 			}
 		}
-		for(int i:primes) {
-			System.out.print(i + " ");
-		}
-		System.out.println('\n');
+		return primes;
 	}
 	
 	//Q10 Ternary Minimum
@@ -209,10 +231,12 @@ public class Classy {
 	public static void printEvenTo(int x) {
 		System.out.println("Q12. Print Even");
 		int [] numbers = new int [x];
+		//make array
 		for(int i=0; i<x; i++) {
 			numbers[i]=i+1;
 		}
 		for(int i:numbers) {
+			//check if even
 			if(i%2==0) {
 				System.out.print(i+" ");
 			}
@@ -238,13 +262,16 @@ public class Classy {
 	public static void switchCases(int x){
 		System.out.println("Q14. Switch Case " + x);
 		switch(x){
+			//print the square root of pi
 			case 0:
-				System.out.println(Math.sqrt(Math.PI));
+				System.out.println("the square root of PI is " + Math.sqrt(Math.PI));
 				break;
+			//print date
 			case 1:
 				LocalDate d = LocalDate.now();
 				System.out.println(d);
 				break;
+			//splits string and prints it on sepperate lines
 			case 2:
 				String s = "I am learning Core Java";
 				String [] splited=s.split(" ");
@@ -262,6 +289,7 @@ public class Classy {
 	public static void calculations(double a, double b) {
 		System.out.println("Q15. Implimentation of math interface");
 		Calculate ti83=new Calculate();
+		//print a bunch of calculations
 		System.out.println(a+ " + " + b + " = " +ti83.addition(a, b));
 		System.out.println(a+ " - " + b + " = " +ti83.subtraction(a, b));
 		System.out.println(a+ " x " + b + " = " +ti83.multiplication(a, b));
@@ -271,9 +299,8 @@ public class Classy {
 	
 	//Q16 String Count
 	public static void countLetters(String ... s) {
-		//String [] s2= {"hi","bob"};
-		//s=s2;
 		System.out.println("Q16. String Count");
+		//checks if the first element has a length and prints it
 		if(s.length>0) {
 			System.out.println(s[0] + " has " + s[0].length() + " characters");
 		}
@@ -291,17 +318,87 @@ public class Classy {
 		Scanner input = new Scanner(System.in);
 		
 		System.out.println("Q17. Interest");
-		System.out.println("Enter the principal:");
+		System.out.print("Enter the principal: ");
 		principal=input.nextDouble();
-		System.out.println("Enter the rate of interest:");
+		System.out.print("Enter the rate of interest: ");
 		rate=input.nextDouble();
-		System.out.println("Enter the numbers of years:");
+		System.out.print("Enter the numbers of years: ");
 		time=input.nextDouble();
 		
 		input.close();
 		
-		System.out.println(principal*rate*time);
+		//p*r*t
+		System.out.println("Your interest will be $"+principal*rate*time);
 		System.out.println();
+	}
+	
+	//Q18 Test Concrete Class
+	public static void konctete(String test) {
+		System.out.println("Q18. Test Concrete Class");
+		StringImplimentation si=new StringImplimentation();
+		
+		if(si.hasUpper(test)) {
+			System.out.println(test + " is all lower case");
+		}
+		else {
+			System.out.println(test + " has an upper case character");
+			System.out.println(si.toUpper(test)+ " is now lower case");
+		}
+		si.addTen("1327");
+		System.out.println();
+	}
+	
+	//Q19 Add odds and evens
+	public static void numbersAndSums(int max) {
+		System.out.println("Q19 Add odds and evens");
+		ArrayList<Integer> nums = new ArrayList<>();
+		//fill the list
+		for(int i =1;i<=max;i++) {
+			nums.add(i);
+		}
+		printArray(nums);
+		//calculate sums
+		int [] sums = {0,0};
+		for(int i:nums) {
+			sums[i%2]+=i;
+		}
+		System.out.println("the odd sum is:  "+sums[1]);
+		System.out.println("the even sum is: "+sums[0]);
+		
+		//remove primes
+		ArrayList<Integer> primes = getPrimes(max);
+		Iterator<Integer> idd=nums.iterator();
+		while(idd.hasNext()) {
+			int i=idd.next();
+			if(primes.contains(i)) {
+				idd.remove();
+			}
+		}
+		System.out.print("non-primes are: ");
+		printArray(nums);
+		System.out.println();
+	}
+	
+	//Q20 Read File
+	public static void dataReader() {
+		System.out.println("Q20. Read File");
+		File file = new File("D:\\GIT\\BatchSource\\CoreJavaAssignment\\src\\com\\revature\\homework\\Data.txt");
+		try {
+			Scanner doc = new Scanner(file);
+			//loop the doc
+			while(doc.hasNextLine()) {
+				//split the line
+				String [] line = doc.nextLine().split(":");
+				System.out.println("Name: "+line[0]+" "+line[1]);
+				System.out.println("Age: "+line[2]+ " years");
+				System.out.println("State: "+line[3]+" State\n");
+			}
+			
+			doc.close();
+		} catch (FileNotFoundException e) {
+			System.out.println("file not found");
+		}
+		
 	}
 	
 	//prints an array of ints with spaces between
@@ -312,12 +409,19 @@ public class Classy {
 		System.out.println();
 	}
 	
+	//print an array list of ints
+	static void printArray(ArrayList<Integer> a) {
+		for(int i:a) {
+			System.out.print(i+" ");
+		}
+		System.out.println();
+	}
+	
 	//print an arrayList of employees
 	public static void printEmployees(ArrayList<Employee> a) {
 		for(Employee e:a) {
 			System.out.println(e.toString());
-		}
-		
+		}		
 	}
 }
 
@@ -339,6 +443,7 @@ class Employee{
 	}
 	
 }
+
 class SortByName implements Comparator<Employee> {
 	public int compare(Employee a, Employee b) {
 		return a.name.compareTo(b.name);
@@ -354,35 +459,3 @@ class SortByAge implements Comparator<Employee> {
 		return a.age-b.age;
 	}
 }
-
-	
-
-//	Q14. 
-//	Write a program that demonstrates the switch case. Implement the following functionalities in the cases:java
-//	Case 1: Find the square root of a number using the Math class method.
-//	Case 2: Display today’s date.
-//	Case 3: Split the following string and store it in a string array.
-//	       	 “I am learning Core Java”
-//	Q15. Write a program that defines an interface having the following methods: addition, subtraction, multiplication, and division. Create a class that implements this interface and provides appropriate functionality to carry out the required operations. Hard code two operands in a test class having a main method that calls the implementing class.
-//	Q16. Write a program to display the number of characters for a string input. The string should be entered as a command line argument using (String [ ] args).
-//	Q17. Write a program that calculates the simple interest on the principal, rate of interest and number of years provided by the user. Enter principal, rate and time through the console using the Scanner class.
-//	Interest = Principal* Rate* Time
-//	Q18. Write a program having a concrete ;subclass that inherits three abstract methods from a superclass.  Provide the following three implementations in the subclass corresponding to the abstract methods in the superclass:
-//	 
-//	1.          	Check for uppercase characters in a string, and return ‘true’ or ‘false’ depending if any are found.
-//	2.          	Convert all of the lower case characters to uppercase in the input string, and return the result.
-//	3.          	Convert the input string to integer and add 10, output the result to the console.
-//	Create an appropriate class having a main method to test the above setup.
-//	Q19. Create an ArrayList and insert integers 1 through 10. Display the ArrayList. Add all the even numbers up and display the result. Add all the odd numbers up and display the result. Remove the prime numbers from the ArrayList and print out the remaining ArrayList.
-//	Q20. Create a notepad file called Data.txt and enter the following:
-//	Mickey:Mouse:35:Arizona
-//	Hulk:Hogan:50:Virginia
-//	Roger:Rabbit:22:California
-//	Wonder:Woman:18:Montana
-//	 
-//	Write a program that would read from the file and print it out to the screen in the following format:
-//	 
-//	Name: Mickey Mouse
-//	Age: 35 years
-//	State: Arizona State
-
