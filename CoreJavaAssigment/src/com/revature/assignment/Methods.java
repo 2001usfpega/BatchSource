@@ -1,5 +1,7 @@
 package com.revature.assignment;
 
+import java.util.Date;
+import java.util.Scanner;
 
 public class Methods {
 	
@@ -141,6 +143,57 @@ public class Methods {
 		
 	}
 	
+	public static void Q6(int A)
+	{
+		
+		if(A/2*2 == A)
+		{
+			System.out.println("Even");
+			
+		}
+		else {
+			
+			System.out.println("Odd");
+			
+			
+		}
+		
+	}
+	
+	public static void Q9()
+	{
+		
+		
+		for(int A = 1; A <= 100; A++)
+		{
+			boolean prime = true;
+			
+			
+			for(int B = 2; B < A; B++)
+			{
+				if(A % B == 0)
+				{
+					prime = false;
+					break;
+					
+				}
+				
+				if (prime)
+				{
+					System.out.println(A);
+					
+				}
+				
+				
+			}
+			
+		}
+		
+	
+		
+		
+	}
+	
 	public static void Q10()
 	{
 		int A = 25;//Two Variables that are going to get compared
@@ -152,6 +205,77 @@ public class Methods {
 		
 
 	}
+	
+	public static void Q12()
+	{
+		
+		
+		
+	}
+	
+	public static int Q13(int A)
+	{
+		if(A == 0) {
+			
+			return 1;
+		}
+		
+		else {
+			
+			return 0;
+			
+		}
+		
+		
+	}
+	
+	public static void Q14(int A)
+	{
+
+		Date date = new Date(); 
+		
+		String learning = "I am learning Core Java";
+		
+		String[] core = new String[10];
+		
+		switch(A) {
+		
+		case 1: System.out.println(Math.sqrt(25)); break;
+		
+		case 2: System.out.println(date); break;
+		
+		case 3: 
+				core = learning.split(" ");
+				for (String b : core){
+					System.out.println(b);
+					
+				}
+				
+				
+		}
+		
+		
+		
+		
+	}
+	
+	public static void Q17()
+	{
+		Scanner PrincipleScan = new Scanner(System.in);
+		System.out.println("Principle:");
+		int principle = PrincipleScan.nextInt();
+		System.out.println("Time:");
+		int time = PrincipleScan.nextInt();
+		System.out.println("Rate:");
+		int rate = PrincipleScan.nextInt();
+		int interest = (principle*rate*time);
+		System.out.println("Interest Rate: " + interest);
+		
+		
+	}
+	
+
+
 	
 	
 	
