@@ -1,5 +1,7 @@
 package com.revature.assignment;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 import com.revature.assignment.Methods;
@@ -74,6 +76,45 @@ public class Driver {
 		 * QUESTION 7
 		 * 
 		 */
+		
+		
+		
+		ArrayList<Question7> q7List = new ArrayList<Question7>();
+		q7List.add(new Question7("Rob", 22, "Software"));
+		q7List.add(new Question7("Bob", 25, "Hardware"));
+		
+		System.out.println("Sorted by Name:");
+		
+		Collections.sort(q7List, new NameSort());
+		
+		for (int A=0; A<q7List.size(); A++)
+		{
+			System.out.println(q7List.get(A));
+			
+			
+		}
+		
+		Collections.sort(q7List, new AgeSort());
+		
+		for (int B=0; B<q7List.size(); B++)
+		{
+			System.out.println(q7List.get(B));
+			
+			
+		}
+		
+		Collections.sort(q7List, new DepartmentSort());
+		
+		for (int C=0; C<q7List.size(); C++)
+		{
+			System.out.println(q7List.get(C));
+			
+			
+		}
+		
+		
+		
+		
 		
 		/*
 		 * 
