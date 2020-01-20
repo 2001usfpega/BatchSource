@@ -1,5 +1,7 @@
 package com.aj.loopyloops;
 
+import com.revature.bean.Person;
+
 public class LoopyLoops {
 	/*
 	 * If statement
@@ -106,12 +108,44 @@ public class LoopyLoops {
 	
 	
 	public static void main(String [] saraLance) {
-		oldCheck(1237);
-		oldCheck(12);
-		whatColor("pink");
-		forLoopFunness(25);
-		forEachFun(myArr);
-		wileyWhile(3);
-		doWileyWhile(3);
+//		oldCheck(1237);
+//		oldCheck(12);
+//		whatColor("pink");
+//		forLoopFunness(25);
+//		forEachFun(myArr);
+//		wileyWhile(3);
+//		doWileyWhile(3);
+		
+		Person p = new Person("AJ", 30, 200);
+		Person q = new Person("AJ", 30, 200);
+		
+
+			System.out.println(p.equals(q));
 	}
 }
+
+/*
+ * Conditionals
+ * Logical Operators
+ * <  >  <= >= != == 
+ * 
+ * OR
+ * a|b - bit wise
+ * a||b - short circuit OR -- if a is true, return true w/o b
+ * 
+ * AND
+ * a&b - bit wise
+ * a&&b - checks both and evaluates false if a is false, doesn't check b; if a is true, continues on to check b. if b is true,
+ * evaluates true.
+ * 
+ * EQUALS
+ * ==
+ * compares values of primitives
+ * compare the reference for objects, NOT THE CONTENTS
+ * != is good for checking nulls
+ * 
+ * .equals()
+ * method inherited from Object class
+ * all reference types have it
+ * looking at content
+ */

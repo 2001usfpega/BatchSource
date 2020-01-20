@@ -9,7 +9,6 @@ package com.revature.constructor;
  */
 public class ConstructorDemo {
 	public static void main(String [] ralph) {
-		C c = new C();
 		
 	}
 }
