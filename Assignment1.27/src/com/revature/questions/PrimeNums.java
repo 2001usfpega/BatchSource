@@ -16,23 +16,23 @@ public static void addIntegers(ArrayList nums) {
 }
 	
 	
-	public static void findPrimes(ArrayList nums) {
+	public static boolean findPrimes(int nums) {
 		
-		 
-		for(int i=0; i<nums.size(); i++) {
-			boolean isItPrime = true;
-			Integer curNum = (Integer) nums.get(i);
+		boolean isItPrime = true;
+		
+			
+			Integer curNum = nums;
 			
 			  
 			if(curNum <=1) {
 				
-				isItPrime = false;
+				return false;
 				
 			}
 				for(Integer l = 2; l<curNum-1 ; l++) {
 					if(curNum%l==0) {
 						
-						isItPrime = false;
+						return false;
 					
 						
 					}
@@ -42,11 +42,8 @@ public static void addIntegers(ArrayList nums) {
 			
 			
 			
-			if(isItPrime == true) {
-				System.out.print(curNum + ", ");
-			}
-		}
 	
+		return isItPrime;
 		
 	}
 

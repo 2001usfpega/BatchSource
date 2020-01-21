@@ -4,7 +4,7 @@ public class Triangle {
 	
 static String[] zeroArr = {"0", "1", "0", "1"};
 
-	static String triangle ="";
+	static String triangle =" ";
 	
 	public static void traingleMethod(String[] arr) {
 		for(int i =0; i<arr.length; i ++) {
