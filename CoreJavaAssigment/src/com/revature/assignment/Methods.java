@@ -6,6 +6,13 @@ import java.util.Scanner;
 
 public class Methods {
 	
+	/*
+	 * 
+	 * QUESTION 1
+	 * 
+	 * 
+	 */
+	
 	
 	public static void Q1(int myArray[]) 
 	{
@@ -40,6 +47,13 @@ public class Methods {
 			
 	}
 	
+	/*
+	 * 
+	 * QUESTION 2
+	 * 
+	 * 
+	 */
+	
 	
 	
 	
@@ -73,6 +87,14 @@ public class Methods {
 		
 	}
 	
+	/*
+	 * 
+	 * 
+	 * QUESTION 3
+	 * 
+	 * 
+	 */
+	
 	
 	
 	public static void Q3()
@@ -92,6 +114,14 @@ public class Methods {
 		
 		
 	}
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 4
+	 * 
+	 * 
+	 */
 	
 	
 	public static void Q4()
@@ -117,6 +147,13 @@ public class Methods {
 		
 		
 	}
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 5
+	 * 
+	 */
 	
 	public static String Q5(String A, int B)
 	{
@@ -144,6 +181,13 @@ public class Methods {
 		
 	}
 	
+	/*
+	 * 
+	 * 
+	 * QUESTION 6
+	 * 
+	 */
+	
 	public static void Q6(int A)
 	{
 		
@@ -161,6 +205,24 @@ public class Methods {
 		
 	}
 	
+	/*
+	 * 
+	 * 
+	 * QUESTION 7
+	 * 
+	 * 
+	 */
+	
+	//QUESTION7 CLASS
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 8
+	 * 
+	 * 
+	 */
+	
 	public static boolean Q8(String B)
 	{
 		String empty = "";
@@ -176,6 +238,12 @@ public class Methods {
 		
 	}
 	
+	/*
+	 * 
+	 * QUESTION 9
+	 * 
+	 * 
+	 */
 
 	
 	public static void Q9()
@@ -217,6 +285,13 @@ public class Methods {
 		
 	}
 	
+	/*
+	 * 
+	 * QUESTION 10
+	 * 
+	 * 
+	 */
+	
 	public static void Q10()
 	{
 		int A = 25;//Two Variables that are going to get compared
@@ -229,12 +304,27 @@ public class Methods {
 
 	}
 	
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 12
+	 * 
+	 * 
+	 */
 	public static void Q12()
 	{
 		
 		
 		
 	}
+	
+	/*
+	 * 
+	 * QUESTION 13
+	 * 
+	 * 
+	 */
 	
 	public static int Q13(int A)
 	{
@@ -251,6 +341,14 @@ public class Methods {
 		
 		
 	}
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 14
+	 * 
+	 * 
+	 */
 	
 	public static void Q14(int A)
 	{
@@ -273,14 +371,36 @@ public class Methods {
 					System.out.println(b);
 					
 				}
-				
+		}	
 				
 		}
 		
 		
+	/*
+	 * 
+	 * QUESTION 15
+	 * 
+	 * 	
+	 */
 		
+		//QUESTION15 CLASS
 		
-	}
+	/*
+	 * 
+	 * 
+	 * QUESTION 16
+	 * 
+	 */
+		
+		//IN THE DRIVER CLASS
+	
+	/*
+	 * 
+	 * QUESTION 17
+	 * 
+	 */
+		
+	
 	
 	public static void Q17()
 	{
@@ -293,9 +413,32 @@ public class Methods {
 		int rate = PrincipleScan.nextInt();
 		int interest = (principle*rate*time);
 		System.out.println("Interest Rate: " + interest);
+		PrincipleScan.close();
 		
 		
 	}
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 18
+	 * 
+	 */
+	
+	/*
+	 * 
+	 * QUESTION 19
+	 * 
+	 * 
+	 */
+	
+	
+	/*
+	 * 
+	 * 
+	 * QUESTION 20
+	 * 
+	 */
 	
 
 
