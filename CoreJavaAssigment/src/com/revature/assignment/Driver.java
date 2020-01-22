@@ -180,9 +180,11 @@ public class Driver {
 
 			}
 
-			System.out.println("Palindromes=" + PalindromeArray);
+			
 
 		}
+		
+		System.out.println("Palindromes=" + PalindromeArray);
 
 		/*
 		 * 
@@ -236,6 +238,8 @@ public class Driver {
 		System.out.println("");
 		System.out.println("QUESTION 12:");
 		System.out.println();
+		
+		Methods.Q12();
 
 		/*
 		 * 
@@ -306,7 +310,7 @@ public class Driver {
 		Scanner myInput = new Scanner(System.in);
 		System.out.println("String:");
 		A = myInput.nextLine();
-		myInput.close();
+		
 
 		System.out.println("The Number of charaters is: " + A.length());
 

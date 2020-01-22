@@ -314,7 +314,24 @@ public class Methods {
 	 */
 	public static void Q12()
 	{
+		ArrayList<Integer> evenArray = new ArrayList<Integer>();
 		
+		for(int a=1; a<=100; a++)
+		{
+			evenArray.add(a);
+			
+		}
+		
+		for(int b:evenArray)
+		{
+			if(b%2==0)
+			{
+				System.out.print(b + ",");
+				
+			}
+			
+			
+		}
 		
 		
 	}
@@ -413,7 +430,7 @@ public class Methods {
 		int rate = PrincipleScan.nextInt();
 		int interest = (principle*rate*time);
 		System.out.println("Interest Rate: " + interest);
-		PrincipleScan.close();
+		
 		
 		
 	}
