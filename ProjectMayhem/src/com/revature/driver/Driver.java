@@ -1,16 +1,24 @@
-package com.revature.name;
+package com.revature.driver;
+
+//wild card
+//import static java.util.*;
+import java.sql.Date;
 
 //wild card
 //import static java.util.*;
 import java.sql.Date;
 
 import com.revature.bean.Person; //<-- Fully Qualified Class Name
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/name/Driver.java
 <<<<<<< HEAD
 import java.sql.*;//wild card
 //import static java.util.*;// import static pieces
 =======
 import com.revature.staticfun.FunWithStatic;
 >>>>>>> 3aba375765f6dafc4ede63ed3c1d477680126d9a
+=======
+import com.revature.staticfun.FunWithStatic;
+>>>>>>> 595e30d88e3dc8687bf32a255de4dd1e7d81bcdb:ProjectMayhem/src/com/revature/driver/Driver.java
 
 public class Driver {
 	//single line comment
@@ -51,6 +59,7 @@ public class Driver {
 		Person p = new Person();
 		p.setName("Jim");
 		System.out.println(p);
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/name/Driver.java
 		Person q= new Person("BobPam", 81, 27);
 		System.out.println(q);
 		
@@ -58,6 +67,17 @@ public class Driver {
 		fws.nonStaticMethod();
 		FunWithStatic.staticMethod();
 		fws.staticMethod();
+=======
+//		Person q= new Person("BobPam", 81, 27);
+//		System.out.println(q);
+		p.increaseAgeBy(-3);
+		System.out.println(p.getAge());
+		/*
+		 * FunWithStatic fws= new FunWithStatic(); fws.nonStaticMethod();
+		 * FunWithStatic.staticMethod(); fws.staticMethod(); Object o= new Object();
+		 */
+		
+>>>>>>> 595e30d88e3dc8687bf32a255de4dd1e7d81bcdb:ProjectMayhem/src/com/revature/driver/Driver.java
 		
 	}
 }
