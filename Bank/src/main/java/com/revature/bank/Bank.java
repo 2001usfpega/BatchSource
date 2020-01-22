@@ -39,11 +39,13 @@ public class Bank {
             stream.write(writer.toByteArray());
             stream.flush();
 
-           /* DataInputStream in = new DataInputStream(new FileInputStream("accounts"));
-
-            for (int i = 0; i < in.readInt(); i++) {
-
-            }*/
+            /*
+             * DataInputStream in = new DataInputStream(new FileInputStream("accounts"));
+             * 
+             * for (int i = 0; i < in.readInt(); i++) {
+             * 
+             * }
+             */
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -55,7 +57,7 @@ public class Bank {
         int size = type.getElements().length;
 
         for (int i = 1; i <= size; i++) {
-            //TODO permission check for options
+            // TODO permission check for options
             System.out.println(i + " - " + type.getElements()[i - 1].getAction());
         }
 
@@ -99,6 +101,17 @@ public class Bank {
     static int readInt() {
         try {
             int i = SCANNER.nextInt();
+            SCANNER.nextLine();
+            return i;
+        } catch (InputMismatchException e) {
+            SCANNER.nextLine();
+            return -1;
+        }
+    }
+
+    public double readDouble() {
+        try {
+            double i = SCANNER.nextDouble();
             SCANNER.nextLine();
             return i;
         } catch (InputMismatchException e) {

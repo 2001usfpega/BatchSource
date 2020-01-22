@@ -19,6 +19,11 @@ public class Account implements Serializable {
         return id;
     }
 
+    @Override
+    public String toString() {
+        return "Account [id=" + id + ", approved=" + approved + ", amount=" + amount + ", holders=" + holders + "]";
+    }
+
     public boolean isApproved() {
         return approved;
     }
