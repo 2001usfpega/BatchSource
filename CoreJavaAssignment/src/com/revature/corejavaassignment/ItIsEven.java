@@ -2,7 +2,7 @@ package com.revature.corejavaassignment;
 
 public class ItIsEven {
 
-	static void isEven(int n) {
+	static int isEven(int n) {
 		// take the passed in parameter and divide by 2
 		int quotient = n / 2;
 		// create logic to mulitply the result by 2
@@ -10,5 +10,6 @@ public class ItIsEven {
 		if (quotient * 2 == n) {
 			System.out.println("This numbrer is EVEN, Steven!");
 		}
+		return quotient;
 	}
 }

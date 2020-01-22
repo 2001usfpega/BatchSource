@@ -2,7 +2,7 @@ package com.revature.corejavaassignment;
 
 public class BubbleSort {
 
-	static void bubbleSort(int[] arr) {
+	static int [] bubbleSort(int[] arr) {
 		int temp = 0;
 		//iterate over the array once
 		for (int i = 0; i<arr.length; i++) {
@@ -17,5 +17,6 @@ public class BubbleSort {
 				}
 			}
 		}
+		return arr;
 	}
 }
