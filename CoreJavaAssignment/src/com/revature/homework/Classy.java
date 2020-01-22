@@ -301,11 +301,17 @@ public class Classy {
 	public static void countLetters(String ... s) {
 		System.out.println("Q16. String Count");
 		//checks if the first element has a length and prints it
+
 		if(s.length>0) {
-			System.out.println(s[0] + " has " + s[0].length() + " characters");
+			int len=-1;
+			for(String cur:s) {
+				System.out.print(cur+ " ");
+				len+=cur.length()+1;
+			}
+			System.out.println("has " +len + " character"+(len!=1?"s":""));
 		}
 		else {
-			System.out.println("nothing to print");
+			System.out.println("nothing read");
 		}
 		System.out.println();
 	}
@@ -439,7 +445,7 @@ class Employee{
 
 	@Override
 	public String toString() {
-		return "\t\tEmployee [name=" + name + ", department=" + department + ", age=" + age + "]";
+		return "\t\tname=" + name + ", department=" + department + ", age=" + age;
 	}
 	
 }
