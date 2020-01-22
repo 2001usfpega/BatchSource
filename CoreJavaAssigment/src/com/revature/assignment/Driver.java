@@ -122,6 +122,37 @@ public class Driver {
 		 * 
 		 * 
 		 */
+		
+		
+			ArrayList myArray2 = new ArrayList();
+			ArrayList PalindromeArray = new ArrayList();
+			myArray2.add("karan");
+			myArray2.add("madam");
+			myArray2.add("tom");
+			myArray2.add("civic");
+			myArray2.add("radar");
+			myArray2.add("jimmy");
+			myArray2.add("john");
+			myArray2.add("refer");
+			myArray2.add("billy");
+			myArray2.add("did");
+			
+			for(int A=0; A < myArray2.size(); A++)
+			{
+				if (Methods.Q8((String) myArray2.get(A))) {
+					
+					PalindromeArray.add((String) myArray2.get(A));
+					
+					
+					
+					
+				}
+				
+				System.out.println("Palindromes=" + PalindromeArray);
+				
+				
+				
+			}
 
 		
 		/*
@@ -129,7 +160,9 @@ public class Driver {
 		 * QUESTION 9
 		 * 
 		 */
-		
+			
+			
+		Methods.Q9();
 
 		
 		/*

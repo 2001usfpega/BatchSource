@@ -1,5 +1,6 @@
 package com.revature.assignment;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
@@ -160,36 +161,56 @@ public class Methods {
 		
 	}
 	
+	public static boolean Q8(String B)
+	{
+		String empty = "";
+		for(int C=B.length()-1; C>=0; C--)
+		{
+			empty = empty + B.charAt(C);
+			
+		}
+		
+		return B.equals(empty);
+		
+
+		
+	}
+	
 
 	
 	public static void Q9()
 	{
+		int i = 0;
+		int num = 0;
 		
+		String primeNumbers = "";
+				
 		
-		for(int A = 1; A <= 100; A++)
+		for(i = 1; i <= 100; i++)
 		{
-			boolean prime = true;
+			int counter=0;
 			
 			
-			for(int B = 2; B < A; B++)
+			for(num = i; num >= 1; num--)
 			{
-				if(A % B == 0)
+				if(i % num == 0)
 				{
-					prime = false;
-					break;
+					counter = counter + 1;
+					
 					
 				}
+			if (counter ==2)
+			{
 				
-				if (prime)
-				{
-					System.out.println(A);
-					
-				}
-				
+				primeNumbers = primeNumbers + i + " ";
+			}
+			
 				
 			}
 			
 		}
+		
+		System.out.println(primeNumbers);
 		
 	
 		
