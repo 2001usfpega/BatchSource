@@ -1,5 +1,7 @@
 package com.revature.bean;
 
+import com.revature.exceptions.IncreaseByNegativeNumberException;
+
 public class Person {
 	/* Code Block- defined by {} {Things between}
 	 * static code block- runs once when the class is used by compiler
@@ -89,6 +91,18 @@ public class Person {
 			if (weight != other.weight)
 				return false;
 			return true;
+		}
+		public void increaseAgeBy(int x) {
+			if(x<0) {
+				throw new IncreaseByNegativeNumberException();
+			}
+			this.age+=x;
+			
+			
+		}
+		public void findPrey() {
+			System.out.println("I go to Walmart");
+			
 		}
 		
 }
