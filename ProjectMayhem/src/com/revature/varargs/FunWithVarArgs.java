@@ -16,9 +16,9 @@ public static void main(String[] args) {
 	
 }
  public static void vaTest(int ... v) {
-	  System.out.println("number of args is"+ v.length + "Contents");
+	  System.out.println("number of args is "+ v.length + "Contents");
 	  for(int x:v) {
-		  System.out.print(x+"") ;
+		  System.out.print(x+" ,");
 	
 	  }
 	System.out.println(); 

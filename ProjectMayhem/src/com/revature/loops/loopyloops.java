@@ -119,10 +119,10 @@ public static void main(String[] args) {
 	
 	//oldCheck(4884);
 	
-	oldCheck(4);
-	whatcolor("green");
-	//forLoopFunnes(25);
-	forEachFun(myArray);
+	//oldCheck(4);
+	//whatcolor("green");
+	forLoopFunnes(25);
+	//forEachFun(myArray);
 	//wileyWhile(15);
 	//doWhile(30);
 	

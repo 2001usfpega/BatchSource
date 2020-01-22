@@ -44,7 +44,8 @@ public class Driver {
 		FunWithStatic fws=new FunWithStatic();
 		fws.nonStaticMethos();
 		FunWithStatic.staticMethod();
-		
-		
+		System.out.println();
+		p.increaseAgeBy(3);
+		System.out.println(p.getAge());
 	}
 }
