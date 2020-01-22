@@ -1,4 +1,4 @@
-package com.revature.name;
+package com.revature.driver;
 
 //wild card
 //import static java.util.*;
@@ -46,13 +46,15 @@ public class Driver {
 		Person p = new Person();
 		p.setName("Jim");
 		System.out.println(p);
-		Person q= new Person("BobPam", 81, 27);
-		System.out.println(q);
+//		Person q= new Person("BobPam", 81, 27);
+//		System.out.println(q);
+		p.increaseAgeBy(-3);
+		System.out.println(p.getAge());
+		/*
+		 * FunWithStatic fws= new FunWithStatic(); fws.nonStaticMethod();
+		 * FunWithStatic.staticMethod(); fws.staticMethod(); Object o= new Object();
+		 */
 		
-		FunWithStatic fws= new FunWithStatic();
-		fws.nonStaticMethod();
-		FunWithStatic.staticMethod();
-		fws.staticMethod();
 		
 	}
 }
