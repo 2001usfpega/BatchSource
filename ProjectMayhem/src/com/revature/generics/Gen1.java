@@ -30,13 +30,13 @@ public class Gen1<T> {
 		
 	}
 	
-	void showType();
-	{
-		System.out.println("Type of T is:" + ob.getClass().getName());
-		
-		
-		
-		
-	}
+//	//void showType();
+//	{
+//		System.out.println("Type of T is:" + ob.getClass().getName());
+//		
+//		
+//		
+//		
+//	}
 
 }
