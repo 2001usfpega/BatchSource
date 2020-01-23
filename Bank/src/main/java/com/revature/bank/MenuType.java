@@ -1,9 +1,10 @@
 package com.revature.bank;
 
 import java.util.function.Consumer;
+import java.util.stream.Collectors;
 
 public enum MenuType {
-    LOGIN(new Element[] { new Element("Create a user.", bank -> {
+    LOGIN(new Element[]{new Element("Create a user.", bank -> {
         System.out.print("Enter your name: ");
         String name;
 
@@ -37,7 +38,8 @@ public enum MenuType {
         } else {
             System.out.println("Access Denied!");
         }
-    }) }), MAIN(new Element[] { new Element("Open a new account", bank -> {
+    })}),
+    MAIN(new Element[]{new Element("Open a new account", bank -> {
         Account account = new Account(Bank.ACCOUNT_ID.getAndIncrement());
 
         account.getHolders().add(bank.getLoggedIn());
@@ -108,14 +110,15 @@ public enum MenuType {
         for (User user : bank.getUsers().values()) {
             System.out.println(user);
         }
-
     }), new Element("List accounts needing approval", User.Permission.EMPLOYEE, bank -> {
-        Account selected = bank.getLoggedIn().getAccounts().stream().filter(acc ->!acc.isApproved())
-        
-        
+        bank.getLoggedIn().getAccounts().stream().filter(acc -> !acc.isApproved()).forEach(account -> {
+            System.out.println(account.getId() + " - " + account.getHolders().stream().map(User::getName).collect(Collectors.joining(", ")));
+        });
     }), new Element("Approve an account", User.Permission.EMPLOYEE, bank -> {
+
     }), new Element("Cancel an account", User.Permission.ADMIN, bank -> {
-    }), });
+
+    }),});
 
     private final Element[] elements;
 
