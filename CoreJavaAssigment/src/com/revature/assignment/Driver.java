@@ -31,6 +31,8 @@ public class Driver {
 
 		}
 		
+		System.out.println();
+		
 
 		
 
@@ -48,7 +50,7 @@ public class Driver {
 
 		Methods.Q2();
 
-
+		System.out.println();
 		/*
 		 * 
 		 * 
@@ -64,6 +66,7 @@ public class Driver {
 
 		Methods.Q3();
 		
+		System.out.println();
 
 
 
@@ -80,6 +83,8 @@ public class Driver {
 
 		Methods.Q4();
 		
+		System.out.println();
+		
 
 		/*
 		 * 
@@ -94,6 +99,8 @@ public class Driver {
 
 		System.out.println(Methods.Q5("QUESTION 5", 5));
 		
+		System.out.println();
+		
 
 
 		/*
@@ -107,6 +114,8 @@ public class Driver {
 		System.out.println();
 
 		Methods.Q6(6);
+		
+		System.out.println();
 
 		/*
 		 * 
@@ -148,6 +157,8 @@ public class Driver {
 			System.out.println(q7List.get(C));
 
 		}
+		
+		System.out.println();
 
 		/*
 		 * 
@@ -240,6 +251,8 @@ public class Driver {
 		System.out.println();
 		
 		Methods.Q12();
+		
+		System.out.println("");
 
 		/*
 		 * 
@@ -274,7 +287,9 @@ public class Driver {
 		System.out.println();
 
 		Methods.Q14(1);
+		System.out.println();
 		Methods.Q14(2);
+		System.out.println();
 		Methods.Q14(3);
 
 		/*
@@ -293,6 +308,8 @@ public class Driver {
 		System.out.print(question.multiplication(10, 5) + ",");
 		System.out.print(question.subtraction(10, 5) + ",");
 		System.out.print(question.divison(10, 5) + ",");
+		
+		System.out.println();
 
 		/*
 		 * 
