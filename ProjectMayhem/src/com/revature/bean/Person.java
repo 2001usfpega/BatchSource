@@ -1,6 +1,9 @@
 package com.revature.bean;
 
-public class Person {
+import com.revature.classtypes.Hunt;
+import com.revature.exceptions.IncreasedByNegativeNumberException;
+
+public class Person implements Hunt{
 /*Code Block- defined by {}  {Things between}
  * static code block - runs once when class is used by compiler
  * instance code block-  run every time an object is instantiated (for that class)
@@ -39,6 +42,7 @@ public class Person {
 	public int getAge() {
 		return age;
 	}
+	//Example of Shadowing
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -89,6 +93,19 @@ public class Person {
 			this.name=name;
 			this.age=age;
 			this.weight=weight;
+		}
+		
+		public void increaseAgeBy(int x) {
+			if (x<0) {
+				throw new IncreasedByNegativeNumberException();
+			}
+			this.age+=x;
+		}
+
+		@Override
+		public void findPrey() {
+			System.out.println("I go to walmart, meeeeegh");
+			
 		}
 	
 }
