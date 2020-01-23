@@ -1,18 +1,19 @@
 package com.revature.bank;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 public class UserTest {
 
     @Test
     public void nameTest() {
-        Assert.assertTrue(User.validName("ABCDEFGHIJKLMNOPQRSTUVWXYZ "));
-        Assert.assertFalse(User.validName("qq5235dd"));
-        Assert.assertTrue(User.validName("àéë ïĳ"));
-        Assert.assertTrue(User.validName("ÆØÅæøåÄÖÜäöüß"));
+        assertTrue(User.validName("ABCDEFGHIJKLMNOPQRSTUVWXYZ "));
+        assertFalse(User.validName("qq5235dd"));
+        assertTrue(User.validName("àéë ïĳ"));
+        assertTrue(User.validName("ÆØÅæøåÄÖÜäöüß"));
     }
 
     @Test
@@ -20,8 +21,8 @@ public class UserTest {
         String pass1 = "test1";
         String pass2 = "test2";
 
-        Assert.assertFalse(Arrays.equals(User.hashPassword(pass1), User.hashPassword(pass2)));
-        Assert.assertArrayEquals(User.hashPassword(pass1), User.hashPassword(pass1));
-        Assert.assertArrayEquals(User.hashPassword(pass2), User.hashPassword(pass2));
+        assertFalse(Arrays.equals(User.hashPassword(pass1), User.hashPassword(pass2)));
+        assertArrayEquals(User.hashPassword(pass1), User.hashPassword(pass1));
+        assertArrayEquals(User.hashPassword(pass2), User.hashPassword(pass2));
     }
 }
