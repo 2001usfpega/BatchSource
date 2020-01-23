@@ -44,8 +44,10 @@ public class Driver {
 		}
 		
 		// Q3 ReverseString
-				String string = "Revature Boot Camp ROCKS!!";
-		System.out.println(ReverseString.reverseStringMethod(string));
+		String string = "Revature Boot Camp ROCKS!!";
+		System.out.println();
+		System.out.println(string);		
+		ReverseString.reverseStringMethod(string);
 
 
 		// Q4 Factorial
@@ -325,7 +327,7 @@ public class Driver {
 		// create a new BufferedReader
 		// create new BufferedReader to read text from the indicated location
 		BufferedReader reader = new BufferedReader(new FileReader(
-				"C:\\Users\\Eric D. Torres\\Documents\\Revature\\Git\\BatchSource\\CoreJavaAssignment\\Data.txt"));
+				"C:\\Users\\Eric D. Torres\\Desktop\\TorresGit\\BatchSource\\Data.txt"));
 		// create a variable to hold the information the BufferedReader gets from the
 		// text file
 		String str;

@@ -14,14 +14,12 @@ class DriverTest {
 		assertArrayEquals(expected, result);
 	}
 	
-	/*@Test
+	@Test
 	void testFib() {
 		int [] expected = { 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946, 17711, 28657, 46368};
-		int n1 = 0;
-		int n2 = 1;
-		int result = Fibo.
+		int result [] = Fibo.fiboMethod();
 		assertArrayEquals (expected, result);
-	}*/
+	}
 	
 	@Test 
 	void testFactorial() {
@@ -34,19 +32,37 @@ class DriverTest {
 	
 	@Test
 	void testReverseString() {
+		String d = "testchararray";
+		char [] expected = {'y', 'a', 'r', 'r', 'a', 'r', 'a','h', 'c', 't', 's', 'e', 't'};
+		char[] result = ReverseString.reverseStringMethod(d);
+		assertArrayEquals(expected, result);
+	}
+	
+	@Test
+	void testSubString() {
 		String s = "How now, Brown Cow!";
 		int n = 7;
 		char [] expected = {'H', 'o', 'w', ' ', 'n', 'o', 'w'};
 		char [] result = SubString.subStringMethod(s, n);
-		assertEquals(expected, result);
+		assertArrayEquals(expected, result);
 	}
 
 	@Test
 	void testIsItEven() {
-		int n = 5284608;
-		int expected = 5287608;
+		int n = 5287608;
+		int expected = 2643804;
 		int result = ItIsEven.isEven(n);
 		assertEquals(expected, result);
 	}
+	
+	@Test
+	void testPalindrome() {
+		String input = "madam";
+		boolean expected = "true" != null;
+		boolean result = Palindromes.findPalindrome(input);
+		assertEquals(expected, result);
+	}
+	
+	
 	
 }

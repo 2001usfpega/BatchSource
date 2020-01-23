@@ -1,6 +1,9 @@
 package com.revarure.bean;
 
-public class Person {
+import com.revature.classtypes.Hunt;
+import com.revature.exceptions.IncreaseByNegativeNumberException;
+
+public class Person implements Hunt {
 	/*Code Block - define by {}.
 	 * 	static code block - belong to class. Run once when class is used by compiler.
 	 *  instance code block - belongs to object. Run every time and object is instantiated (for that class)
@@ -103,5 +106,16 @@ public class Person {
 		return true;
 	}
 	
-	
+	public void increaseAgeBy(int x) {
+		if(x<0) {
+			throw new IncreaseByNegativeNumberException();
+		}		
+		this.age+=x;
+	}
+
+	@Override
+	public void findPrey() {
+		System.out.println("I go to McDonald's, meeegh");
+		
+	}
 }

@@ -48,6 +48,10 @@ public class Driver {
 		System.out.println(q);
 		
 		System.out.println(p.equals(q));
+		
+		p.increaseAgeBy(-3);
+		System.out.println(p.getAge());
+
 	}
 
 }
