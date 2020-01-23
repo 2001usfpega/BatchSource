@@ -1,6 +1,9 @@
 package com.revature.bean;
 
-public class Person {
+import com.aj.classTypes.Hunt;
+import com.aj.exceptions.IncreaseByNegativeException;
+
+public class Person implements Hunt {
 	/*
 	 * Code Block- defined by {} {Things between} static code block - runs once when
 	 * class is used by compiler instance code block- run every time an object is
@@ -98,7 +101,16 @@ public class Person {
 	}
 	
 	public void increaseAgeBy(int x) {
+		if (x<0) {
+			throw new IncreaseByNegativeException();
+		}
 		this.age += x;
+		
+	}
+
+	@Override
+	public void findPrey() {
+		System.out.println("Nom nom nom.");
 		
 	}
 
