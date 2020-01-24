@@ -1,20 +1,12 @@
 package com.revature.compare;
-
-<<<<<<< HEAD
-=======
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
->>>>>>> origin/KnightenJ
 import java.util.List;
 
 public class CompareMain {
 
 	public static void main(String[] args) {
-<<<<<<< HEAD
-	
-		
-=======
 		List<Student> studentList= new ArrayList<Student>();
 		studentList.addAll(Arrays.asList(
 				new Student [] {
@@ -55,7 +47,6 @@ public class CompareMain {
 			System.out.println(s);
 		}
 
->>>>>>> origin/KnightenJ
 	}
 
 }

@@ -1,10 +1,5 @@
 package com.revature.classtypes;
 
-<<<<<<< HEAD
-public interface Hunt {
-	void findPrey();
-
-=======
 /*
  * specify what a class must do, but not how it does it(abstraction!)
  * special type of class that cannot be instantiated
@@ -18,5 +13,4 @@ public interface Hunt {
  */
 public interface Hunt {
 	void findPrey();
->>>>>>> origin/KnightenJ
 }

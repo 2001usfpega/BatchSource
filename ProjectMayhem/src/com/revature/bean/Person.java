@@ -4,7 +4,6 @@ import com.revature.classtypes.Hunt;
 <<<<<<< HEAD
 =======
 import com.revature.exceptions.IncreasedByNegativeNumberException;
->>>>>>> origin/KnightenJ
 
 public class Person implements Hunt{
 /*Code Block- defined by {}  {Things between}
@@ -98,30 +97,16 @@ public class Person implements Hunt{
 			this.weight=weight;
 		}
 		
-<<<<<<< HEAD
-		
-		public void increaseAgeBy(int x) {
-			if (x<0) {
-				
-			}
-			
-			
-=======
 		public void increaseAgeBy(int x) {
 			if (x<0) {
 				throw new IncreasedByNegativeNumberException();
 			}
 			this.age+=x;
->>>>>>> origin/KnightenJ
 		}
 
 		@Override
 		public void findPrey() {
-<<<<<<< HEAD
-			// TODO Auto-generated method stub
-=======
 			System.out.println("I go to walmart, meeeeegh");
->>>>>>> origin/KnightenJ
 			
 		}
 	
