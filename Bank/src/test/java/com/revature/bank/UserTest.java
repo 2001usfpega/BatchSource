@@ -1,10 +1,10 @@
 package com.revature.bank;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
-import java.util.Arrays;
-
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class UserTest {
 
@@ -16,13 +16,11 @@ public class UserTest {
         assertTrue(User.validName("ÆØÅæøåÄÖÜäöüß"));
     }
 
-    @Test
+    @RepeatedTest(value = 20)
     public void passwordTest() {
-        String pass1 = "test1";
-        String pass2 = "test2";
+        User user = new User("user", "userpass");
 
-        assertFalse(Arrays.equals(User.hashPassword(pass1), User.hashPassword(pass2)));
-        assertArrayEquals(User.hashPassword(pass1), User.hashPassword(pass1));
-        assertArrayEquals(User.hashPassword(pass2), User.hashPassword(pass2));
+        assertTrue(user.correctPassword("userpass"));
+        assertFalse(user.correctPassword("notuserpass"));
     }
 }

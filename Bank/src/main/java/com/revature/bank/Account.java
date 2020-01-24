@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Account implements Serializable {
+    private static final long serialVersionUID = -602406623576694074L;
+
     private final int id;
 
     private boolean approved;

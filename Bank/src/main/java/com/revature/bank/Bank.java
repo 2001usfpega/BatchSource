@@ -1,9 +1,9 @@
 package com.revature.bank;
 
-import java.io.ByteArrayOutputStream;
-import java.io.DataOutputStream;
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
@@ -23,34 +23,39 @@ public class Bank {
 
     private User loggedIn;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         System.out.println("Welcome to Revature Bank!");
-
-        new Bank().openMenu(MenuType.LOGIN);
+        new Bank().save();//.openMenu(MenuType.LOGIN);
     }
 
     {
-        try {
-            FileOutputStream stream = new FileOutputStream("test");
-            ByteArrayOutputStream writer = new ByteArrayOutputStream();
-            DataOutputStream out = new DataOutputStream(writer);
+        users.computeIfAbsent("admin", create -> {
+            User admin = new User("admin", "admin");
 
-            // out.write();
-            stream.write(writer.toByteArray());
-            stream.flush();
+            admin.setPermission(User.Permission.ADMIN);
+            return admin;
+        });
+    }
 
-            /*
-             * DataInputStream in = new DataInputStream(new FileInputStream("accounts"));
-             * 
-             * for (int i = 0; i < in.readInt(); i++) {
-             * 
-             * }
-             */
-        } catch (IOException e) {
-            e.printStackTrace();
+    private void load() {
+    }
+
+    private void save() {
+        File userDir = new File("users\\");
+
+        if (!userDir.exists()) {
+            userDir.mkdir();
         }
 
-        users.computeIfAbsent("admin", create -> new User("admin", User.hashPassword("admin"), User.Permission.ADMIN));
+        users.values().forEach(user -> {
+            try {
+                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("users\\" + user.getName()));
+
+                out.writeObject(user);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     private void openMenu(MenuType type) {

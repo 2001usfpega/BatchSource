@@ -4,6 +4,9 @@ import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public enum MenuType {
+    /**
+     * Login Menu to either create a new user or login.
+     */
     LOGIN(new Element[]{new Element("Create a user.", bank -> {
         System.out.print("Enter your name: ");
         String name;
@@ -19,7 +22,7 @@ public enum MenuType {
 
         System.out.print("Enter a password: ");
 
-        bank.getUsers().put(name, new User(name, User.hashPassword(Bank.readPassword()), User.Permission.CUSTOMER));
+        bank.getUsers().put(name, new User(name, Bank.readPassword()));
     }), new Element("Login to a user.", bank -> {
         System.out.print("Name: ");
 
@@ -39,6 +42,10 @@ public enum MenuType {
             System.out.println("Access Denied!");
         }
     })}),
+
+    /**
+     * The main menu after a user logs in
+     */
     MAIN(new Element[]{new Element("Open a new account", bank -> {
         Account account = new Account(Bank.ACCOUNT_ID.getAndIncrement());
 
@@ -127,7 +134,7 @@ public enum MenuType {
         Account account = bank.getAccounts().remove(ID);
         System.out.println("The requaested account has been canceled.");
 
-    }),});
+    })});
 
     private final Element[] elements;
 

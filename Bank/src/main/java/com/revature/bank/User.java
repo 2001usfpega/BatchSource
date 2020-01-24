@@ -1,22 +1,31 @@
 package com.revature.bank;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
 import java.util.Arrays;
-import java.util.Base64;
 import java.util.List;
 import java.util.Objects;
 
 public class User implements Serializable {
+    private static final long serialVersionUID = 3862300651907839903L;
+
     private final String name;
     private byte[] passwordHash;
+    private byte[] salt;
 
-    private Permission permission;
+    private Permission permission = Permission.CUSTOMER;
 
     private List<Account> accounts;
 
-    public User(String name, byte[] passwordHash, Permission permission) {
+    public User(String name, String password) {
+        this.name = name;
+        this.passwordHash = hashPassword(password, salt = genSalt());
+    }
+
+    public User(String name, byte[] passwordHash, byte[] salt, Permission permission) {
         this.name = name;
         this.passwordHash = passwordHash;
         this.permission = permission;
@@ -36,11 +45,7 @@ public class User implements Serializable {
     }
 
     public boolean correctPassword(String password) {
-        return Arrays.equals(passwordHash, hashPassword(password));
-    }
-
-    private void writeObject(java.io.ObjectOutputStream out) throws IOException {
-        out.defaultWriteObject();
+        return Arrays.equals(passwordHash, hashPassword(password, salt));
     }
 
     public String getName() {
@@ -51,6 +56,10 @@ public class User implements Serializable {
         return permission;
     }
 
+    public void setPermission(Permission permission) {
+        this.permission = permission;
+    }
+
     public List<Account> getAccounts() {
         return accounts;
     }
@@ -59,8 +68,28 @@ public class User implements Serializable {
         return name.matches("^[\\p{L} .'-]+$");
     }
 
-    public static byte[] hashPassword(String password) {
-        return Base64.getEncoder().encode((password + "-" + password.hashCode()).getBytes(StandardCharsets.UTF_8));
+    public static byte[] hashPassword(String password, byte[] salt) {
+        try {
+            MessageDigest digest = MessageDigest.getInstance("SHA-512");
+
+            digest.update(salt);
+
+            return digest.digest(password.getBytes(StandardCharsets.UTF_8));
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public static byte[] genSalt() {
+        byte[] salt = new byte[512];
+
+        try {
+            SecureRandom.getInstance("SHA1PRNG").nextBytes(salt);
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return salt;
     }
 
     public enum Permission {
