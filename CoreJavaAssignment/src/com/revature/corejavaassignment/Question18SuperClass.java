@@ -6,6 +6,6 @@ public abstract class Question18SuperClass {
 	
 	public abstract String convertLowerToUpper(String s);
 	
-	public abstract int convertWordsToValue (String s);
+	public abstract int convertWordsToValue(String s);
 
 }

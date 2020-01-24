@@ -270,7 +270,7 @@ public class Driver {
 		String integerString = "17";
 		ConcreteSubClassQuestion18 v = new ConcreteSubClassQuestion18();
 		//using switch to showcase each functionality implemented in the subclass(showing off really...)
-		//again, no breaks so the switch runs all the way through.
+		//again, no breaks so the switch runs all the way through. so, no default case
 		switch (1) {
 		case 1:
 			v.checkForUpperCase(case1);

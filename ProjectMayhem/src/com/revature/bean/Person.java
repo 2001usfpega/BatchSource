@@ -1,7 +1,13 @@
 package com.revature.bean;
 
-public class Person {
-/*Code Block- defined by {}  {Things between}
+import java.io.Serializable;
+
+public class Person implements Serializable {
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/*Code Block- defined by {}  {Things between}
  * static code block - runs once when class is used by compiler
  * instance code block-  run every time an object is instantiated (for that class)
  * 

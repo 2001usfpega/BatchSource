@@ -1,35 +1,44 @@
 package com.revature.maven.bankapp.groupbankapp;
 
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class BankAccount {
+public class BankAccount implements Serializable{
 
-	double balance;
-	double previousTransaction;
-	String accountNumber;
-	String customerName;
+	private double balance;
+	private double previousTransaction;
+	private String accountNumber;
+	private String name;
+	private String address;
+	private String phone;
+	private String email;
 
-	BankAccount(String cName, String acctNum) {
-		customerName = cName;
-		accountNumber = acctNum;
+	public BankAccount(String accntNum) {
+		this.accountNumber = accntNum;
+	}
+	
+	public double getBalance() {
+		return this.balance;
 	}
 
-	public void deposit(double amount) {
+	public double deposit(double amount) {
 		if (amount > 0) {
-			balance += amount;
+			this.balance += amount;
 			previousTransaction = amount;
 		} else if (amount < 0) {
 			System.out.println("Incorrect entry. Please choose a positive integer");
 		}
+		return this.balance;
 	}
 
-	public void withdraw(double amount) {
-		if (amount != 0 && amount < balance) {
-			balance -= amount;
+	public double withdraw(double amount) {
+		if (amount > 0 && amount < balance) {
+			this.balance -= amount;
 			previousTransaction = -amount;
-		}else if (amount <0) {
+		}else if (amount < 0) {
 			System.out.println("Incorrect entry.  Please choose a positive integer");
 		}
+		return this.balance;
 	}
 
 	public void printPreviousTransaction() {
@@ -46,7 +55,7 @@ public class BankAccount {
 		char option = '\0';
 		Scanner scanner = new Scanner(System.in);
 
-		System.out.println("Welcome " + customerName + ", to the Bank of Revature.");
+		System.out.println("Welcome to the Bank of Revature.");
 		System.out.println("Please choose from one of the following options:");
 		System.out.println("A. Check Balance");
 		System.out.println("B. Deposit");
