@@ -1,9 +1,16 @@
 package com.revature.bean;
 
+import java.io.Serializable;
+
 import com.revature.classtypes.Hunt;
 import com.revature.exceptions.IncreasedByNegativeNumberException;
 
-public class Person implements Hunt{
+public class Person implements Hunt,Serializable{
+/**
+	 * 
+	 */
+	private static final long serialVersionUID = -5916895991226355928L;
+
 /*Code Block- defined by {}  {Things between}
  * static code block - runs once when class is used by compiler
  * instance code block-  run every time an object is instantiated (for that class)
