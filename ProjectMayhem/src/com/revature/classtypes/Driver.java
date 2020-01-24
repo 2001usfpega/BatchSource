@@ -1,6 +1,10 @@
 package com.revature.classtypes;
 
+<<<<<<< HEAD
 import com.revature.bean.Person;
+=======
+import com.revarure.bean.Person;
+>>>>>>> 494dbe7d7201acd9f07197775f77d0032c64d4e3
 
 public class Driver {
 
@@ -13,6 +17,10 @@ public class Driver {
 		
 		Person p = new Person();
 		p.findPrey();
+<<<<<<< HEAD
+=======
+
+>>>>>>> 494dbe7d7201acd9f07197775f77d0032c64d4e3
 	}
 
 }

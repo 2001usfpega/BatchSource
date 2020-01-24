@@ -5,7 +5,11 @@ package com.revature.driver;
 import java.sql.Date;
 
 import com.revature.bean.Person; //<-- Fully Qualified Class Name
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/driver/Driver.java
 import com.revature.staticfun.FunWithStatic;
+=======
+import com.revature.saticfun.FunWithStatic;
+>>>>>>> 494dbe7d7201acd9f07197775f77d0032c64d4e3:ProjectMayhem/src/com/revature/name/Driver.java
 
 public class Driver {
 	//single line comment
@@ -46,6 +50,7 @@ public class Driver {
 		Person p = new Person();
 		p.setName("Jim");
 		System.out.println(p);
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/driver/Driver.java
 //		Person q= new Person("BobPam", 81, 27);
 //		System.out.println(q);
 		p.increaseAgeBy(-3);
@@ -63,6 +68,15 @@ public class Driver {
 		Object o = new Object();
 =======
 >>>>>>> origin/KnightenJ:ProjectMayhem/src/com/revature/driver/Driver.java
+=======
+		Person q= new Person("BobPam", 81, 27);
+		System.out.println(q);
+		
+		FunWithStatic fws = new FunWithStatic();
+		fws.nonStaticMethod();
+		FunWithStatic.staticMethod();
+		fws.staticMethod();
+>>>>>>> 494dbe7d7201acd9f07197775f77d0032c64d4e3:ProjectMayhem/src/com/revature/name/Driver.java
 		
 	}
 }

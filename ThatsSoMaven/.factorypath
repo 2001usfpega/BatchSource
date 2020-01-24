@@ -1,4 +1,8 @@
 <factorypath>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/logging/log4j/log4j-core/2.13.0/log4j-core-2.13.0.jar" enabled="true" runInBatchMode="false"/>
     <factorypathentry kind="VARJAR" id="M2_REPO/org/apache/logging/log4j/log4j-api/2.13.0/log4j-api-2.13.0.jar" enabled="true" runInBatchMode="false"/>
+<<<<<<< HEAD
+=======
+    <factorypathentry kind="PLUGIN" id="org.eclipse.modisco.infra.discovery.core" enabled="false" runInBatchMode="false"/>
+>>>>>>> 494dbe7d7201acd9f07197775f77d0032c64d4e3
 </factorypath>
