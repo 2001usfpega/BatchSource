@@ -4,13 +4,15 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.LinkedHashSet;
 import java.util.Scanner;
+import java.util.Set;
 
+import com.revature.floats.Floats;
+import com.revature.question15.Question15;
+import com.revature.question18.Question18;
 import com.revature.question7.Employee;
 import com.revature.question7.Question7;
-import com.revature.floats.Floats;
-import com.revature.question15.*;
-import com.revature.question18.Question18;
 
 public class Assignment1 {
 
@@ -327,7 +329,7 @@ public class Assignment1 {
 			
 			//default add 1 to primes list
 			if(i == 1) {
-				primes.add(i);
+				continue;
 			} else {
 				flag = true;
 				half = i /2;
@@ -493,6 +495,16 @@ public class Assignment1 {
 		try {
 			Scanner scan = new Scanner(file);
 			while(scan.hasNext()) {
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				String str = scan.nextLine();
 				String[] input = str.split(":");
 				System.out.println("Name: " + input[0] + " " + input[1]);
