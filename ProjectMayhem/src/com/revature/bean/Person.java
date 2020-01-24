@@ -1,6 +1,8 @@
 package com.revature.bean;
 
-public class Person {
+import com.revature.classtypes.Hunt;
+
+public class Person implements Hunt{
 /*Code Block- defined by {}  {Things between}
  * static code block - runs once when class is used by compiler
  * instance code block-  run every time an object is instantiated (for that class)
@@ -90,6 +92,21 @@ public class Person {
 			this.name=name;
 			this.age=age;
 			this.weight=weight;
+		}
+		
+		
+		public void increaseAgeBy(int x) {
+			if (x<0) {
+				
+			}
+			
+			
+		}
+
+		@Override
+		public void findPrey() {
+			// TODO Auto-generated method stub
+			
 		}
 	
 }

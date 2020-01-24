@@ -53,6 +53,7 @@ public class Driver {
 		fws.nonStaticMethod();
 		FunWithStatic.staticMethod();
 		fws.staticMethod();
+		Object o = new Object();
 		
 	}
 }
