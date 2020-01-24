@@ -6,7 +6,7 @@ public class Gen1<T> {
 	 * using a type as parameter
 	 * write code that can handle diff type of object
 	 * use angle brackets<> to denote that something ia a generic
-	 * allows usto ensure type safety
+	 * allows us to ensure type safety
 	 * adds stability and reusability to our code
 	 * placeholder(t,e,?,etc..) use instead of an explicit type
 	 * 
