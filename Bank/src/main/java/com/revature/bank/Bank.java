@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.HashMap;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * https://docs.google.com/document/d/1uOtESr7QJAmXMQpK-uxdxRdL070ANWj7KKzAV1Utycw/edit
@@ -59,11 +62,11 @@ public class Bank {
     }
 
     private void openMenu(MenuType type) {
-        int size = type.getElements().length;
+        List<Element> elements = Stream.of(type.getElements()).filter(element -> loggedIn == null || loggedIn.getPermission().ordinal() >= element.getPermission().ordinal()).collect(Collectors.toList());
+        int size = elements.size();
 
         for (int i = 1; i <= size; i++) {
-            // TODO permission check for options
-            System.out.println(i + " - " + type.getElements()[i - 1].getAction());
+            System.out.println(i + " - " + elements.get(i - 1).getAction());
         }
 
         System.out.println((size + 1) + " - Exit.");
@@ -73,7 +76,7 @@ public class Bank {
 
         while ((option = readInt()) != size + 1) {
             if (option > 0 && option <= size) {
-                type.getElements()[option - 1].select(this);
+                elements.get(option - 1).select(this);
             } else {
                 System.out.println("Invalid selection!");
                 System.out.print("Please select an action: ");

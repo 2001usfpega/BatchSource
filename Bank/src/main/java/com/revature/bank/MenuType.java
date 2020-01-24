@@ -46,7 +46,40 @@ public enum MenuType {
     /**
      * The main menu after a user logs in
      */
-    MAIN(new Element[]{new Element("Open a new account", bank -> {
+    MAIN(new Element[]{new Element("List all customers", User.Permission.EMPLOYEE, bank -> {
+        for (User user : bank.getUsers().values()) {
+            System.out.println(user);
+        }
+    }), new Element("List accounts needing approval", User.Permission.EMPLOYEE, bank -> {
+        bank.getLoggedIn().getAccounts().stream().filter(acc -> !acc.isApproved()).forEach(account -> {
+            System.out.println(account.getId() + " - " + account.getHolders().stream().map(User::getName).collect(Collectors.joining(", ")));
+        });
+    }), new Element("Approve an account", User.Permission.EMPLOYEE, bank -> {
+        System.out.println("What account would you like to get approved today?");
+        int ID = Bank.readInt();
+        Account account = bank.getAccounts().get(ID);
+        account.setApproved(true);
+        System.out.println("Your account has been approved");
+
+    }), new Element("Cancel an account", User.Permission.ADMIN, bank -> {
+        System.out.println("Please tell us what account you would like to cancel today.");
+        int ID = Bank.readInt();
+        Account account = bank.getAccounts().remove(ID);
+        System.out.println("The requaested account has been canceled.");
+
+    })}),
+
+    /**
+     * User settings menu containing options to edit the logged in user
+     */
+    USER(new Element[]{new Element("", bank -> {
+
+    })}),
+
+    /**
+     * Account menu containing actions to manipulate accounts
+     */
+    ACCOUNT(new Element[]{new Element("Open a new account", bank -> {
         Account account = new Account(Bank.ACCOUNT_ID.getAndIncrement());
 
         account.getHolders().add(bank.getLoggedIn());
@@ -112,28 +145,6 @@ public enum MenuType {
         selected.setAmount(selected.getAmount() - transferAmount);
         selected2.setAmount(selected2.getAmount() + transferAmount);
         System.out.println("Your transfer has been completed, " + bank.getLoggedIn().getName() + "!");
-
-    }), new Element("List all customers", User.Permission.EMPLOYEE, bank -> {
-        for (User user : bank.getUsers().values()) {
-            System.out.println(user);
-        }
-    }), new Element("List accounts needing approval", User.Permission.EMPLOYEE, bank -> {
-        bank.getLoggedIn().getAccounts().stream().filter(acc -> !acc.isApproved()).forEach(account -> {
-            System.out.println(account.getId() + " - " + account.getHolders().stream().map(User::getName).collect(Collectors.joining(", ")));
-        });
-    }), new Element("Approve an account", User.Permission.EMPLOYEE, bank -> {
-        System.out.println("What account would you like to get approved today?");
-        int ID = Bank.readInt();
-        Account account = bank.getAccounts().get(ID);
-        account.setApproved(true);
-        System.out.println("Your account has been approved");
-
-    }), new Element("Cancel an account", User.Permission.ADMIN, bank -> {
-        System.out.println("Please tell us what account you would like to cancel today.");
-        int ID = Bank.readInt();
-        Account account = bank.getAccounts().remove(ID);
-        System.out.println("The requaested account has been canceled.");
-
     })});
 
     private final Element[] elements;
