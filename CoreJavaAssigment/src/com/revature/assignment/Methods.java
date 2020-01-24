@@ -442,6 +442,8 @@ public class Methods {
 	 * 
 	 */
 	
+	//QUESTION 18 CLASS
+	
 	/*
 	 * 
 	 * QUESTION 19
