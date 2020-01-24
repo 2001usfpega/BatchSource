@@ -28,7 +28,7 @@ public class Bank {
 
     public static void main(String[] args) throws NoSuchFieldException, IllegalAccessException {
         System.out.println("Welcome to Revature Bank!");
-        new Bank().save();//.openMenu(MenuType.LOGIN);
+        new Bank().openMenu(MenuType.LOGIN);
     }
 
     {

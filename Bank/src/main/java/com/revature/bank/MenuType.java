@@ -105,7 +105,7 @@ public enum MenuType {
         }
         System.out.println("Please select and account ID.");
         int ID = Bank.readInt();
-        System.out.println("Please Enter the Amount you would like to deposit.");
+        System.out.println("Please Enter the Amount you would like to withdraw.");
         double withdrawal = bank.readDouble();
         Account selected = bank.getLoggedIn().getAccounts().stream().filter(acc -> acc.getId() == ID).findAny()
                 .orElse(null);
@@ -117,11 +117,29 @@ public enum MenuType {
         }
         selected.setAmount(selected.getAmount() - withdrawal);
 
-    }), new Element("Transfer money between accounts", bank -> {
+    }),new Element("Add an authorized user to an account", bank -> {
         bank.getLoggedIn();
         for (Account a : bank.getLoggedIn().getAccounts()) {
             System.out.println("Account ID: " + a.getId() + ", Account Balance:  " + a.getAmount());
         }
+        System.out.println("Please Select which account you are adding an authorized user."); 
+        int ID = Bank.readInt();
+        
+        System.out.println("Please enter the username of the person to which you are authorizing access.");
+        String jointUser = Bank.SCANNER.nextLine();
+        User newUser = bank.getUsers().get(jointUser);
+        Account newAccount =bank.getAccounts().get(ID); 
+        newAccount.getHolders().add(newUser);
+        newUser.getAccounts().add(newAccount);
+        System.out.println("We've authorized user"+jointUser+" your account. We hope this was a wise choice. ");
+       
+        }),
+             new Element("Transfer money between accounts", bank -> {
+        bank.getLoggedIn();
+        for (Account a : bank.getLoggedIn().getAccounts()) {
+            System.out.println("Account ID: " + a.getId() + ", Account Balance:  " + a.getAmount());
+        }
+        
         System.out.println("Please select and account ID.");
         int ID = Bank.readInt();
 
