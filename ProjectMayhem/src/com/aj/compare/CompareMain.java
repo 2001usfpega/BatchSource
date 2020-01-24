@@ -19,17 +19,20 @@ public class CompareMain {
 		for (Student s : students) {
 			System.out.println(s);
 		}
+		
 		printSeparator();
 		Collections.sort(students);
 		for (Student s : students) {
 			System.out.println(s);
 		}
+		
 		printSeparator();
 		System.out.println("Sorted by GPA: ");
 		Collections.sort(students, new StudentComparator());
 		for (Student s : students) {
 			System.out.println(s);
 		}
+		
 		printSeparator();
 		System.out.println("Sorted by label with lambda: ");
 		// Functional interfaces have 1 (not default) method
