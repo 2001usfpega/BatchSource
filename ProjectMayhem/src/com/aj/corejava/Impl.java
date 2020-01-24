@@ -5,8 +5,10 @@ import java.util.ArrayList;
 public class Impl extends AbstractClass {
 
 	@Override
-	public boolean anyUppercase(String str) {
+	public String anyUppercase(String str) {
 		boolean isUpper = false;
+		String yes = "YES";
+		String no = "NO";
 		ArrayList<Character> arrOfStr = new ArrayList<Character>();
 		for (int c = 0; c < str.length(); c++) {
 			Character temp = new Character(str.charAt(c));
@@ -17,8 +19,10 @@ public class Impl extends AbstractClass {
 				isUpper = true;
 			}
 		}
-
-		return isUpper;
+		if (isUpper) {
+			return yes;
+		}
+		return no;
 	}
 
 	@Override

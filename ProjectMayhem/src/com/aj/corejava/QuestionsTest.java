@@ -96,6 +96,7 @@ class QuestionsTest {
 		ArrayList<Integer> result = Questions.q9ArrayListPrime();
 
 		assertEquals(expected, result);
+		Questions.printSeparator();
 	}
 
 	@Test
@@ -117,7 +118,7 @@ class QuestionsTest {
 		Float[] result = Questions.q11FloatVars();
 
 		assertArrayEquals(expected, result);
-
+		Questions.printSeparator();
 	}
 
 	@Test
@@ -128,6 +129,7 @@ class QuestionsTest {
 		ArrayList<Integer> result = Questions.q12PrintEvens();
 
 		assertEquals(expected, result);
+		Questions.printSeparator();
 	}
 
 //	@Test
@@ -156,26 +158,32 @@ class QuestionsTest {
 		int result = Questions.q16CountChars(myStr);
 		
 		assertEquals(expected, result);
+		Questions.printSeparator();
 	}
 
 //	@Test
 //	void testQ17PrincipalInterestCalc() {
 //		fail("Not yet implemented");
 //	}
-//
-//	@Test
-//	void testQ18AbstractStringMethods() {
-//		fail("Not yet implemented");
-//	}
-//
+
+	@Test
+	void testQ18AbstractStringMethods() {
+		String myStr = "This is a string";
+		String[] exp = {"This is a string", "YES", "THIS IS A STRING", "1494"};	
+		String[] res = Questions.q18AbstractStringMethods(myStr);
+		
+		assertArrayEquals(exp, res);
+		Questions.printSeparator();
+	}
+
 //	@Test
 //	void testQ19ManipulateArrayList() {
 //		fail("Not yet implemented");
 //	}
-//
-//	@Test
-//	void testQ20readFilePrintDetails() {
-//		fail("Not yet implemented");
-//	}
+
+	@Test
+	void testQ20readFilePrintDetails() {
+		String[] exp;
+	}
 
 }

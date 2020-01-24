@@ -39,7 +39,7 @@ public class IO {
 
 	public String readInputStreamContents() {
 		InputStream is = null;
-		File file = new File(OUT_FILE);
+		File file = new File("person.txt");
 		StringBuilder sB = new StringBuilder();
 		try {
 			is = new FileInputStream(file);

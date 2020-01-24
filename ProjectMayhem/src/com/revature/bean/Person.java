@@ -1,9 +1,16 @@
 package com.revature.bean;
 
+import java.io.Serializable;
+
 import com.aj.classTypes.Hunt;
 import com.aj.exceptions.IncreaseByNegativeException;
 
-public class Person implements Hunt {
+public class Person implements Hunt, Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 282854016993150252L;
+
 	/*
 	 * Code Block- defined by {} {Things between} static code block - runs once when
 	 * class is used by compiler instance code block- run every time an object is
@@ -14,13 +21,13 @@ public class Person implements Hunt {
 	 * Setters toString() equals()
 	 */
 	// Static code block
-	static {
-		System.out.println("I'm in a static code block");
-	}
+//	static {
+//		System.out.println("I'm in a static code block");
+//	}
 	// Instance code block
-	{
-		System.out.println("I'm in an instance code block");
-	}
+//	{
+//		System.out.println("I'm in an instance code block");
+//	}
 	private String name;
 	private int age;
 	private int weight;
@@ -94,7 +101,7 @@ public class Person implements Hunt {
 	public Person(String name, int age, int weight) {
 		// this. is referring to the object
 		// =name is referring to the parameter
-		System.out.println("Inside Person Constructor");
+//		System.out.println("Inside Person Constructor");
 		this.name = name;
 		this.age = age;
 		this.weight = weight;

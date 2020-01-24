@@ -38,7 +38,7 @@ public class Driver {
 		Questions.printSeparator();
 		Questions.q16CountChars(myStr);
 		Questions.printSeparator();
-//		Questions.q17PrincipalInterestCalc();
+//		Questions.q17PrincipalInterestCalc(22);
 //		Questions.printSeparator();
 		Questions.q18AbstractStringMethods(myStr);
 		Questions.printSeparator();

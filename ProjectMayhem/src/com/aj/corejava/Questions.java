@@ -369,18 +369,24 @@ public class Questions {
 
 	}
 
-	public static void q18AbstractStringMethods(String st) {
+	public static String[] q18AbstractStringMethods(String st) {
 		Impl myStrMthds = new Impl();
+		String[] strArr = new String[4];
+		strArr[0] = st;
+		strArr[1] = myStrMthds.anyUppercase(st);
+		strArr[2] = myStrMthds.myToUppercase(st);
+		strArr[3] = Integer.toString(myStrMthds.strToInt(st));
 
 		System.out.println("Q18. Implementing Abstract String Methods: ");
 		System.out.println("     Input string: " + st);
 		System.out.println(
-				"     Any uppercase letters in the string? " + ((myStrMthds.anyUppercase(st)) ? "YES" : "NO "));
+				"     Any uppercase letters in the string? " + myStrMthds.anyUppercase(st));
 
 		System.out.println("     If there weren't before, there there are now! " + myStrMthds.myToUppercase(st));
 		System.out.println("     And just for funsies, if your string was a number plus ten it would be: "
 				+ myStrMthds.strToInt(st));
-
+		
+		return strArr;
 	}
 
 	public static void q19ManipulateArrayList() {
@@ -430,7 +436,7 @@ public class Questions {
 
 	}
 
-	public static void q20readFilePrintDetails() {
+	public static String[] q20readFilePrintDetails() {
 		StringBuilder builder = new StringBuilder();
 		String filePath = new String(
 				"C:\\Users\\AJ\\code\\revature\\aj_workspace\\CoreJavaAJ\\src\\com\\aj\\corejava\\Data.txt");
@@ -457,5 +463,7 @@ public class Questions {
 		System.out.println("     Name: " + strArr[12] + " " + strArr[13]);
 		System.out.println("     Age: " + strArr[14]);
 		System.out.println("     State: " + strArr[15]);
+
+		return strArr;
 	}
 }
