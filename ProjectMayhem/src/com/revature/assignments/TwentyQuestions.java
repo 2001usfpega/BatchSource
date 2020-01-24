@@ -5,6 +5,7 @@ import java.io.*;
 import java.lang.Math;
 import com.revature.assignments11.*;
 
+
 public class TwentyQuestions {
 
 	public abstract class Comp implements Comparator<Comp> {
@@ -220,6 +221,8 @@ public class TwentyQuestions {
 	}
 
 	public static void Q11() {
+		
+		
 		
 	}
 
