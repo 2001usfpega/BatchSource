@@ -1,6 +1,8 @@
 package com.revature.bean;
 
-public class Person {
+import java.io.Serializable;
+
+public class Person implements Hunt, Serializable{
 /*Code Block- defined by {} {things between curly braces}
  * static code block- run once when the class is used by compiler
  * instance code block- runs everytime an object is instantiated (for that class)
