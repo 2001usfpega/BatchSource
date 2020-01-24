@@ -1,4 +1,8 @@
-package com.revature.name;
+package com.revature.driver;
+
+//wild card
+//import static java.util.*;
+import java.sql.Date;
 
 import com.revature.bean.Person; //<-- Fully Qualified Class Name
 import com.revature.staticfun.FunWithStatic;
@@ -26,6 +30,9 @@ public class Driver {
 		int a=3;
 		int b=46;
 		int c= a+b;
+		Date d= new Date((long) 5.0);
+		java.util.Date e= new java.util.Date();
+		
 		System.out.println("I like to eat "+ c + " tacos" );
 		/*
 		 * Members of a class- can diff forms
@@ -39,6 +46,7 @@ public class Driver {
 		Person p = new Person();
 		p.setName("Jim");
 		System.out.println(p);
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/name/Driver.java
 		Person q= new Person("BobPam", 81, 27);
 		System.out.println(q);
 		FunWithStatic fws=new FunWithStatic();
@@ -47,5 +55,17 @@ public class Driver {
 		System.out.println();
 		p.increaseAgeBy(3);
 		System.out.println(p.getAge());
+=======
+//		Person q= new Person("BobPam", 81, 27);
+//		System.out.println(q);
+		p.increaseAgeBy(-3);
+		System.out.println(p.getAge());
+		/*
+		 * FunWithStatic fws= new FunWithStatic(); fws.nonStaticMethod();
+		 * FunWithStatic.staticMethod(); fws.staticMethod(); Object o= new Object();
+		 */
+		
+		
+>>>>>>> 7c61e685c67d8ceb7427eebeb87d4a6a7521aec8:ProjectMayhem/src/com/revature/driver/Driver.java
 	}
 }

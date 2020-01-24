@@ -1,9 +1,16 @@
 package com.revature.bean;
 
+<<<<<<< HEAD
 import com.revature.classtype.Hunt;
 import com.revature.exceptions.IncreaseBynegativeNumberException;
 
 public class Person implements Hunt {
+=======
+import com.revature.classtypes.Hunt;
+import com.revature.exceptions.IncreasedByNegativeNumberException;
+
+public class Person implements Hunt{
+>>>>>>> 7c61e685c67d8ceb7427eebeb87d4a6a7521aec8
 /*Code Block- defined by {}  {Things between}
  * static code block - runs once when class is used by compiler
  * instance code block-  run every time an object is instantiated (for that class)
@@ -42,6 +49,7 @@ public class Person implements Hunt {
 	public int getAge() {
 		return age;
 	}
+	//Example of Shadowing
 	public void setAge(int age) {
 		this.age = age;
 	}
@@ -93,17 +101,30 @@ public class Person implements Hunt {
 			this.age=age;
 			this.weight=weight;
 		}
+<<<<<<< HEAD
 		public void increaseAgeBy(int x) {
 			if(x<0) {
 				throw new IncreaseBynegativeNumberException();
 			
 			}
 			this.name+=x;
+=======
+		
+		public void increaseAgeBy(int x) {
+			if (x<0) {
+				throw new IncreasedByNegativeNumberException();
+			}
+			this.age+=x;
+>>>>>>> 7c61e685c67d8ceb7427eebeb87d4a6a7521aec8
 		}
 
 		@Override
 		public void findPrey() {
+<<<<<<< HEAD
 		System.out.println("I go to Walamart , meeeeegh");
+=======
+			System.out.println("I go to walmart, meeeeegh");
+>>>>>>> 7c61e685c67d8ceb7427eebeb87d4a6a7521aec8
 			
 		}
 	
