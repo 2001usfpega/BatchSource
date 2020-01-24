@@ -3,6 +3,7 @@ package com.revature.driver;
 //wild card
 //import static java.util.*;
 import java.sql.Date;
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/driver/Driver.java
 
 //wild card
 //import static java.util.*;
@@ -19,6 +20,11 @@ import com.revature.staticfun.FunWithStatic;
 =======
 import com.revature.staticfun.FunWithStatic;
 >>>>>>> 595e30d88e3dc8687bf32a255de4dd1e7d81bcdb:ProjectMayhem/src/com/revature/driver/Driver.java
+=======
+
+import com.revature.bean.Person; //<-- Fully Qualified Class Name
+import com.revature.staticfun.FunWithStatic;
+>>>>>>> 7c61e685c67d8ceb7427eebeb87d4a6a7521aec8:ProjectMayhem/src/com/revature/name/Driver.java
 
 public class Driver {
 	//single line comment
@@ -59,6 +65,7 @@ public class Driver {
 		Person p = new Person();
 		p.setName("Jim");
 		System.out.println(p);
+<<<<<<< HEAD:ProjectMayhem/src/com/revature/driver/Driver.java
 <<<<<<< HEAD:ProjectMayhem/src/com/revature/name/Driver.java
 		Person q= new Person("BobPam", 81, 27);
 		System.out.println(q);
@@ -68,6 +75,8 @@ public class Driver {
 		FunWithStatic.staticMethod();
 		fws.staticMethod();
 =======
+=======
+>>>>>>> 7c61e685c67d8ceb7427eebeb87d4a6a7521aec8:ProjectMayhem/src/com/revature/name/Driver.java
 //		Person q= new Person("BobPam", 81, 27);
 //		System.out.println(q);
 		p.increaseAgeBy(-3);
