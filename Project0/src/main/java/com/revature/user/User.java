@@ -1,6 +1,8 @@
 package com.revature.user;
 
-public abstract class User {
+import java.io.Serializable;
+
+public abstract class User implements Serializable {
 	/**
 	 * The username of the user
 	 */

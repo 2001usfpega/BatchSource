@@ -1,13 +1,10 @@
 package com.revature.account;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+
+import java.io.Serializable;
 import java.util.Random;
 
-public class Account {
+public class Account implements Serializable{
 	private static final String ACCOUNT_FILE = "Accounts.txt";
 
 	private Random accountNumGen = new Random();
@@ -27,13 +24,30 @@ public class Account {
 		prevTran = 0;
 	}
 	
+	/**
+	 * 
+	 * @param userID
+	 * @param accountID
+	 * @param balance
+	 */
 	public Account(String userID, String accountID, double balance) {
 		this.accountID = accountID;
 		this.userID = userID;
 		this.balance = balance;
 		prevTran = 0;
 	}
+	
+//	@Override
+//	public String toString() {
+//		return "Account [accountNumGen=" + accountNumGen + ", userID=" + userID + ", accountID=" + accountID
+//				+ ", balance=" + balance + ", prevTran=" + prevTran + "]";
+//	}
 
+	/**
+	 * 
+	 * @param amount
+	 * @return
+	 */
 	public double withdraw(double amount) {
 		if (amount > 0 && amount < balance) {
 			balance -= amount;
@@ -44,7 +58,11 @@ public class Account {
 			return 0;
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @param amount
+	 */
 	public void deposit(double amount) {
 		if (amount > 0) {
 			balance += amount;
@@ -52,8 +70,12 @@ public class Account {
 		} else {
 			System.out.println("Invalid amount. Please enter positive amount.");
 		}
+		
 	}
-
+	
+	/**
+	 * 
+	 */
 	public void printPrevTran() {
 		if (prevTran > 0) {
 			System.out.println("You withdrew: $" + prevTran);
@@ -63,34 +85,24 @@ public class Account {
 			System.out.println("You have no recent transactions.");
 		}
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getAccountNumber() {
 		return this.accountID;
 	}
 	
+	public double getBalance() {
+		return balance;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
 	public String getUserID() {
 		return this.userID;
 	}
-
-	public void printToFile() {
-		OutputStream os = null;
-		File file = new File(ACCOUNT_FILE);
-		String out = userID + ":" + accountID + ":" + balance + "\n";
-		try {
-			os = new FileOutputStream(file, true);
-			os.write(out.getBytes());
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		if (os != null) {
-			try {
-				os.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 }
