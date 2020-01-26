@@ -1,5 +1,5 @@
 package com.revature.core;
-
+//Kyle Howard Krug
 abstract class abs{
 	//establishes an abstract class with the three required methods
 	public boolean uppercase(String str) {
