@@ -1,5 +1,5 @@
 package com.revature.core;
-
+//Kyle Howard Krug
 import java.util.Scanner;
 
 public class Question17 {
