@@ -2,7 +2,7 @@ package com.revature.core;
 
 import java.util.Date;
 import java.util.Scanner;
-
+//Kyle Howard Krug
 public class Question14 {
 	public String question14() {
 		System.out.println("Welcome to question 14!");
