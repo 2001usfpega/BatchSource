@@ -36,7 +36,8 @@ public class Loops {
 		default:
 			break;
 		}
-
+		input.close();
 	}
+	
 
 }

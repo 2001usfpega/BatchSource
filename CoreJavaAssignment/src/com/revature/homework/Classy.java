@@ -96,7 +96,12 @@ public class Classy {
 	//Q4 Factorial
 	public static void factorial(int n) {
 		System.out.println("Q4. Factorial");
-		System.out.println(fact(n));
+		if(n>=0) {
+			System.out.println(fact(n));
+		}
+		else {
+			System.out.println(-fact(-n));
+		}
 		System.out.println();
 	}
 
@@ -111,9 +116,15 @@ public class Classy {
 	//Q5 sub string
 	public static void subString(String s, int idx) {
 		System.out.println("Q5. Substring");
-		//print the first idx chars one by one
-		for(int i=0;i<idx;i++) {
-			System.out.print(s.charAt(i));
+		//size check
+		if(idx<s.length()-1) {
+			//print the first idx chars one by one
+			for(int i=0;i<idx;i++) {
+				System.out.print(s.charAt(i));
+			}
+		}
+		else {
+			System.out.println("Nope!");
 		}
 		System.out.println('\n');		
 	}
@@ -230,30 +241,48 @@ public class Classy {
 	//Q12 Print Even
 	public static void printEvenTo(int x) {
 		System.out.println("Q12. Print Even");
-		int [] numbers = new int [x];
-		//make array
-		for(int i=0; i<x; i++) {
-			numbers[i]=i+1;
-		}
-		for(int i:numbers) {
-			//check if even
-			if(i%2==0) {
-				System.out.print(i+" ");
+		if(x>0) {
+			int [] numbers = new int [x];
+			//make array
+			for(int i=0; i<x; i++) {
+				numbers[i]=i+1;
 			}
+			for(int i:numbers) {
+				//check if even
+				if(i%2==0) {
+					System.out.print(i+" ");
+				}
+			}
+			System.out.println();
 		}
-		System.out.println('\n');
+		else {
+			System.out.println("Must be a positive number");
+		}
+		System.out.println();
 	}
 	
 	//Q13 Triangle
 	public static void makeTriangle(int rows) {
 		System.out.println("Q13. Triangle");
 		int swap =0;
-		for(int i =0; i<rows;i++) {
-			for(int j=0; j<=i;j++) {
-				System.out.print(swap);
-				swap=1-swap;
+		if(rows>=0) {		
+			
+			for(int i =0; i<rows;i++) {
+				for(int j=0; j<=i;j++) {
+					System.out.print(swap);
+					swap=1-swap;
+				}
+				System.out.println();
 			}
-			System.out.println();
+		}
+		else {
+			for(int i =-rows; i>=0;i--) {
+				for(int j=i; j>=0;j--) {
+					System.out.print(swap);
+					swap=1-swap;
+				}
+				System.out.println();
+			}
 		}
 		System.out.println();		
 	}
@@ -334,7 +363,7 @@ public class Classy {
 		input.close();
 		
 		//p*r*t
-		System.out.println("Your interest will be $"+principal*rate*time);
+		System.out.println("\nYour interest will be $"+principal*rate*time);
 		System.out.println();
 	}
 	
@@ -343,13 +372,14 @@ public class Classy {
 		System.out.println("Q18. Test Concrete Class");
 		StringImplimentation si=new StringImplimentation();
 		
-		if(si.hasUpper(test)) {
+		if(!si.hasUpper(test)) {
 			System.out.println(test + " is all lower case");
 		}
 		else {
 			System.out.println(test + " has an upper case character");
-			System.out.println(si.toUpper(test)+ " is now lower case");
 		}
+
+		System.out.println(si.toUpper(test)+ " is now Upper case");
 		si.addTen("1327");
 		System.out.println();
 	}
@@ -359,29 +389,34 @@ public class Classy {
 		System.out.println("Q19 Add odds and evens");
 		ArrayList<Integer> nums = new ArrayList<>();
 		//fill the list
-		for(int i =1;i<=max;i++) {
-			nums.add(i);
-		}
-		printArray(nums);
-		//calculate sums
-		int [] sums = {0,0};
-		for(int i:nums) {
-			sums[i%2]+=i;
-		}
-		System.out.println("the odd sum is:  "+sums[1]);
-		System.out.println("the even sum is: "+sums[0]);
-		
-		//remove primes
-		ArrayList<Integer> primes = getPrimes(max);
-		Iterator<Integer> idd=nums.iterator();
-		while(idd.hasNext()) {
-			int i=idd.next();
-			if(primes.contains(i)) {
-				idd.remove();
+		if(max>0){
+			for(int i =1;i<=max;i++) {
+				nums.add(i);
 			}
+			printArray(nums);
+			//calculate sums
+			int [] sums = {0,0};
+			for(int i:nums) {
+				sums[i%2]+=i;
+			}
+			System.out.println("the odd sum is:  "+sums[1]);
+			System.out.println("the even sum is: "+sums[0]);
+			
+			//remove primes
+			ArrayList<Integer> primes = getPrimes(max);
+			Iterator<Integer> idd=nums.iterator();
+			while(idd.hasNext()) {
+				int i=idd.next();
+				if(primes.contains(i)) {
+					idd.remove();
+				}
+			}
+			System.out.print("non-primes are: ");
+			printArray(nums);
 		}
-		System.out.print("non-primes are: ");
-		printArray(nums);
+		else {
+			System.out.println("Must be a positive number");
+		}
 		System.out.println();
 	}
 	

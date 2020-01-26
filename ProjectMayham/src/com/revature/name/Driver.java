@@ -1,6 +1,7 @@
 package com.revature.name;
 
 import com.revature.bean.Person;
+import com.revature.exceptions.IncreaseByNegativeNumberException;
 import com.revature.staticfun.FunWithStatic;
 
 public class Driver {
@@ -41,6 +42,7 @@ public class Driver {
 		Person p = new Person();
 		p.setName("jim");
 		System.out.println(p);
+		p.setAge(82);
 		
 		Person q= new Person("jeff",18,150);
 		System.out.println(q);
@@ -48,6 +50,13 @@ public class Driver {
 		FunWithStatic fws=new FunWithStatic();
 		fws.nonStaticMethod();
 		FunWithStatic.staticMethod();
+		try {
+			p.increaseAgeBy(-3);
+			System.out.println(p.getAge());
+		}
+		catch (IncreaseByNegativeNumberException e) {
+			
+		}
 	}
 	
 }

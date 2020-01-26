@@ -1,6 +1,5 @@
 package com.revature;
 
-import java.awt.print.Printable;
 
 public class GoodByeEarth {
 

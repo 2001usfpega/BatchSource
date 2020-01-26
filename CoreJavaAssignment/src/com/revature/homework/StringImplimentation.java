@@ -12,11 +12,11 @@ public class StringImplimentation extends StringStuff{
 	//check if string has uppercase letters
 	public boolean hasUpper(String s) {
 		String s2 = s.toLowerCase();
-		return s2==s;
+		return s2!=s;
 	}
 
 	@Override
-	//set to lower case
+	//set to upper case
 	public String toUpper(String s) {
 		return s.toUpperCase();
 	}
