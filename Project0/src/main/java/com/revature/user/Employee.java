@@ -4,7 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Employee extends User implements Serializable{
-	private ArrayList<Customer> customers; 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -8744566485330734799L;
+	
+	protected ArrayList<Customer> customers; 
 
 	public Employee(String username, String password, String fName, String lName,
 			Address address, String phone, String email, ArrayList<Customer> cust) {
