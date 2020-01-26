@@ -1,8 +1,8 @@
 package com.revature.bank;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Account implements Serializable {
     private static final long serialVersionUID = -602406623576694074L;
@@ -12,7 +12,7 @@ public class Account implements Serializable {
     private boolean approved;
     private double amount;
 
-    private List<String> holders = new ArrayList<>();
+    private Set<String> holders = new HashSet<>();
 
     public Account(int id) {
         this.id = id;
@@ -43,7 +43,7 @@ public class Account implements Serializable {
         this.amount = amount;
     }
 
-    public List<String> getHolders() {
+    public Set<String> getHolders() {
         return holders;
     }
 }

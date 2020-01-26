@@ -5,21 +5,24 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 public class User implements Serializable {
     private static final long serialVersionUID = 3862300651907839903L;
 
     private final String name;
+
     private byte[] passwordHash;
     private byte[] salt;
 
+    private String address;
+
     private Permission permission = Permission.CUSTOMER;
 
-    private List<Integer> accounts = new ArrayList<>();
+    private Set<Integer> accounts = new HashSet<>();
 
     public User(String name, String password) {
         this.name = name;
@@ -69,7 +72,15 @@ public class User implements Serializable {
         this.salt = salt;
     }
 
-    public List<Integer> getAccounts() {
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public Set<Integer> getAccounts() {
         return accounts;
     }
 

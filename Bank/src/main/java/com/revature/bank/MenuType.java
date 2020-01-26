@@ -13,11 +13,11 @@ public enum MenuType {
                 String name;
 
                 while (!User.validName(name = Bank.SCANNER.nextLine())) {
-                    System.out.println("Invalid Name, please try again.");
+                    Bank.printError("Invalid Name, please try again.");
                 }
 
                 if (bank.getUsers().containsKey(name)) {
-                    System.out.println("That user already exists!");
+                    Bank.printError("That user already exists!");
                     return;
                 }
 
@@ -34,7 +34,7 @@ public enum MenuType {
                 User user = bank.getUsers().get(name);
 
                 if (user == null) {
-                    System.out.println("Unknown user '" + name + "'");
+                    Bank.printError("Unknown user '" + name + "'");
                     return;
                 }
 
@@ -43,7 +43,7 @@ public enum MenuType {
                 if (user.correctPassword(Bank.readPassword())) {
                     bank.login(user);
                 } else {
-                    System.out.println("Access Denied!");
+                    Bank.printError("Access Denied!");
                 }
             })
     }),
@@ -51,19 +51,27 @@ public enum MenuType {
     /**
      * User settings menu containing options to edit the logged in user
      */
-    USER(new Element[]{new Element("Change Password", bank -> {
-        System.out.println("Please enter a new password: ");
-        String password = Bank.readPassword();
+    USER(new Element[]{
+            new Element("Change Password", bank -> {
+                System.out.println("Please enter a new password: ");
+                String password = Bank.readPassword();
 
-        if (User.validPassword(password)) {
-            byte[] salt = User.genSalt();
+                if (User.validPassword(password)) {
+                    byte[] salt = User.genSalt();
 
-            bank.getLoggedIn().setSalt(salt);
-            bank.getLoggedIn().setPasswordHash(User.hashPassword(password, salt));
-        } else {
-            System.out.println("Invalid password. Make sure you have at least 1 letter, number, and symbol and 4-16 characters long");
-        }
-    })}),
+                    bank.getLoggedIn().setSalt(salt);
+                    bank.getLoggedIn().setPasswordHash(User.hashPassword(password, salt));
+                } else {
+                    Bank.printError("Invalid password. Make sure you have at least 1 letter, number, and symbol and 4-16 characters long");
+                }
+            }),
+
+            new Element("Change Address", bank -> {
+                System.out.println("Please enter a new address: ");
+
+                bank.getLoggedIn().setAddress(Bank.SCANNER.nextLine());
+            })
+    }),
 
     /**
      * Account menu containing actions to manipulate accounts
@@ -84,12 +92,12 @@ public enum MenuType {
                 Account selected = bank.readAccount();
 
                 if (selected == null || !selected.getHolders().contains(bank.getLoggedIn().getName())) {
-                    System.out.println("That account doesn't exist");
+                    Bank.printError("That account doesn't exist");
                     return;
                 }
 
                 System.out.println("Please Enter the Amount you would like to deposit.");
-                selected.setAmount(selected.getAmount() + bank.readDouble());
+                selected.setAmount(selected.getAmount() + Bank.readDouble());
             }),
 
             new Element("Withdraw from an account", bank -> {
@@ -102,11 +110,11 @@ public enum MenuType {
 
                 System.out.println("Please Enter the Amount you would like to withdraw.");
 
-                double withdrawal = bank.readDouble();
+                double withdrawal = Bank.readDouble();
 
                 while (selected.getAmount() < withdrawal) {
-                    System.out.println("Please enter a positive amount. We're a bank, not a charity.");
-                    withdrawal = bank.readDouble();
+                    Bank.printError("Please enter a positive amount. We're a bank, not a charity.");
+                    withdrawal = Bank.readDouble();
                 }
 
                 selected.setAmount(selected.getAmount() - withdrawal);
@@ -136,7 +144,7 @@ public enum MenuType {
                 Account selected = bank.readAccount();
 
                 if (selected == null || !selected.getHolders().contains(bank.getLoggedIn().getName())) {
-                    System.out.println("That account doesn't exist");
+                    Bank.printError("That account doesn't exist");
                     return;
                 }
 
@@ -145,21 +153,21 @@ public enum MenuType {
                 Account selected2 = bank.getAccounts().get(bank.getLoggedIn().getAccounts().stream().filter(accId -> accId == id).findAny().orElse(null));
 
                 if (selected2 == null || !selected.getHolders().contains(bank.getLoggedIn().getName())) {
-                    System.out.println("That account doesn't exit!");
+                    Bank.printError("That account doesn't exit!");
                     return;
                 }
 
                 System.out.println("Please Enter the Amount you would like to transfer.");
-                double transferAmount = bank.readDouble();
+                double transferAmount = Bank.readDouble();
 
                 while (transferAmount < 0) {
-                    System.out.println("Please enter a positive amount.");
-                    transferAmount = bank.readDouble();
+                    Bank.printError("Please enter a positive amount.");
+                    transferAmount = Bank.readDouble();
                 }
 
                 while (selected.getAmount() - transferAmount < 0) {
-                    System.out.println("Not enough funds. Get your bread up.");
-                    transferAmount = bank.readDouble();
+                    Bank.printError("Not enough funds. Get your bread up.");
+                    transferAmount = Bank.readDouble();
                 }
 
                 selected.setAmount(selected.getAmount() - transferAmount);
@@ -192,18 +200,27 @@ public enum MenuType {
             ),
 
             new Element("Approve an account", User.Permission.EMPLOYEE, bank -> {
-                System.out.println("What account would you like to get approved today?");
-                int ID = Bank.readInt();
-                Account account = bank.getAccounts().get(ID);
+                System.out.print("What account would you like to get approved today? ");
+
+                int id = Bank.readInt();
+                Account account = bank.getAccounts().get(id);
+
                 account.setApproved(true);
                 System.out.println("Your account has been approved");
             }),
 
             new Element("Cancel an account", User.Permission.ADMIN, bank -> {
-                System.out.println("Please tell us what account you would like to cancel today.");
-                int ID = Bank.readInt();
-                Account account = bank.getAccounts().remove(ID);
-                System.out.println("The requested account has been canceled.");
+                System.out.print("Please tell us what account you would like to cancel today: ");
+
+                int id = Bank.readInt();
+                Account account = bank.getAccounts().remove(id);
+
+                if (account == null) {
+                    Bank.printError("That account doesn't exist.");
+                } else {
+                    account.getHolders().forEach(name -> bank.getUsers().get(name).getAccounts().remove(id));
+                    System.out.println("The requested account has been canceled.");
+                }
             })
     });
 

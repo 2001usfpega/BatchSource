@@ -22,8 +22,11 @@ import java.util.stream.Stream;
  * https://docs.google.com/document/d/1uOtESr7QJAmXMQpK-uxdxRdL070ANWj7KKzAV1Utycw/edit
  */
 public class Bank {
-    public static Logger LOGGER = LogManager.getLogger(Bank.class);
+    public static final Logger LOGGER = LogManager.getLogger(Bank.class);
     public static final Scanner SCANNER = new Scanner(System.in);
+
+    public static final String RED = "\u001B[31m";
+    public static final String RESET = "\u001B[0m";
 
     public static final AtomicInteger ACCOUNT_ID = new AtomicInteger(0);
 
@@ -104,7 +107,7 @@ public class Bank {
 
                     users.put(user.getName(), user);
                     in.close();
-                } catch (IOException | ClassNotFoundException e) {
+                } catch (IOException | ClassNotFoundException | ClassCastException e) {
                     e.printStackTrace();
                 }
             }
@@ -118,7 +121,7 @@ public class Bank {
 
                     accounts.put(account.getId(), account);
                     in.close();
-                } catch (IOException | ClassNotFoundException e) {
+                } catch (IOException | ClassNotFoundException | ClassCastException e) {
                     e.printStackTrace();
                 }
             }
@@ -210,7 +213,7 @@ public class Bank {
     /**
      * Reads a double from console
      */
-    public double readDouble() {
+    static double readDouble() {
         try {
             double i = SCANNER.nextDouble();
             SCANNER.nextLine();
@@ -219,5 +222,9 @@ public class Bank {
             SCANNER.nextLine();
             return -1;
         }
+    }
+
+    static void printError(String message) {
+        System.out.println(RED + message + RESET);
     }
 }
