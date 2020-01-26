@@ -1,12 +1,20 @@
 package com.revature.bubble;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Scanner;
 
 import com.revature.floater.Floater;
+import com.revature.question7.EmpComp;
+import com.revature.question7.Employee;
+import com.revature.classabs.*;
 
-public class BubbleSort {
+public class Methods {
 
 	static int[] Q1(int[] bub) {
 		int x = bub.length; // size of array
@@ -54,16 +62,17 @@ public class BubbleSort {
 		System.out.println("What number would you like to find the factorial of?");// ask for number input
 		Scanner in = new Scanner(System.in);
 		int n = in.nextInt(); // store number input in n
-		int res = 1;
-		for (int i = 1; i <= n; i++) {
-			res = res * i;
+		int res = 1; // create variable to be temp and final result
+		for (int i = 1; i <= n; i++) { // move through each number up to the user input
+			res = res * i; // multiply each temp to the current product
 		}
 		System.out.println("The factorial of " + n + " is " + res);
 	}
 
 	public static void Q5() {
 		String what = "Jabberwocky";
-		int idx = 4;
+		int idx = 4; // create idx variable
+		System.out.println("The first 3 letters of Jabberwocky are:");
 		System.out.println(what.substring(0, idx - 1)); // print until idx -1
 	}
 
@@ -82,20 +91,29 @@ public class BubbleSort {
 	}
 
 	public static void Q7() {
-		
+		ArrayList<Employee> Emp = new ArrayList<>();
+		Employee emp1 = new Employee("Colby Agar", 24, "Psychology"); // create employee 1
+		Employee emp2 = new Employee("Matt Knighten", 33, "IT"); // create employee 2
+		// add employees to the array
+		Emp.add(emp1);
+		Emp.add(emp2);
+		Collections.sort(Emp, new EmpComp());// Sort by the order you want
+		for (Employee e : Emp) { // for each employee in array
+			System.out.println(e); // print employee info
+		}
 	}
 
 	public static void Q9() {
-		ArrayList<Integer> ls = new ArrayList<>();
+		ArrayList<Integer> ls = new ArrayList<>();// Create array ls
 
-		for (int p = 1; p <= 100; p++) {
+		for (int p = 1; p <= 100; p++) { // Store 1 - 100 array ls
 			ls.add(p);
 		}
 		for (Integer num : ls) {
-			for (Integer i = 2; i < num; i++) {
-				if (num % i == 0) { //is it prime
+			for (Integer i = 2; i < num; i++) { // go through each number in array ls
+				if (num % i == 0) { // is it prime
 
-					if (i == num) {
+					if (i == num) { // check to see if i matches original number
 						System.out.println(num + "");
 					}
 				}
@@ -108,11 +126,11 @@ public class BubbleSort {
 		int x, y, min;
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("enter two numbers");
+		System.out.println("Enter two numbers");
 		x = sc.nextInt(); // first user input
 		y = sc.nextInt(); // second user input
 		min = x < y ? x : y; // min equals x if x<y is true
-		System.out.println("Min of two numbers is:");
+		System.out.println("Minimum of your two numbers is:");
 		System.out.println(min + " ");
 	}
 
@@ -199,31 +217,57 @@ public class BubbleSort {
 	}
 
 	public static void Q17() {
-		double p, yrs;
-		double intr;
-		double result;
+		double p, yrs, intr, result; // create variables for each value
+
+		//create scanners for user input
 		System.out.println("Enter the principal amount: ");
 		Scanner principal = new Scanner(System.in);
 		System.out.println("Enter the interest rate: ");
 		Scanner interest = new Scanner(System.in);
 		System.out.println("Enter the number of years: ");
 		Scanner years = new Scanner(System.in);
-
+		//Store user input in primitives
 		p = principal.nextDouble();
 		intr = interest.nextDouble();
 		yrs = years.nextDouble();
 
-		result = p * intr * yrs;
+		result = p * intr * yrs; // multiply all of the values to get the interest
 
 		System.out.println("The amount of interest over " + yrs + " years adds up to $" + result);
 	}
 
 	public static void Q18() {
-
+		Concrete concrete = new Concrete(); // create new object
+		System.out.println("Is there an uppercase in \"What is going on here!\"");
+		System.out.println(concrete.Uppercase("What is going on here!")); 
+		System.out.println("Lets make \"can you hear me now?\" a louder");
+		System.out.println(concrete.Lowercase("can you hear me now?"));
+		concrete.AddTen("7");
 	}
 
 	public static void Q20() {
+		BufferedReader read; //
+		try {
+			read = new BufferedReader(new FileReader("Data.txt"));//create file reader
+			String l; 
 
+			while ((l = read.readLine()) != null) { //read through each line until finished reading text file
+				//create new String array
+				String separ[] = l.split(":"); //create new line once ":" is reached in text file
+				//Print out new line for each parameter
+				System.out.println("Name: " + separ[0] + separ[1]); 
+				System.out.println("Age: " + separ[2] + " years");
+				System.out.println("State: " + separ[3] + " state");
+				System.out.println();
+			}
+			read.close();
+		} catch (FileNotFoundException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public static void main(String[] hereWeGo) {

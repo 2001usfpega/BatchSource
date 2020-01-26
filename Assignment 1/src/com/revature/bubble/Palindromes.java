@@ -8,7 +8,7 @@ public class Palindromes {
 		ArrayList<String> norm = new ArrayList<String>(); //string containing all
 		
 		ArrayList<String> palin = new ArrayList<String>(); // string storing palindromes
-		//storing each string in norm
+		//storing each string in array norm
 		norm.add("karen");
 		norm.add("madam");
 		norm.add("tom");

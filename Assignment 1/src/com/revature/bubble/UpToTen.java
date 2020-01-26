@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class UpToTen {
 
 	public static boolean prime(int n) {
-		for (int i = 2; i < n; i++) {
+		for (int i = 2; i < n; i++) { //find prime numbers
 			if (n % i == 0) {
 				return false;
 			}
@@ -16,19 +16,19 @@ public class UpToTen {
 	public static void main(String args[]) {
 		ArrayList<Integer> ls = new ArrayList<>();
 		for (int i = 1; i <= 10; i++) {
-			ls.add(i);
+			ls.add(i); //add each value up to ten to array ls
 		}
 
-		int even = 0;
-		for (int e = 0; e < ls.size(); e++) {
+		int even = 0; //create even variable
+		for (int e = 0; e < ls.size(); e++) {//move through array ls
 			if (ls.get(e) % 2 == 0) { // discover even numbers
 				even += ls.get(e);//add newly discovered even number to the sum
 			}
 		}
 		System.out.println("Sum of even numbers in the array list: " + even);
 
-		int odd = 0;
-		for (int o = 0; o < ls.size(); o++) {
+		int odd = 0; //create odd variable
+		for (int o = 0; o < ls.size(); o++) {//move through array ls
 			if (ls.get(o) % 2 == 1) { //discover odd numbers
 				odd += ls.get(o); // add newly discovered odd number to the sum
 			}

@@ -1,8 +1,9 @@
 package com.revature.bean;
 
+import java.io.Serializable;
 import com.revature.exceptions.IncreaseByNegativeNumberException;
 
-public class Person {
+public class Person implements Serializable{
 	/* Code Block- defined by {} {Things between}
 	 * static code block- runs once when the class is used by compiler
 	 * instance code block- run everytime an object is instantiated (for that class)

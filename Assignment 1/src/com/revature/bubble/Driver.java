@@ -1,7 +1,7 @@
 package com.revature.bubble;
 
-import com.revature.bubble.BubbleSort;
-
+import com.revature.bubble.Methods;
+import com.revature.question7.Employee;
 
 import java.util.*;
 import java.util.Scanner;
@@ -20,7 +20,7 @@ public class Driver {
 		}
 		System.out.println();
 
-		BubbleSort.Q1(bub);
+		Methods.Q1(bub);
 		System.out.println("Ordered array");
 
 		for (int b = 0; b < bub.length; b++) { // print out ordered
@@ -29,7 +29,7 @@ public class Driver {
 		System.out.println();
 		System.out.println("======Question 2======");
 
-		BubbleSort.Q2(); // call method
+		Methods.Q2(); // call method
 
 		System.out.println();
 
@@ -38,30 +38,30 @@ public class Driver {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("What word would you like to print backwards?");// ask for word input
 		String str = sc.next(); // store user input
-		String result = BubbleSort.Q3(str); // make a variable in driver equivalent to method
+		String result = Methods.Q3(str); // make a variable in driver equivalent to method
 		System.out.println(result); // print variable
 
-		BubbleSort.Q3(str); // call method to reverse the word
+		Methods.Q3(str); // call method to reverse the word
 
 		System.out.println();
 		System.out.println("======Question 4======");
 
-		BubbleSort.Q4();
+		Methods.Q4();
 
 		System.out.println();
 		System.out.println("======Question 5======");
 
-		BubbleSort.Q5();
+		Methods.Q5();
 
 		System.out.println();
 		System.out.println("======Question 6======");
 
-		BubbleSort.Q6();
+		Methods.Q6();
 		
 		System.out.println();
 		System.out.println("======Question 7======");
 		
-		
+		Methods.Q7();		
 
 		System.out.println();
 
@@ -72,55 +72,59 @@ public class Driver {
 		System.out.println();
 		System.out.println("======Question 9======");
 
-		BubbleSort.Q9();
+		Methods.Q9();
 
 		System.out.println();
 		System.out.println("======Question 10======");
 
-		BubbleSort.Q10();
+		Methods.Q10();
 
 		System.out.println();
 		System.out.println("======Question 11======");
 
-		BubbleSort.Q11();
+		Methods.Q11();
 
 		System.out.println();
 		System.out.println("======Question 12======");
+		System.out.println("Even numbers ascending 100");
 
-		BubbleSort.Q12();
+		Methods.Q12();
 
 		System.out.println();
 		System.out.println("======Question 13======");
 
-		BubbleSort.Q13();
+		Methods.Q13();
 
 		System.out.println();
 		System.out.println("======Question 14======");
 
-		BubbleSort.Q14();
+		Methods.Q14();
 
 		System.out.println();
 		System.out.println("======Question 15======");
 
 		int a = 5, b = 9;
 		Implement imp = new Implement(); // create a new class Object to run each method
-		System.out.println(imp.add(a, b)); // activate each method
-		System.out.println(imp.subtract(a, b));
-		System.out.println(imp.multi(a, b));
-		System.out.println(imp.div(a, b));
+		System.out.println("Our numbers are 5 and 9.");
+		System.out.println("5 + 9 = " +imp.add(a, b)); // activate each method
+		System.out.println("5 - 9 = " +imp.subtract(a, b));
+		System.out.println("5 * 9 = " +imp.multi(a, b));
+		System.out.println("5 / 9 = " +imp.div(a, b));
 
 		System.out.println();
 		System.out.println("======Question 16======");
 
-		BubbleSort.Q16();
+		Methods.Q16();
 
 		System.out.println();
 		System.out.println("======Question 17======");
 
-		BubbleSort.Q17();
+		Methods.Q17();
 
 		System.out.println();
 		System.out.println("======Question 18======");
+		
+		Methods.Q18();
 
 		System.out.println();
 		System.out.println("======Question 19======");
@@ -130,6 +134,6 @@ public class Driver {
 		System.out.println();
 		System.out.println("======Question 20======");
 		
-		
+		Methods.Q20();
 	}
 }
