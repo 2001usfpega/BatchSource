@@ -5,6 +5,7 @@ import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
@@ -18,7 +19,7 @@ public class User implements Serializable {
 
     private Permission permission = Permission.CUSTOMER;
 
-    private List<Account> accounts;
+    private List<Integer> accounts = new ArrayList<>();
 
     public User(String name, String password) {
         this.name = name;
@@ -60,12 +61,24 @@ public class User implements Serializable {
         this.permission = permission;
     }
 
-    public List<Account> getAccounts() {
+    public void setPasswordHash(byte[] passwordHash) {
+        this.passwordHash = passwordHash;
+    }
+
+    public void setSalt(byte[] salt) {
+        this.salt = salt;
+    }
+
+    public List<Integer> getAccounts() {
         return accounts;
     }
 
     public static boolean validName(String name) {
         return name.matches("^[\\p{L} .'-]+$");
+    }
+
+    public static boolean validPassword(String password) {
+        return password.matches("((?=.*[a-zA-Z])(?=.*d)(?=.*[@#$%]).{4,16})");
     }
 
     public static byte[] hashPassword(String password, byte[] salt) {

@@ -17,10 +17,18 @@ public class UserTest {
     }
 
     @RepeatedTest(value = 20)
-    public void passwordTest() {
+    public void passwordHashTest() {
         User user = new User("user", "userpass");
 
         assertTrue(user.correctPassword("userpass"));
         assertFalse(user.correctPassword("notuserpass"));
+    }
+
+    @Test
+    public void passwordTest() {
+        assertTrue(User.validPassword("password1$"));
+        assertFalse(User.validPassword("password1"));
+        assertFalse(User.validPassword("p1$"));
+        assertFalse(User.validPassword("password=that0is-long"));
     }
 }

@@ -53,9 +53,17 @@ public class Bank {
             admin.setPermission(User.Permission.ADMIN);
             return admin;
         });
+
+        // Create the default employee user if it doesn't exist
+        users.computeIfAbsent("employee", create -> {
+            User admin = new User("employee", "employee");
+
+            admin.setPermission(User.Permission.ADMIN);
+            return admin;
+        });
     }
 
-    private void save() {
+    void save() {
         if (!USERS_DIR.exists()) {
             USERS_DIR.mkdir();
         }
@@ -65,6 +73,7 @@ public class Bank {
                 ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(USERS_DIR.getPath() + "\\" + user.getName()));
 
                 out.writeObject(user);
+                out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -79,6 +88,7 @@ public class Bank {
                 ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ACCOUNTS_DIR.getPath() + "\\" + account.getId()));
 
                 out.writeObject(account);
+                out.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -93,6 +103,7 @@ public class Bank {
                     User user = (User) in.readObject();
 
                     users.put(user.getName(), user);
+                    in.close();
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -106,6 +117,7 @@ public class Bank {
                     Account account = (Account) in.readObject();
 
                     accounts.put(account.getId(), account);
+                    in.close();
                 } catch (IOException | ClassNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -145,6 +157,18 @@ public class Bank {
         loggedIn = user;
         LOGGER.info("User '" + user.getName() + "' logged in.");
         openMenu(MenuType.MAIN);
+    }
+
+    public Account readAccount() {
+        for (Integer id : loggedIn.getAccounts()) {
+            System.out.println("Account ID: " + id + ", Balance: " + accounts.get(id).getAmount());
+        }
+
+        System.out.println("Please select and account ID.");
+
+        int id = Bank.readInt();
+
+        return accounts.get(loggedIn.getAccounts().stream().filter(aacId -> aacId == id).findAny().orElse(null));
     }
 
     public Map<Integer, Account> getAccounts() {

@@ -1,6 +1,7 @@
 package com.revature.bank;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Account implements Serializable {
@@ -11,7 +12,7 @@ public class Account implements Serializable {
     private boolean approved;
     private double amount;
 
-    private List<User> holders;
+    private List<String> holders = new ArrayList<>();
 
     public Account(int id) {
         this.id = id;
@@ -42,7 +43,7 @@ public class Account implements Serializable {
         this.amount = amount;
     }
 
-    public List<User> getHolders() {
+    public List<String> getHolders() {
         return holders;
     }
 }
