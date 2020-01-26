@@ -14,7 +14,7 @@ public class Methods {
 	 */
 	
 	
-	public static void Q1(int myArray[]) 
+	public static void q1(int myArray[]) 
 	{
 		int A = myArray.length; //Assigns Array length to variable A
 		
@@ -57,7 +57,7 @@ public class Methods {
 	
 	
 	
-	public static void Q2()
+	public static void q2()
 	{
 		System.out.println();//Formatting 
 		int A = 0;// Starting values for the Fibonacci Sequence 
@@ -79,6 +79,8 @@ public class Methods {
 				/*This for loop iterates C until it surpasses 25 to build 
 				 * the full fibonacci sequence 
 				 * 
+				 * this loop also adds the previous 2 parts of the sequence and then sets it equal to D
+				 * 
 				 * 
 				 */
 			
@@ -97,7 +99,7 @@ public class Methods {
 	
 	
 	
-	public static void Q3()
+	public static void q3()
 	{
 		String A = "Question 3";//String that is going to get reversed 
 		
@@ -124,7 +126,7 @@ public class Methods {
 	 */
 	
 	
-	public static void Q4()
+	public static void q4()
 	{
 		
 		int A = 1;
@@ -155,7 +157,7 @@ public class Methods {
 	 * 
 	 */
 	
-	public static String Q5(String A, int B)
+	public static String q5(String A, int B)
 	{
 		
 		String myString="";//Creates a empty string 
@@ -188,9 +190,14 @@ public class Methods {
 	 * 
 	 */
 	
-	public static void Q6(int A)
+	public static void q6(int A)
 	{
-		
+		/*This method takes in the integer in this case 7 and divides it by 2
+		 * and then multiplies itself by 2 because of the rounding and odd
+		 * number will not equal itself after
+		 * 
+		 * 
+		 */
 		if(A/2*2 == A)
 		{
 			System.out.println("Even");
@@ -223,7 +230,7 @@ public class Methods {
 	 * 
 	 */
 	
-	public static boolean Q8(String B)
+	public static boolean q8(String B)
 	{
 		String empty = "";
 		for(int C=B.length()-1; C>=0; C--)
@@ -233,7 +240,7 @@ public class Methods {
 		}
 		
 		return B.equals(empty);
-		
+		//Tests if the work is a plaindrome and returns it if so
 
 		
 	}
@@ -246,7 +253,7 @@ public class Methods {
 	 */
 
 	
-	public static void Q9()
+	public static void q9()
 	{
 		int i = 0;
 		int num = 0;
@@ -254,20 +261,20 @@ public class Methods {
 		String primeNumbers = "";
 				
 		
-		for(i = 1; i <= 100; i++)
+		for(i = 1; i <= 100; i++)//This for loop creates a list of numbers from 1 to 100 by having 100 iterations
 		{
 			int counter=0;
 			
 			
 			for(num = i; num >= 1; num--)
 			{
-				if(i % num == 0)
+				if(i % num == 0)//Tests if the number is prime by using the modulos feature
 				{
 					counter = counter + 1;
 					
 					
 				}
-			if (counter ==2)
+			if (counter ==2)//Adds the prime numbers to the empty string 
 			{
 				
 				primeNumbers = primeNumbers + i + " ";
@@ -292,7 +299,7 @@ public class Methods {
 	 * 
 	 */
 	
-	public static void Q10()
+	public static void q10()
 	{
 		int A = 25;//Two Variables that are going to get compared
 		int B = 10;
@@ -312,19 +319,19 @@ public class Methods {
 	 * 
 	 * 
 	 */
-	public static void Q12()
+	public static void q12()
 	{
 		ArrayList<Integer> evenArray = new ArrayList<Integer>();
 		
-		for(int a=1; a<=100; a++)
+		for(int a=1; a<=100; a++)//Creates an array that goes from 1 to 100
 		{
-			evenArray.add(a);
+			evenArray.add(a);//Adds all the numbers to the array
 			
 		}
 		
-		for(int b:evenArray)
+		for(int b:evenArray)//Enhanced for loop to test if the number is even 
 		{
-			if(b%2==0)
+			if(b%2==0)//This if statement prints the even number because even numbers have no remainder 
 			{
 				System.out.print(b + ",");
 				
@@ -343,9 +350,9 @@ public class Methods {
 	 * 
 	 */
 	
-	public static int Q13(int A)
+	public static int q13(int A)
 	{
-		if(A == 0) {
+		if(A == 0) {//this changes the value in the triangle based on what they are, if A is 0 then it returns 1, if not t returns 0.
 			
 			return 1;
 		}
@@ -367,7 +374,7 @@ public class Methods {
 	 * 
 	 */
 	
-	public static void Q14(int A)
+	public static void q14(int A)
 	{
 
 		Date date = new Date(); 
@@ -419,7 +426,7 @@ public class Methods {
 		
 	
 	
-	public static void Q17()
+	public static void q17()
 	{
 		Scanner PrincipleScan = new Scanner(System.in);
 		System.out.println("Principle:");

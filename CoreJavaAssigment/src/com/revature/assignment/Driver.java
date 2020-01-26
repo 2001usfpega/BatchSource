@@ -24,7 +24,7 @@ public class Driver {
 
 		int myArray[] = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
 
-		Methods.Q1(myArray);
+		Methods.q1(myArray);
 
 		for (int C = 0; C < myArray.length; C++) {
 			System.out.print(myArray[C] + " ");
@@ -43,7 +43,7 @@ public class Driver {
 		System.out.println("QUESTION 2:");
 		System.out.println();
 
-		Methods.Q2();
+		Methods.q2();
 
 		System.out.println();
 		/*
@@ -57,7 +57,7 @@ public class Driver {
 		System.out.println("QUESTION 3:");
 		System.out.println();
 
-		Methods.Q3();
+		Methods.q3();
 
 		System.out.println();
 
@@ -72,7 +72,7 @@ public class Driver {
 		System.out.println("QUESTION 4:");
 		System.out.println();
 
-		Methods.Q4();
+		Methods.q4();
 
 		System.out.println();
 
@@ -87,7 +87,7 @@ public class Driver {
 		System.out.println("QUESTION 5:");
 		System.out.println();
 
-		System.out.println(Methods.Q5("QUESTION 5", 5));
+		System.out.println(Methods.q5("QUESTION 5", 5));
 
 		System.out.println();
 
@@ -101,7 +101,7 @@ public class Driver {
 		System.out.println("QUESTION 6:");
 		System.out.println();
 
-		Methods.Q6(6);
+		Methods.q6(7);
 
 		System.out.println();
 
@@ -159,10 +159,10 @@ public class Driver {
 		System.out.println("QUESTION 8:");
 		System.out.println();
 
-		ArrayList<String> myArray2 = new ArrayList<String>();
-		ArrayList<String> PalindromeArray = new ArrayList<String>();
+		ArrayList<String> myArray2 = new ArrayList<String>();//Creates an array list for each of the words being tested
+		ArrayList<String> PalindromeArray = new ArrayList<String>();//creates an empty arraylist that will be filled with palindromes after test
 		myArray2.add("karan");
-		myArray2.add("madam");
+		myArray2.add("madam");//adds to the arrayList
 		myArray2.add("tom");
 		myArray2.add("civic");
 		myArray2.add("radar");
@@ -173,9 +173,16 @@ public class Driver {
 		myArray2.add("did");
 
 		for (int A = 0; A < myArray2.size(); A++) {
-			if (Methods.Q8((String) myArray2.get(A))) {
+			if (Methods.q8((String) myArray2.get(A))) {
 
 				PalindromeArray.add((String) myArray2.get(A));
+				/*
+				 * Iterates over the full array and then called the method to test if they are a plaindrome 
+				 * and then adds them to the palindorme array if true
+				 * 
+				 * 
+				 * 
+				 */
 
 			}
 
@@ -193,7 +200,7 @@ public class Driver {
 		System.out.println("QUESTION 9:");
 		System.out.println();
 
-		Methods.Q9();
+		Methods.q9();
 
 		/*
 		 * 
@@ -205,7 +212,7 @@ public class Driver {
 		System.out.println("QUESTION 10:");
 		System.out.println();
 
-		Methods.Q10();
+		Methods.q10();
 
 		/*
 		 * 
@@ -236,7 +243,7 @@ public class Driver {
 		System.out.println("QUESTION 12:");
 		System.out.println();
 
-		Methods.Q12();
+		Methods.q12();
 
 		System.out.println("");
 
@@ -255,7 +262,7 @@ public class Driver {
 		for (int A = 1; A <= 4; A++) {
 			for (int B = 0; B < A; B++) {
 				System.out.print(triangle + "");
-				triangle = Methods.Q13(triangle);
+				triangle = Methods.q13(triangle);
 
 			}
 
@@ -272,11 +279,11 @@ public class Driver {
 		System.out.println("QUESTION 14:");
 		System.out.println();
 
-		Methods.Q14(1);
+		Methods.q14(1);
 		System.out.println();
-		Methods.Q14(2);
+		Methods.q14(2);
 		System.out.println();
-		Methods.Q14(3);
+		Methods.q14(3);
 
 		/*
 		 * 
@@ -327,7 +334,7 @@ public class Driver {
 		System.out.println("QUESTION 17:");
 		System.out.println();
 
-		Methods.Q17();
+		Methods.q17();
 
 		/*
 		 * 

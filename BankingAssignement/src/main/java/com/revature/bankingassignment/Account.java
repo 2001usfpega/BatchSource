@@ -1,15 +1,21 @@
 package com.revature.bankingassignment;
 
+
+import java.io.Serializable;
 import java.util.Scanner;
 
-public class Account {
+public class Account implements Serializable {
 	
-	private int userID;
-	private String password;
-	private int accountNumber;
-	private String firstName;
-	private String lastName;
-	private String email;
+	/**
+	 * 
+	 */
+	public static final long serialVersionUID = 1L;
+	public int userID;
+	public String password;
+	public int accountNumber;
+	public String firstName;
+	public String lastName;
+	public String email;
 	
 	
 	public int getUserID() {
@@ -57,19 +63,19 @@ public class Account {
 		int userID = accountScanner.nextInt();
 		
 		System.out.println("Enter Password: ");
-		String password = accountScanner.nextLine();
+		String password = accountScanner.next();
 		
 		System.out.println("Enter Account Number: ");
 		int accountNumber = accountScanner.nextInt();
 		
 		System.out.println("Enter First Name: ");
-		String firstname = accountScanner.nextLine();
+		String firstname = accountScanner.next();
 		
 		System.out.println("Enter Last Name: ");
-		String lastname  = accountScanner.nextLine();
+		String lastname  = accountScanner.next();
 		
 		System.out.println("Enter Email: ");
-		String email = accountScanner.nextLine();
+		String email = accountScanner.next();
 		
 		setUserID(userID);
 		setPassword(password);

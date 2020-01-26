@@ -1,8 +1,15 @@
 package com.revature.bankingassignment;
 
-public class Customer extends Account {
+import java.io.Serializable;
+
+public class Customer extends Account implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private double balance;
+	
 
 	public double getBalance() {
 		return balance;
@@ -26,6 +33,15 @@ public class Customer extends Account {
 		double b = getBalance();
 		b = b+amount;
 		setBalance(b);
+		
+		
+	}
+	
+	
+	public void CLogin()
+	{
+		
+		
 		
 		
 	}
