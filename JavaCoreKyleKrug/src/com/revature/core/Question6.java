@@ -1,5 +1,5 @@
 package com.revature.core;
-
+//Kyle Howard Krug
 public class Question6 {
 	
 	public String question6() {
