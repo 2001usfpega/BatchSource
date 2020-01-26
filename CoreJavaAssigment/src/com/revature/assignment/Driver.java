@@ -22,9 +22,9 @@ public class Driver {
 		System.out.println("QUESTION 1:");
 		System.out.println();
 
-		int myArray[] = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
+		int myArray[] = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };//Creates an array if these values 
 
-		Methods.q1(myArray);
+		Methods.q1(myArray);//Calls the method q1 in the Methods class
 
 		for (int C = 0; C < myArray.length; C++) {
 			System.out.print(myArray[C] + " ");
@@ -43,7 +43,7 @@ public class Driver {
 		System.out.println("QUESTION 2:");
 		System.out.println();
 
-		Methods.q2();
+		Methods.q2(); //Calls the method q2 in the Methods class
 
 		System.out.println();
 		/*
@@ -57,7 +57,7 @@ public class Driver {
 		System.out.println("QUESTION 3:");
 		System.out.println();
 
-		Methods.q3();
+		Methods.q3(); //Calls the method q3 in the Methods class
 
 		System.out.println();
 
@@ -72,7 +72,7 @@ public class Driver {
 		System.out.println("QUESTION 4:");
 		System.out.println();
 
-		Methods.q4();
+		Methods.q4(); //Calls the method q4 in the Methods class
 
 		System.out.println();
 
@@ -87,7 +87,7 @@ public class Driver {
 		System.out.println("QUESTION 5:");
 		System.out.println();
 
-		System.out.println(Methods.q5("QUESTION 5", 5));
+		System.out.println(Methods.q5("QUESTION 5", 5));//Calls the method q5 in the Methods class
 
 		System.out.println();
 
@@ -101,7 +101,7 @@ public class Driver {
 		System.out.println("QUESTION 6:");
 		System.out.println();
 
-		Methods.q6(7);
+		Methods.q6(7); //Calls the method q6 in the Methods class
 
 		System.out.println();
 
@@ -115,20 +115,20 @@ public class Driver {
 		System.out.println("QUESTION 7:");
 		System.out.println();
 
-		ArrayList<Question7> q7List = new ArrayList<Question7>();
-		q7List.add(new Question7("Rob", 22, "Software"));
+		ArrayList<Question7> q7List = new ArrayList<Question7>();//Creates an array list
+		q7List.add(new Question7("Rob", 22, "Software"));//Adds each employee to the Array list of Q7List
 		q7List.add(new Question7("Bob", 25, "Hardware"));
 
 		System.out.println("Sorted by Name:");
 
-		Collections.sort(q7List, new NameSort());
+		Collections.sort(q7List, new NameSort());//Call sort to sort q7List by employee name
 
 		for (int A = 0; A < q7List.size(); A++) {
 			System.out.println(q7List.get(A));
 
 		}
 
-		System.out.println("Sorted by Age:");
+		System.out.println("Sorted by Age:"); //Call sort to sort q7List by employee age
 
 		Collections.sort(q7List, new AgeSort());
 
@@ -137,7 +137,7 @@ public class Driver {
 
 		}
 
-		System.out.println("Sorted by Department:");
+		System.out.println("Sorted by Department:"); //Call sort to sort q7List by Department
 
 		Collections.sort(q7List, new DepartmentSort());
 
@@ -161,10 +161,10 @@ public class Driver {
 
 		ArrayList<String> myArray2 = new ArrayList<String>();//Creates an array list for each of the words being tested
 		ArrayList<String> PalindromeArray = new ArrayList<String>();//creates an empty arraylist that will be filled with palindromes after test
-		myArray2.add("karan");
+		myArray2.add("karan");//adds to the arrayList
 		myArray2.add("madam");//adds to the arrayList
-		myArray2.add("tom");
-		myArray2.add("civic");
+		myArray2.add("tom");//adds to the arrayList
+		myArray2.add("civic");//adds to the arrayList
 		myArray2.add("radar");
 		myArray2.add("jimmy");
 		myArray2.add("john");
@@ -188,7 +188,7 @@ public class Driver {
 
 		}
 
-		System.out.println("Palindromes=" + PalindromeArray);
+		System.out.println("Palindromes=" + PalindromeArray);// Prints the plaindrome array
 
 		/*
 		 * 
@@ -200,7 +200,7 @@ public class Driver {
 		System.out.println("QUESTION 9:");
 		System.out.println();
 
-		Methods.q9();
+		Methods.q9(); //Calls the method q9 in the Methods class
 
 		/*
 		 * 
@@ -212,7 +212,7 @@ public class Driver {
 		System.out.println("QUESTION 10:");
 		System.out.println();
 
-		Methods.q10();
+		Methods.q10(); //Calls the method q1 in the Methods class
 
 		/*
 		 * 
@@ -224,11 +224,11 @@ public class Driver {
 		System.out.println("QUESTION 11:");
 		System.out.println();
 
-		Question11 quest = new Question11();
+		Question11 quest = new Question11();//creates a new object of question 11;
 
 		System.out.print(quest.A + " ");
 
-		System.out.print(quest.B);
+		System.out.print(quest.B);//retrives information from the question 11 package
 
 		System.out.println("");
 
@@ -243,7 +243,7 @@ public class Driver {
 		System.out.println("QUESTION 12:");
 		System.out.println();
 
-		Methods.q12();
+		Methods.q12(); //Calls the method q12 in the Methods class
 
 		System.out.println("");
 
@@ -258,6 +258,11 @@ public class Driver {
 		System.out.println();
 
 		int triangle = 0;
+		
+		/*		 
+		 * creates a triangle of 1's and 0's for the methods class to covert
+		 * to either a 1 or a 0.  		 *
+		 */
 
 		for (int A = 1; A <= 4; A++) {
 			for (int B = 0; B < A; B++) {
@@ -279,11 +284,11 @@ public class Driver {
 		System.out.println("QUESTION 14:");
 		System.out.println();
 
-		Methods.q14(1);
+		Methods.q14(1);//Calls the method q14 in the Methods class
 		System.out.println();
-		Methods.q14(2);
+		Methods.q14(2);//Calls the method q14 in the Methods class
 		System.out.println();
-		Methods.q14(3);
+		Methods.q14(3);//Calls the method q14 in the Methods class
 
 		/*
 		 * 
@@ -296,8 +301,8 @@ public class Driver {
 		System.out.println("QUESTION 15:");
 		System.out.println();
 
-		Question15class question = new Question15class();
-		System.out.print(question.addition(10, 5) + ",");
+		Question15class question = new Question15class();//creates a new object of the Question 15 class
+		System.out.print(question.addition(10, 5) + ",");//calls the methods in the Question 15 class
 		System.out.print(question.multiplication(10, 5) + ",");
 		System.out.print(question.subtraction(10, 5) + ",");
 		System.out.print(question.divison(10, 5) + ",");
@@ -319,9 +324,9 @@ public class Driver {
 		String A;
 		Scanner myInput = new Scanner(System.in);
 		System.out.println("String:");
-		A = myInput.nextLine();
+		A = myInput.nextLine();// Scans in the user input and assigns it to the variable A 
 
-		System.out.println("The Number of charaters is: " + A.length());
+		System.out.println("The Number of charaters is: " + A.length());//Prints the length of A
 
 		/*
 		 * 
@@ -334,7 +339,7 @@ public class Driver {
 		System.out.println("QUESTION 17:");
 		System.out.println();
 
-		Methods.q17();
+		Methods.q17(); //Calls the method q17 in the Methods class
 
 		/*
 		 * 
@@ -349,8 +354,9 @@ public class Driver {
 
 		String myString2 = "Question18";
 		String myString3 = "2525";
-		Question18Concrete q18 = new Question18Concrete();
-		switch (1) {
+		Question18Concrete q18 = new Question18Concrete();//creates a new object of the concrete class
+		
+		switch (1) {//Calls different methods of the concrete class depending on what case is entered 
 
 		case 1:
 			q18.part1(myString2);
@@ -375,14 +381,14 @@ public class Driver {
 		System.out.println("QUESTION 19:");
 		System.out.println();
 
-		ArrayList<Integer> myArrayList2 = new ArrayList<Integer>();
+		ArrayList<Integer> myArrayList2 = new ArrayList<Integer>();//Creates an array list with an index of 10 by iterating over it with a for loop
 		for (int a = 1; a <= 10; a++) {
 			myArrayList2.add(a);
 
 		}
 
 		int even = 0;
-		for (int b = 0; b <= myArrayList2.size(); b++) {
+		for (int b = 0; b < myArrayList2.size(); b++) {//if the number is even this for loop will set the value of the even to its current value plus the new value 
 			if (myArrayList2.get(b) % 2 == 0) {
 
 				even += myArrayList2.get(b);
@@ -392,7 +398,7 @@ public class Driver {
 		}
 		
 		int odd = 0;
-		for (int c = 0; c <= myArrayList2.size(); c++) {
+		for (int c = 0; c < myArrayList2.size(); c++) {//This for loop does the same as the above for loop but with odd values 
 			if (myArrayList2.get(c) % 2 == 1) {
 
 				odd += myArrayList2.get(c);

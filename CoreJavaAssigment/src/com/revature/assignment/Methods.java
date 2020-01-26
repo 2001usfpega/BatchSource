@@ -377,20 +377,20 @@ public class Methods {
 	public static void q14(int A)
 	{
 
-		Date date = new Date(); 
+		Date date = new Date();//Variable for todays date 
 		
 		String learning = "I am learning Core Java";
 		
 		String[] core = new String[10];
 		
-		switch(A) {
+		switch(A) {// This switch prints different variables depending on what the input was for the method in the main driver
 		
-		case 1: System.out.println(Math.sqrt(25)); break;
+		case 1: System.out.println(Math.sqrt(25)); break;//Prints this if 1 is input
 		
-		case 2: System.out.println(date); break;
+		case 2: System.out.println(date); break;//prints this if 2 is input
 		
 		case 3: 
-				core = learning.split(" ");
+				core = learning.split(" ");//prints this if 3 is input
 				for (String b : core){
 					System.out.println(b);
 					
@@ -428,14 +428,14 @@ public class Methods {
 	
 	public static void q17()
 	{
-		Scanner PrincipleScan = new Scanner(System.in);
+		Scanner PrincipleScan = new Scanner(System.in);//opens scanner
 		System.out.println("Principle:");
-		int principle = PrincipleScan.nextInt();
+		Double principle = PrincipleScan.nextDouble();//takes user input and assigns it to the principle variable
 		System.out.println("Time:");
-		int time = PrincipleScan.nextInt();
+		Double time = PrincipleScan.nextDouble();//takes user input and assigns it to the time variable
 		System.out.println("Rate:");
-		int rate = PrincipleScan.nextInt();
-		int interest = (principle*rate*time);
+		Double rate = PrincipleScan.nextDouble();//takes user input and assigns it to the rate variable
+		Double interest = (principle*rate*time);
 		System.out.println("Interest Rate: " + interest);
 		
 		
@@ -457,6 +457,8 @@ public class Methods {
 	 * 
 	 * 
 	 */
+	
+	//QUESTION 19 DRIVER
 	
 	
 	/*
