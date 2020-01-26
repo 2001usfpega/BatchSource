@@ -1,7 +1,7 @@
 package com.revature.core;
 
 import java.util.Comparator;
-
+//Kyle Howard Krug
 public class NameSort implements Comparator<employee>{
 
 	@Override
