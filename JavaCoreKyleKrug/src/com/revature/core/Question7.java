@@ -1,7 +1,7 @@
 package com.revature.core;
 import java.util.ArrayList;
 import java.util.Collections;
-
+//Kyle Howard Krug
 public class Question7 {
 	public String question7() {
 		System.out.println("Welcome to question 7!");
