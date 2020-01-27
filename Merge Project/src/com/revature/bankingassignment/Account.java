@@ -26,7 +26,7 @@ public class Account implements Serializable {
 	public String getUserID() {
 		return userID;
 	}
-	public void setUserID(int empUserID) {
+	public void setUserID(String empUserID) {
 		this.userID = empUserID;
 	}
 	public String getPassword() {
@@ -81,6 +81,8 @@ public class Account implements Serializable {
 		
 		System.out.println("Create a Password: ");
 		String password = accountScanner.next();
+		
+		
 		
 	//	int accountNumber=nextAccountNumber;
 		nextAccountNumber++;

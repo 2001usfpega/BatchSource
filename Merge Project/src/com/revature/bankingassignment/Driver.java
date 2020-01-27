@@ -37,11 +37,28 @@ public class Driver {
 								if(UserID == identify.getUserID() && Password ==identify.getPassword())
 								{
 									
-									System.out.println("CUSTOMER MENU");
+									Scanner cusScanner = new Scanner(System.in);
 									
+									System.out.println("Enter 1 for withdrawl, Enter 2 for Deposit");
+									int cusscan = cusScanner.nextInt();	
+									
+									switch(cusscan) {
+									
+									case 1: Customer a = new Customer();
+									a.withdraw(cusscan);
+									break;
+										
+									case 2:Customer b = new Customer();
+											b.deposit(cusscan);
+									break;
+									
+									case 3:Customer c = new Customer();
+											c.getBalance();
+									break;
+										
 									
 								}
-								
+								}
 								else
 								{
 									
@@ -66,9 +83,24 @@ public class Driver {
 								if(EmpUserID == worker.getEmployeeID() && EmpPassword == worker.getEmployeePassword())
 								{
 								
-									System.out.println("Employee MENU");
+									Scanner empScanner = new Scanner(System.in);
+									
+									System.out.println("Enter 1 to view Employee Accounts, Enter 2 to Approve Accounts:");
+									int empscan = empScanner.nextInt();	
+									
+									switch(empscan) {
+									
+									case 1: Employee e = new Employee();
+											e.viewCustomerAccount();
+										break;
+									case 2: Employee g = new Employee();
+											//g.approveAccounts
+										break;
+										
+
 								
 								
+								}
 								}
 							
 								else
