@@ -1,7 +1,13 @@
 package com.revarture.bean;
 
-public class Person 
+import java.io.Serializable;
+
+import com.revarture.classtypes.Hunt;
+
+public class Person implements Hunt, Serializable
 {
+	
+	
 	/*Code Block defines by {}
 	 * static code blocks- run once when the class is compiler
 	 * 
@@ -113,7 +119,15 @@ public class Person
 		return true;
 	}
 	
+	public void increaseAgeBy(int x) 
+	{
+		this.age += x;
+	}
 	
+	public void findPrey() 
+	{
+		System.out.println("I go to walmart");
+	}
 	
 	
 	

@@ -1,6 +1,7 @@
-package com.revarture.name;
+package com.revarture.driver;
 
 import com.revarture.bean.Person; //fully qualified class name
+import com.revature.staticfun.FunWithStatic;
 
 public class Driver 
 {
@@ -45,7 +46,16 @@ public class Driver
 		System.out.println(p);
 		Person q = new Person("BobPam" , 81, 27);
 		System.out.println(q);
+		p.increaseAgeBy(3);
+		System.out.println(p.getAge());
 		
+	
+		
+		FunWithStatic fws = new FunWithStatic();
+		fws.nonStaticMethod();
+		FunWithStatic.staticMethod();
+		fws.staticMethod();
+		Object o = new Object();
 		
 		
 	}
