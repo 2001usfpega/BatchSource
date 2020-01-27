@@ -5,8 +5,7 @@ import java.io.*;
 import java.lang.Math;
 import com.revature.assignments11.*;
 
-
-public class TwentyQuestions {
+public class TwentyQuestions extends QuestionEleven {
 
 	public abstract class Comp implements Comparator<Comp> {
 		public Comp(int age, String name, String depart) {
@@ -59,13 +58,13 @@ public class TwentyQuestions {
 		System.out.println("Question 16 Result");
 		// Q16();
 		System.out.println("Question 17 Result");
-		 Q17();
+		Q17();
 		System.out.println("Question 18 Result");
 		// Q18();
 		System.out.println("Question 19 Result");
 		Q19();
 		System.out.println("Question 20 Result");
-		// Q20();
+		Q20();
 
 	}
 
@@ -153,9 +152,9 @@ public class TwentyQuestions {
 
 	}
 
-	 public static void Q7 () {
+	public static void Q7() {
 
-	 }
+	}
 
 	public static void Q8() {
 
@@ -221,9 +220,7 @@ public class TwentyQuestions {
 	}
 
 	public static void Q11() {
-		
-		
-		
+
 	}
 
 	public static void Q9() {
@@ -288,12 +285,10 @@ public class TwentyQuestions {
 	}
 
 	public static void Q15() {
-		
 
 	}
 
 	public static void Q16() {
-		
 
 	}
 
@@ -315,43 +310,47 @@ public class TwentyQuestions {
 
 	public static void Q19() {
 		ArrayList<Integer> ten = new ArrayList<Integer>();
-		for(int a = 0; a < 10; a++) {
-		ten.add(a+1); //adds 1-10 to ArrayList
+		for (int a = 0; a < 10; a++) {
+			ten.add(a + 1); 
 		}
 		int evenSum = 0;
 		int oddSum = 0;
-		for(int a:ten) {
-		System.out.println(a);
-		if(a%2 == 0) {
-		evenSum += a;
-		}
-		else if(a%2 != 0) {
-		oddSum += a;
-		}
+		for (int a : ten) {
+			System.out.println(a);
+			if (a % 2 == 0) {
+				evenSum += a;
+			} else if (a % 2 != 0) {
+				oddSum += a;
+			}
 		}
 		System.out.println("The sum of all even numbers is " + evenSum + ".");
 		System.out.println("The sum of all odd numbers is " + oddSum + ".");
 
-		for(int a = 0; a < ten.size(); a++) {
-		if(Primal(ten.get(a))) {
-		ten.remove(new Integer(ten.get(a)));
+		for (int a = 0; a < ten.size(); a++) {
+			if (Primal(ten.get(a))) {
+				ten.remove(new Integer(ten.get(a)));
+			}
 		}
-		}
-		for(int a:ten) {
-		System.out.println(a);
+		for (int a : ten) {
+			System.out.println(a);
 		}
 	}
 
 	public static void Q20() {
-		File mouse = new File("C:\\Users\\jayka\\OneDrive\\Documents"); 
-		
-		BufferedReader mickey = new BufferedReader(new FileReader(mouse));
-		
-		for (String txt; (txt = mickey.readLine()) != null;) {
-			   System.out.println(txt);
-			 }
-	}
+		try {
+			Scanner MM = new Scanner(new File("Data.txt"));
 
-	
-	
+			while (MM.hasNextLine()) {
+				String mickey = MM.nextLine();
+				String[] mouse = mickey.split(":");
+				System.out.println("Name: " + mouse[0] + " " + mouse[1]);
+				System.out.println("Age: " + mouse[2] + " years");
+				System.out.println("State: " + mouse[3] + " State");
+
+			}
+
+		} catch (FileNotFoundException a) {
+			a.printStackTrace();
+		}
+	}
 }

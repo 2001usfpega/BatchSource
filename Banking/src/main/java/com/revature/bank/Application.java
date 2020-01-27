@@ -1,42 +1,84 @@
 package com.revature.bank;
 
+import java.io.*;
 import java.util.*;
 
-public class Application {
+public class Application implements Serializable {
 
-	public static void main(String[] args) {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-		Scanner c = new Scanner(System.in);
-		int select = c.nextInt();
 
-		do {
-			// display menu to user
-			// ask user for his choice and validate it (make sure it is between 1 and 6)
-			System.out.println("Where Would You like To Be ?");
-			System.out.println("1) Customer");
-			System.out.println("2) Employee");
-			System.out.println("3) Administrator");
-			System.out.println("4) None");
-			System.out.println();
-			System.out.print("Enter choice [1-4]: ");
-			select = c.nextInt();
-			switch (select) {
-			case 1:
-				System.out.println("Enter a customer name");
+	public String customerAdress;
+	public String customerFName;
+	public String customerLName;
+	public int customerAccNum = 10;
 
-				break;
-			case 2:
-				System.out.println("Enter a account number");
-				break;
-			case 3:
-				System.out.println("Enter a account number");
-				break;
-			case 4:
-				System.exit(0);
-				break;
-			}
-		} while (select >= '5');
+	
 
+	public String getcustomerFName() {
+		return customerFName;
 	}
 
+	public void setcustomerFName(String custFName) {
+		this.customerFName = custFName;
+	}
+
+	public String getcustomerLName() {
+		return customerLName;
+	}
+
+	public void setcustomerLName(String custLName) {
+		this.customerLName = custLName;
+	}
+
+	public String getcustomerAdress() {
+		return customerAdress;
+	}
+
+	public void setcustomerAdress(String custAdrs) {
+		this.customerAdress = custAdrs;
+	}
+	public int getcustomerAccNum() {
+		return customerAccNum;
+	}
+
+	public void setcustomerAccNum(int custAnum) {
+		this.customerAccNum = custAnum;
+	}
+	
+	public void Apply() {
+
+	Scanner apply = new Scanner(System.in);
+	System.out.println("Enter Your First Name");
+	String firstName = apply.next();
+	System.out.println("Enter Your Last Name");
+	String lastName = apply.next();
+	System.out.println("Enter Your Address Name");
+	String address = apply.next();
+	
+	setcustomerFName(firstName);
+	setcustomerLName(lastName);
+	setcustomerAdress(address);
+	customerAccNum++;
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
+	
+	
 }
