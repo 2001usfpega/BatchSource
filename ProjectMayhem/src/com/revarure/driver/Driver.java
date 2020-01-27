@@ -1,6 +1,7 @@
-package com.revarure.name;
+package com.revarure.driver;
 
 import com.revarure.bean.Person; //<--  Fully Qualified Class Name
+import com.revarure.staticfun.FunWithStatic;
 
 public class Driver {
 
@@ -48,6 +49,22 @@ public class Driver {
 		System.out.println(q);
 		
 		System.out.println(p.equals(q));
+		
+		p.increaseAgeBy(-3);
+		System.out.println(p.getAge());
+		/*
+		 * Static area
+		 */
+		
+		/*
+		 * FunWithStatic fws = new FunWithStatic(); //Called by the object
+		 * fws.nonStaticMethod(); //Called by the class FunWithStatic.staticMethod();
+		 * 
+		 * Object o =new Object();
+		 */
+		
+		
+		
 	}
 
 }

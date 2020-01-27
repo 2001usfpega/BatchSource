@@ -7,7 +7,5 @@ public class Hawk {
 		System.out.println("hawk");
 	}
 	
-	public name() {
-		
-	}
+
 }

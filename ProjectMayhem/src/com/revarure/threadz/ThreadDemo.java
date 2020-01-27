@@ -1,0 +1,23 @@
+package com.revarure.threadz;
+
+public class ThreadDemo {
+	
+	/*
+	 * 2 ways to spin up a thread
+	 * 1st - extend Thread and overwrite run()
+	 * 2nd - Implement Runnable interface and overwrite run()
+	 */
+	public static void main(String[] bettyWhite) {
+		Thread exThread = new ExtendThread();
+		Thread implementRunnable = new Thread(new ImplementRunnable());
+		
+		implementRunnable.setPriority(10);//From 0 to 10
+		exThread.start();
+		implementRunnable.start();
+		
+		for (int i = 0; i < 100; i++) {
+			System.out.println("Yeehaw-Driver");
+		}
+	}
+
+}
