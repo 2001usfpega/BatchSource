@@ -1,198 +1,218 @@
 package com.revature.banking.test;
 
+//import java.io.File;
 import java.io.Serializable;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
 public class Customer extends Account implements Serializable{
-	
+
 	private static final long serialVersionUID = 1L;
 	private double balance = 0.0;
 	private boolean approved = false;
 	private boolean disabled = false;
-	private String fileloc = Paths.get("").toAbsolutePath().toString() +"\\Customer\\";
+	private String fileloc = "Banking/Customer";
 	//Used to display the balance to the second decimal place
 	private static DecimalFormat df = new DecimalFormat("0.00");
-	
+	private transient Scanner in = new Scanner(System.in);
+
 	public void loginCustomer(){
-		
 		Customer customer = new Customer();
-		
 		try { 
-			Scanner in = new Scanner(System.in);
-			String id = null;
-			boolean t= false;
-			while(t == false) {
-				
-			System.out.println("Enter your ID number: ");
-			id = in.nextLine();
-			t= customer.checkNull(id);
-			}
 			
+			
+			String id = null;
+			boolean t = false;
+			
+			while(t == false) {
+
+			System.out.println("Enter your ID number please!");
+			id = in.nextLine();
+			t = customer.checkNull(id);
+			
+			}
+
 			String pass= null;
 			boolean w = false;
-			
+
 			while(w == false) {
-				System.out.println("Enter your password: ");
+				
+				System.out.println("Enter your password please!");
 				pass = in.nextLine();
-				w= customer.checkNull(pass);
+				w = customer.checkNull(pass);
+				
 			}
-			
+
 			Login check = new Login();
 			ObjectIO robj = new ObjectIO();
-			
-			customer = (Customer) robj.readObject(customer,getFileloc()+id);
+
+			customer = (Customer) robj.readObject(customer, "Banking/Customer/" + id);
 			String password = customer.getPassword();
-			
+
 			if(customer.isDisabled() == false) {
-				
+
 				if(customer.isApproved() == true) {
-					
+
 					if(check.login(pass, password) == true) {
-						
-						in.close();
+
+						//in.close();
 						menu(customer);
-						
+
 					}else{
-						System.out.println("Failed to log in, try again");
+						
+						System.out.println("Cannot log in, try again!");
 						loginCustomer();					
 					}
+					
 				}else{
-					System.out.println("The account has not been approved");
+					
+					System.out.println("Your account has not been approved!");
 					System.out.println("It will be approved shortly!");
+					Main.menu();
 				}
+				
 			}else{
-				System.out.println("Your account has been disabled");
+				
+				System.out.println("Your account has been disabled!");
 				System.out.println("Please see a bank admin");
+				Main.menu();
 			}
+			
 		}catch (Exception ex) {
-			loginCustomer();
+			
+		//	loginCustomer();
+			ex.getStackTrace();
 			
 		}
 	}
 
 	public void menu(Customer customer) {
-		
+
 		ObjectIO save = new ObjectIO();
-		System.out.println("###########################################################################");
-		System.out.println("Welcome back " + customer.getFirst_name());
+		System.out.println("Welcome to the Customer Menu");
 		System.out.println("Your current balance is : $"+ df.format(customer.getBalance()));
-		
+
 		System.out.println("Enter a (D) to Deposit an amount into your balance");
 		System.out.println("Enter a (W) to Withdraw an amount from your balance");
 		System.out.println("Enter a (T) to Transfer an amount to another member");
 		System.out.println("Enter a (E) to Exit Your account");
-		
-		try (Scanner in = new Scanner(System.in)) {
-			
+
+		try {
+
 			String c = in.nextLine();
-			
+
 					if( c != null) {
-						
+
 						if( c.equalsIgnoreCase("D")) {
-							
+
 							System.out.println("Enter the amount you wish to depoit");
 							double amount = in.nextDouble();
-							
+
 							customer.deposit(customer.getBalance(), amount);
-							save.writeObject(customer, getFileloc()+customer.getId());
+							save.writeObject(customer, "Banking/Customer/" + customer.getId());
 							menu(customer);
-							
+
 						}else if (c.equalsIgnoreCase("T")) {
-							
+
 							System.out.println("Enter the ID of the member you wish to transfer funds to: ");
 							String tCID = in.nextLine();
+							
 							System.out.println("Enter the amount you wish to transfer: ");
 							double amount = in.nextDouble();
+							
 							customer.transfer(tCID, customer.getId(), amount, customer);
 							save.writeObject(customer, customer.getId());
 							menu(customer);
-							
+
 						}else if (c.equalsIgnoreCase("W")) {
-							
+
 							System.out.println("Enter the amount you with to withdraw");
 							double amount = in.nextDouble();
-							customer.withdraw(customer.getBalance(), amount);
-							save.writeObject(customer,getFileloc()+ customer.getId());
-							menu(customer);
 							
+							customer.withdraw(customer.getBalance(), amount);
+							save.writeObject(customer, "Banking/Customer/" + customer.getId());
+							menu(customer);
+
 						}else if(c.equalsIgnoreCase("E")) {
+
+							System.out.println("Thanks for coming! Have a good day!");
+							Main.menu();
 							
 						}else{
-							
-							System.out.println("Invalid entry");
+
+							System.out.println("Try again buster");
 							menu(customer);
 						}
-					}else {
 						
-						System.out.println("Invalid entry");
+					}else {
+
+						System.out.println("Try again buster");
 						menu(customer);
 					}
-					
-					in.close();
+
+		}finally {
+			
 		}
-	}
-	
-	
-	public void transfer(String tCID, String cID, double amount, Customer transferer) {
 		
+	}
+
+	public void transfer(String tCID, String cID, double amount, Customer transferer) {
+
 		// transfers money from one account to another
 		//tcid is the transferee id 
-		
+
 		Customer transferee = new Customer();
 		ObjectIO robj = new ObjectIO();
 		ObjectIO wobj = new ObjectIO();
 		
-		transferee =(Customer) robj.readObject(transferee,tCID);
+		transferee = (Customer)robj.readObject(transferee, "Banking/Customer/" + tCID);
 		transferee.deposit(transferee.getBalance(), amount);
 		transferer.withdraw(transferer.getBalance(), amount);
-		
-		wobj.writeObject(transferee, getFileloc()+ transferee.getId());
-		wobj.writeObject(transferer, getFileloc()+transferer.getId());
-	}
 
+		wobj.writeObject(transferee, "Banking/Customer/" + transferee.getId());
+		wobj.writeObject(transferer, "Banking/Customer/" + transferer.getId());
+	}
 
 	public void setBalance(double b) {
 		this.balance = b;
 	}
-	
+
 	public double getBalance() {
 		return balance;
 	}
 
 	public void withdraw(double d, double amount) {
-		
+
 		// subtracts the amount from a user's balance
 		double newbalance;
-		
+
 		if (amount > 0){
-			
+
 			if( amount < d) {
-				
+
 			newbalance = d - amount;
 			setBalance(newbalance);
-			
+
 			}else {
-				
-				System.out.println("Withdraw is more than you have in your account");
+
+				System.out.println("Withdraw amount is more than you have in your account!");
 			}
-			
+
 		}else {
-			
-			System.out.println("You cannot withdraw a negative number");
+
+			System.out.println("You cannot withdraw a negative number!");
 		}
 	}
-		
+
 	public void deposit(double d, double amount) {
-		
+
 		// adds amount to the users balance
 		double newbalance;
 		newbalance = d + amount;
 		setBalance(newbalance);
-		
+
 	}
-	
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
@@ -221,4 +241,4 @@ public class Customer extends Account implements Serializable{
 		this.fileloc = fileloc;
 	}
 
-}
+} 

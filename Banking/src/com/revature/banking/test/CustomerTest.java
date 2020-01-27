@@ -8,7 +8,8 @@ class CustomerTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Customer customer = new Customer();
+		customer.loginCustomer();
 	}
 
 }

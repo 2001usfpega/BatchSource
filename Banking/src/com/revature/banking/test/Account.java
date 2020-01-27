@@ -14,6 +14,7 @@ public class Account implements Serializable {
 	public String id;
 	public String password;
 	public String info;
+	private transient Scanner in = new Scanner(System.in);
 	
 	public String getFirst_name() {
 		return first_name;
@@ -84,9 +85,6 @@ public class Account implements Serializable {
 		// used to create a basic account( either customer, employee, or admin 
 		// takes in information and assigns them to the object
 		
-		try (Scanner in = new Scanner(System.in)) {
-			
-			@SuppressWarnings("unused")
 			String firstname, info, lastname,address, password,id;
 			System.out.println("Enter the account holder's first name: ");
 			setFirst_name(firstname=in.nextLine());
@@ -106,8 +104,6 @@ public class Account implements Serializable {
 			System.out.println("Enter the account holder's additional info: ");
 			setInfo(info = in.nextLine());
 			
-			in.close();
-		}
 	}
 	
 	public boolean checkNull(String a) {

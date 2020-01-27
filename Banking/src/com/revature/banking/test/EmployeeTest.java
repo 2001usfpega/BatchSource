@@ -8,7 +8,8 @@ class EmployeeTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Employee employee = new Employee();
+		employee.employeeLogin();
 	}
 
 }

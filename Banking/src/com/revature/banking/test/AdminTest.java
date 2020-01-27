@@ -8,7 +8,8 @@ class AdminTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		Admin admin = new Admin();
+		admin.adminLogin();
 	}
 
 }
