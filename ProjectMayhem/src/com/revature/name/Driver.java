@@ -49,6 +49,9 @@ public class Driver {
 		fws.staticMethod();//doesn't like this but it works because
 		//Although the static method belongs to the class it also belongs to the object
 		
+		Object o = new Object();
+		 p.increaseAge(-3);
+		 System.out.println(p.getAge());
 		
 	}
 

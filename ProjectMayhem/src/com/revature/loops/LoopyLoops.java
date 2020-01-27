@@ -91,6 +91,7 @@ public class LoopyLoops {
 		System.out.println(p.equals(q));
 		System.out.println(p.getName().equals(q.getName()));
 		
+		forEachFun(myArray);
 	}
 
 	/*

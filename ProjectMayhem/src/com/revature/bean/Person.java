@@ -1,6 +1,11 @@
 package com.revature.bean;
 
-public class Person {
+import java.io.Serializable;
+
+import com.revature.classtypes.Hunt;
+import com.revature.exceptions.IncreaseByNeg;
+
+public class Person implements Hunt, Serializable {
 /*Code Block- defined by {}  {Things between}
  * static code block - runs once when class is used by compiler
  * instance code block-  run every time an object is instantiated (for that class)
@@ -96,4 +101,21 @@ public class Person {
 			this.weight=weight;
 		}
 	
+		
+		public void increaseAge(int x) {
+			if(x<0) {
+				throw new IncreaseByNeg();
+			}
+			this.age+=x;
+			
+			
+		}
+
+		@Override
+		public void findPrey() {
+			// TODO Auto-generated method stub
+			
+			System.out.println("I go to walmart");
+			
+		}
 }

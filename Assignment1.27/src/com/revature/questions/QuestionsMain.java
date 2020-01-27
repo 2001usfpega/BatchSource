@@ -1,10 +1,14 @@
 package com.revature.questions;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import com.revature.other.FloatVariables;
 import com.revature.questions.InterfacePract;
-
 
 import java.util.Collections;
 
@@ -12,15 +16,30 @@ public class QuestionsMain {
 
 	// Driver
 
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		q1();
-		q2();
-		q3();
+	public static void main(String[] args) throws IOException {
+		int [] sortedArr = q1(numArray);
+		
+		for(int i =0; i<sortedArr.length; i++) {
+			System.out.print(sortedArr[i] + ", ");
+			
+		}
 		System.out.println();
+		int[] fibArray1 = q2();
+		
+		for(int x:fibArray1) {
+			System.out.print(x + ", ");
+		}
+		System.out.println();
+		System.out.println(q3("Absolutely"));
+		System.out.println("Next is the factorial of 5");
 		System.out.println(q4(5));
-		q5("Absolutely", 5);
-		q6(5);
+		System.out.println(q5("Absolutely", 5));;
+		boolean isItEven = q6(6);
+		if(isItEven) {
+			System.out.println("This number is even");
+		}else {
+			System.out.println("This number is odd");
+		}
 
 		// q7 section
 
@@ -166,21 +185,37 @@ public class QuestionsMain {
 		System.out.println(q19SubArray(intArrList));
 		intArrList.removeAll(primeList);
 		System.out.println("This is the array without primes");
-		for(int i =0; i<intArrList.size(); i++) {
+		for (int i = 0; i < intArrList.size(); i++) {
 			System.out.print(intArrList.get(i) + ", ");
 		}
+		System.out.println();
+
+		// Question 20
+
+		File textFile = new File("/Users/emanuelpires/Desktop/Crap/BatchSource/Assignment1.27/Data.txt");
+		FileReader fr = new FileReader(textFile);
+		BufferedReader reader = new BufferedReader(fr);
+		String st;
+		String main ="";
+		while ((st = reader.readLine()) != null) {
+			 String[]mainArr = st.split(":");
+			
+			System.out.println();
+			System.out.println("Name: " +mainArr[0] + " " +mainArr[1] );
+			System.out.println("Age: " + mainArr[2] + " years" );
+			System.out.println("State: " +mainArr[3] + " state");
+		}
 		
-		//Question 20
 		
-		File textFile = new File("");
+		
 
 	}
 
-	// Methods for Questions Sections
+	static // Methods for Questions Sections
 	//
-
-	public static void q1() {
-		int[] numArray = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
+	int[] numArray = { 1, 0, 5, 6, 3, 2, 3, 7, 9, 8, 4 };
+	public static int[] q1(int []numArray) {
+		
 
 		int firstNum;
 		int secondNum;
@@ -201,52 +236,63 @@ public class QuestionsMain {
 		}
 
 		// Print Array
-		for (int l = 0; l < numArray.length; l++) {
-			System.out.print(numArray[l]);
-		}
-
-		System.out.print("\n");
+//		for (int l = 0; l < numArray.length; l++) {
+//			System.out.print(numArray[l]);
+//		}
+		return numArray;
+		//System.out.print("\n");
 
 	}
 
-	public static void q2() {
+	public static int[] q2() {
 		// 25th fibonacci number is 75025
 
 		int fibNumber1 = 0;
 		int fibNumber2 = 1;
 		int sum;
-		System.out.print(fibNumber1 + ", ");
-		System.out.print(fibNumber2 + ", ");
-		for (int i = 0; i < 24; i++) {
+		int []fibArray =new int [25];
+		
+		fibArray[0] =0;
+		fibArray[1] =1;
+		
+		for (int i = 2; i < 25; i++) {
 
 			sum = fibNumber1 + fibNumber2;
 
 			fibNumber1 = fibNumber2;
 			fibNumber2 = sum;
 
-			System.out.print(sum + ", ");
+			fibArray[i] = fibNumber2;
 
 		}
-		System.out.println();
+		return fibArray;
 	}
+	
+	
 
-	public static void q3() {
+	public static String q3(String word) {
 		// stick the characters of the word into an array and spit
 		// the array out backwards.
-		String word = "Absolutely";
+		
 		char[] charArray = new char[word.length()];
 
 		for (int i = 0; i < word.length(); i++) {
 			charArray[i] = word.charAt(i);
 		}
+		
+		String rev = "";
 
 		for (int l = 9; l > -1; l--) {
-			System.out.print(charArray[l]);
+			//System.out.print(charArray[l]);
+			rev+=charArray[l];
 		}
+		return rev;
 
 	}
 
 	public static int q4(int n) {
+		
+		//using recursion to find the factorial
 		if (n <= 1) {
 			return 1;
 		} else {
@@ -255,21 +301,23 @@ public class QuestionsMain {
 
 	}
 
-	public static void q5(String str, int idx) {
+	public static String q5(String str, int idx) {
+		String wordPiece = "";
 		for (int n = 0; n < idx; n++) {
-			System.out.print(str.charAt(n));
+			//System.out.print(str.charAt(n));
+			wordPiece +=str.charAt(n);
 		}
-		System.out.println();
+		return wordPiece;
 	}
 
-	public static void q6(int n) {
+	public static boolean q6(int n) {
 		int newNum = n / 2;
 		System.out.println(newNum);
 		int nextNum = newNum * 2;
 		if (nextNum == n) {
-			System.out.println("this number is even");
+			return true;
 		} else {
-			System.out.println("this number is odd");
+			return false;
 		}
 	}
 
@@ -281,7 +329,7 @@ public class QuestionsMain {
 	}
 
 	public static int q19SumArray(ArrayList list) {
-		int evenSum =0;
+		int evenSum = 0;
 		for (int i = 0; i < list.size(); i++) {
 
 			int theEvenNums = Integer.valueOf(list.get(i).toString());
@@ -289,19 +337,19 @@ public class QuestionsMain {
 				evenSum += theEvenNums;
 			}
 		}
-		
+
 		return evenSum;
 	}
-	
-public static int q19SubArray(ArrayList list) {
-	int oddSum =0;
-	for (int i = 0; i < list.size(); i++) {
 
-		int theOddNums = Integer.valueOf(list.get(i).toString());
-		if (!((theOddNums % 2) == 0)) {
-			oddSum += theOddNums;
+	public static int q19SubArray(ArrayList list) {
+		int oddSum = 0;
+		for (int i = 0; i < list.size(); i++) {
+
+			int theOddNums = Integer.valueOf(list.get(i).toString());
+			if (!((theOddNums % 2) == 0)) {
+				oddSum += theOddNums;
+			}
 		}
+		return oddSum;
 	}
-	return oddSum;
-}
 }
