@@ -23,12 +23,14 @@ class JTest {
 	private PrintStream sysOut;
     private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
  
+    //divert system output to string
     @BeforeEach
     public void setUpStreams() {
         sysOut = System.out;
         System.setOut(new PrintStream(outContent));
     }
- 
+
+    //fixes system output
     @AfterEach
     public void revertStreams() {
         System.setOut(sysOut);
@@ -239,7 +241,6 @@ class JTest {
 		String s[] = outContent.toString().split("\n");
 		String s2 = s[9].trim()+s[10].trim()+s[11];
 	    assertEquals(expected, s2);
-		
 	}//Q20
 
 }
