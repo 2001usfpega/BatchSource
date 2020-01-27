@@ -1,5 +1,9 @@
 package com.revature.assignment;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -418,6 +422,34 @@ public class Driver {
 		System.out.println("");
 		System.out.println("QUESTION 20:");
 		System.out.println();
+		
+		  BufferedReader bufreader = null;
+		try {
+			bufreader = new BufferedReader(new FileReader("Data.txt"));
+		} catch (FileNotFoundException e) {// try catch block will throw an expception if 'Data.txt' file is not found
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}//Reads the data.txt files into the program
+	       String string;
+	       try {
+			while((string = bufreader.readLine()) != null) {//While reader does not equal null it will read the entire text file into the system
+			       String tokens[] = string.split(":");//this splits the text in the data file by the colons and then assigns it into an array
+			       System.out.println("Name: " + tokens[0] + tokens[1]);
+			       System.out.println("Age: " + tokens[2] + " years");
+			       System.out.println("State: " + tokens[3] + " State\n");
+			   }
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	      
+	      
+	       try {
+			bufreader.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
