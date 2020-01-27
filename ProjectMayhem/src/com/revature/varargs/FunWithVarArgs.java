@@ -4,7 +4,7 @@ public class FunWithVarArgs {
 	/*Var. Length args.- vaargs
 	 * Method that will take a var. number of args
 	 * Automates and hides the process of creating and saving 
-	 * the values into an array prior to invoking the methid
+	 * the values into an array prior to invoking the method
 	 * can be of any type!
 	 * must be the last argument!
 	 * ) to many args

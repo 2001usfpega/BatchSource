@@ -1,8 +1,8 @@
-package com.revature.name;
-
+package com.revature.driver;
+import com.revature.staticfun.*;
 import com.revature.bean.Person; //<-- Fully Qualified Class Name
-import java.sql.*;//wild card
 //import static java.util.*;// import static pieces
+import com.revature.staticfun.FunWithStatic;
 
 public class Driver {
 	//single line comment
@@ -40,10 +40,15 @@ public class Driver {
 		Person p = new Person();
 		p.setName("Jim");
 		System.out.println(p);
-		Person q= new Person("BobPam", 81, 27);
-		System.out.println(q);
-		
-		
+		//Person q= new Person("BobPam", 81, 27);
+	//	System.out.println(q);
+		p.increaseAgeBy(-3);
+		System.out.println(p.getAge());
+		//FunWithStatic fws = new FunWithStatic();
+		//fws.nonStaticMethod();
+		//FunWithStatic.staticMethod();
+		//fws.staticMethod();
+		//Object o= new Object();
 		
 	}
 }
