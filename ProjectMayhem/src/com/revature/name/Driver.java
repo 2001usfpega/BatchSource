@@ -1,6 +1,7 @@
 package com.revature.name;
 
 import com.revature.bean.Person; // Fully qualified class name
+import com.revature.staticfun.FunWithStatic;
 
 // This is a single line comment
 	
@@ -42,12 +43,24 @@ public class Driver{
 		 *
 		 */
 		
-		Person p = new Person();
-		p.setName("JIM");
-		System.out.println(p);
+		/*
+		 * Person p = new Person(); p.setName("JIM"); System.out.println(p);
+		 * 
+		 * Person q = new Person("BobPam", 81, 27); System.out.println(q);
+		 */
+		p.increaseAgeBy(3);
+		System.out.println(p.getAge());
 		
-		Person q = new Person("BobPam", 81, 27);
-		System.out.println(q);
+		FunWithStatic fws = new FunWithStatic();
+		fws.nonStaticMethod();
+		FunWithStatic.staticMethod();
+		fws.staticMethod();
+		
+		Object o = new Object();
+		
+		
+   
+
 		
 		
 	}
