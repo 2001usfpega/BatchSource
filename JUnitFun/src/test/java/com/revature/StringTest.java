@@ -1,27 +1,29 @@
 package com.revature;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestInfo;
 
-public class StringTest {
-    
-    @BeforeAll
-    static void beforeAllOfEm() {
-        System.out.println("Before All");
-    }
-    @AfterEach
-    void afterEach() {
-        System.out.println("We just ran: "+ info.getDisplayName());
-    }
-
-    @DisplayName("Length Check")
-    @Test
-    public void meh() {
-        int actualLength = "ABCD".length();
-        int expectedLength =4;
-        assertEquals(expectedLength, actualLength);
-    }
-
+class StringTest {
+	@BeforeAll
+	static void beforeALllofem() {
+		System.out.println("Before ALL");
+	}
+	@AfterEach
+	void afterEach(TestInfo info) {
+		System.out.println("We just ran: "+ info.getDisplayName());
+	}
+	@DisplayName("Length Check")
+	@Test
+	void meh() {
+		int actualLength = "ABCD".length();
+		int expectedLength = 4;
+		//assertEquals( expected, actual value);
+		assertEquals(expectedLength,actualLength);
+	}
+	
 }
