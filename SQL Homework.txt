@@ -1,0 +1,54 @@
+------HOMEWORK------
+
+--2.1A
+SELECT * FROM employee;
+--2.1B
+SELECT * FROM employee WHERE lastname='King';
+--2.1C
+SELECT * FROM employee WHERE firstname='Andrew' and reportsto IS NULL;
+
+
+--2.2A
+SELECT * FROM album ORDER BY title desc;
+--2.2B
+SELECT firstname FROM employee ORDER BY city;
+
+--2.3A
+SELECT * FROM Genre;
+INSERT INTO genre VALUES (26, 'Rap');
+INSERT INTO genre VALUES (27, '70/s');
+--2.3B
+Select * FROM Employee;
+INSERT INTO employee VALUES (9,'Rhamy','Rob','CEO', 1, 03-OCT-97, 03-OCT-05, '1 Court', 'Medford' , 'NJ', 'United States', 'T5K 2N1', '609-623-6442', '6099236442','XXXXXX@XXXXX.com');
+INSERT INTO employee VALUES (10,'Bamey','Bob','CCO', 1, 04-OCT-97, 04-OCT-05, '1 Court', 'Medford' , 'NJ', 'United States', 'T5K 2N1', '609-623-6442', '6099236442','XXXXXX@XXXXX.com');
+--2.3C
+Select * FROM Customer;
+INSERT INTO customer VALUEs(60,'Robert','Rhamy', null, '1 Crimson drive', 'MEdford', 'NJ', 'UNITED STATES', '08055', '6099236442', null, 'Rhamdogg@Gmail.com');
+
+
+
+
+
+--2.4A
+UPDATE employee SET firstname='Robert' WHERE firstname = 'Aaron';
+UPDATE employee SET lastname='Walter' WHERE lastname='Mitchell';
+
+--2.4B
+select * FROM artist ORDER BY name ;
+update artist set name='CCR' WHERE name='Creedence Clearwater Revival';
+
+
+
+--2.5A
+SELECT * FROM invoice WHERE billingaddress LIKE 'T%';
+
+
+
+--2.6A
+SELECT * FROM invoice WHERE total BETWEEN 15 and 50;
+--2.6B
+SELECT * FROM employee WHERE hire_date;
+
+
+--2.7A
+DELETE FROM CUSTOMER WHERE firstname='Robert' AND lastname='Walter';
