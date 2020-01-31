@@ -74,12 +74,10 @@ ALTER TABLE invoice DISABLE CONSTRAINT FK_INVOICECUSTOMERID;
 ---now that the constraint is removed, DELETE the customerid indicated in the problem
 DELETE FROM customer WHERE customerid=32;
 
-
 ---3.0 SQL FUNCTIONS
 ---3.1 SYSTEM DEFINED FUNCTION
 ---function to display the current time
 SELECT TO_CHAR(CURRENT_DATE, 'HH:MI') FROM dual;
-
 ---SELECT ALL FROM the mediatype table
 SELECT * FROM mediatype;
 ---SELECT NAME and length function based on name FROM the mediatype table and order by the length of the name
@@ -110,20 +108,92 @@ SELECT * FROM employee WHERE EXTRACT(YEAR FROM TO_DATE(birthdate))>1968 ORDER BY
 
 ---4.0 STORED PROCEDURES
 ---4.1 BASIC STORED PROCEDURE
+SELECT* FROM employee;
+CREATE OR REPLACE FUNCTION employee_cursor_fname
+RETURN SYS_REFCURSOR
+IS
+CURSOR_C SYS_REFCURSOR;
+BEGIN
+    OPEN employee_cursor_fname FOR SELECT * FROM employee WHERE firstname IS NOT NULL;     
+    FETCH employee_cursor_fname INTO CURSOR_C;    
+    RETURN CURSOR_C;
+END;
+/
+CREATE OR REPLACE FUNCTION employee_cursor_lname
+RETURN SYS_REFCURSOR
+IS
+CURSOR_D SYS_REFCURSOR;
+BEGIN
+    OPEN employee_cursor_lname FOR SELECT * FROM employee WHERE lastname IS NOT NULL;     
+    FETCH employee_cursor_lname INTO CURSOR_D;    
+    RETURN CURSOR_D;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE get_employee_names
+IS
+fname CURSOR_C;
+lname CURSOR_D;
+BEGIN
+    DBMS_OUTPUT.OUT_LINE('Employee First Name: ' || fname || 'Employee Last Name: ' || lname);
+END;
+/
+
 ---4.2 STORED PROCEDURE INPUT PARAMETERS
+
 ---4.3 STORED PROCEDURE OUTPUT PARAMETERS
 ---5.0 TRANSACTIONS
 ---6.0 TRIGGERS
 ---6.1 AFTER/FOR
+---insert TRIGGER on employee table after new record is inserted
+CREATE OR REPLACE TRIGGER new_employee_record
+AFTER INSERT 
+ON employee
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('A new EMPLOYEE record has been inserted');
+END;
+/
+
+INSERT INTO employee VALUES (11, 'Rhamy', 'Rob', 'Owner', 0, '08-AUG-97', '13-JAN-20', '14511 Prism Circle, Unit 208', 'Tampa Bay', 'FL', 'USA', '33613', '+1 (504) 722-0278', '+1 (504) 324-0179', 'rhamdog@gmail.com');
+INSERT INTO employee VALUES (12, 'Agar', 'Colby', 'IT Wench', 6, '06-APR-98', '13-JAN-20', '14511 Prism Circle, Unit 208', 'Tampa Bay', 'FL', 'USA', '33613', '+1 (321) 314-2172', '+1 (321) 654-8927', 'cagar@gmail.com');
+
+---create TRIGGER on album after a new row is inserted
+CREATE OR REPLACE TRIGGER album_row_update
+AFTER UPDATE ON album
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Album table row has been UPDATED');
+END;
+/
+
+SELECT * FROM album;
+
+UPDATE album SET title='BIG ONES' WHERE albumid = 5;
+UPDATE album SET title='Audio Slave' WHERE albumid = 10;
+
+---insert TRIGGER on customer table after a row has been deleted
+SELECT * FROM customer;
+CREATE OR REPLACE TRIGGER customer_delete
+AFTER DELETE ON customer
+FOR EACH ROW
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('A customer has been deleted and now your children can no longer afford to go to college');
+END;
+
+INSERT INTO customer VALUES (62, 'Bob', 'Ellis', 'R J Ellis Law Firm', '650 Poydras Street', 'New Orleans', 'LA', 'USA', '70130', '+1 (225) 578-1623', 'null', 'bob@rjellis.com', 2);
+INSERT INTO customer VALUES (63, 'Lorn', 'Johnson', 'NOPD', '8th District', 'New Orleans', 'LA', 'United States', '70116', '+1 (504) 682-8672', 'null', 'cuthgar@gmail.com', 2);
+
+DELETE FROM customer WHERE firstname='Thomas';
 
 ---7.0 JOINS
----7.1 INNER
+---7.1 INNER JOIN
 SELECT a.firstname, a.lastname, b.invoiceid FROM customer a INNER JOIN invoice b ON a.customerid=b.customerid;
----7.2 OUTER
-SELECT a.customerid, a.firstname, a.lastname, b.invoiceid, b.total FROM customer a FULL OUTER JOIN invoice b ON a.customerid=b.customerid;
----7.3 RIGHT
+---7.2 OUTER JOIN
+SELECT a.customerid, a.firstname, a.lastname, b.invoiceid, b.total FROM customer a LEFT OUTER JOIN invoice b ON a.customerid=b.customerid;
+---7.3 RIGHT JOIN
 SELECT b.name, a.title FROM album a RIGHT JOIN artist b ON a.artistid=b.artistid;
----7.4 CROSS
-SELECT * FROM album CROSS JOIN artist ORDER BY name;
----7.5 SELF
-SELECT * FROM employee a INNER JOIN employee b ON a.employeeid=b.reportsto;
+---7.4 CROSS JOIN
+SELECT * FROM album CROSS JOIN artist ORDER BY artist.name;
+---7.5 SELF JOIN
+SELECT * FROM employee a INNER JOIN employee b ON a.reportsto=b.reportsto;
