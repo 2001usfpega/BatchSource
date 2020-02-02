@@ -11,7 +11,7 @@ import java.io.ObjectOutputStream;
 public class Driver {
 
 	public static void main(String[] args) {
-
+		
 		BankAccount cust12 = null;
 
 		File newFile = new File("BankCustomer");

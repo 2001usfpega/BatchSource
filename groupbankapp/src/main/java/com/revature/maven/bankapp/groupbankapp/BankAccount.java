@@ -9,12 +9,12 @@ public class BankAccount implements Serializable{
 	private double previousTransaction;
 	private String accountNumber;
 	private String name;
-	private String address;
-	private String phone;
-	private String email;
+	private int accountNum;
+	private int primaryKey;
+	
 
-	public BankAccount(String accntNum) {
-		this.accountNumber = accntNum;
+	public BankAccount(String accntName) {
+		this.name = accntName;
 	}
 	
 	public double getBalance() {
