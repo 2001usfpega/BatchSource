@@ -2,27 +2,28 @@ package com.revature.bankingassignment;
 
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Account implements Serializable {
+public class Account {
 	
 	/**
 	 * 
 	 */
-	public static final long serialVersionUID = 1L;
-	public int userID;
+
+	public String userID;
 	public String password;
 	public int accountNumber;
 	public String firstName;
 	public String lastName;
 	public String email;
+	public int nextAccountNumber=1000;
 	
-	
-	public int getUserID() {
+	public String getUserID() {
 		return userID;
 	}
-	public void setUserID(int userID) {
-		this.userID = userID;
+	public void setUserID(String empUserID) {
+		this.userID = empUserID;
 	}
 	public String getPassword() {
 		return password;
@@ -55,18 +56,12 @@ public class Account implements Serializable {
 		this.email = email;
 	}
 	
-	public Account()
+	public void createAccount()
 	{
+		
+		
 		Scanner accountScanner = new Scanner(System.in);
 		
-		System.out.println("Enter UserId: ");
-		int userID = accountScanner.nextInt();
-		
-		System.out.println("Enter Password: ");
-		String password = accountScanner.next();
-		
-		System.out.println("Enter Account Number: ");
-		int accountNumber = accountScanner.nextInt();
 		
 		System.out.println("Enter First Name: ");
 		String firstname = accountScanner.next();
@@ -77,20 +72,29 @@ public class Account implements Serializable {
 		System.out.println("Enter Email: ");
 		String email = accountScanner.next();
 		
+		System.out.println("Create a UserId: ");
+		String userID = accountScanner.next();
+		
+		System.out.println("Create a Password: ");
+		String password = accountScanner.next();
+		
+		
+		
+	//	int accountNumber=nextAccountNumber;
+		nextAccountNumber++;
+	
+		//System.out.println("Enter Account Number: ");
+		//int accountNumber = accountScanner.nextInt();
+	
 		setUserID(userID);
 		setPassword(password);
-		setAccountNumber(accountNumber);
+		//setAccountNumber(accountNumber);
 		setFirstName(firstname);
 		setLastName(lastname);
 		setEmail(email);
+		//accountScanner.close();
 		
-		accountScanner.close();
-		
+		 System.out.println(firstname +" "+ lastname +" Your Account " +nextAccountNumber + " has been created.");
 	}
-	
-	
-	
-	
-	
-	
+
 }

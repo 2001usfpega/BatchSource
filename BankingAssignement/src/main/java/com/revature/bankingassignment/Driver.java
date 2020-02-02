@@ -11,7 +11,7 @@ public class Driver {
 		Scanner verificationScanner = new Scanner(System.in);
 		Scanner loginScanner = new Scanner(System.in);
 		
-		System.out.println("Enter 1 for CREATE ACCOUNT, Enter 2 for LOGIN");
+		System.out.println("Enter 1 to Create New Account, Enter 2 for LOGIN");
 		int login = loginScanner.nextInt();
 
 		
@@ -19,12 +19,8 @@ public class Driver {
 		
 		case 1: 	
 				Account account = new Account();
-				new Account();
-							
-						
-						
-
-		
+				account.createAccount();
+		break;
 		case 2:  	System.out.println("Enter 1 for CUSTOMER, Enter 2 for EMPLOYEE ");
 					int verification = verificationScanner.nextInt();
 		
@@ -32,18 +28,37 @@ public class Driver {
 
 						case 1: Scanner usernameScanner = new Scanner(System.in);
 								System.out.println("Please Enter UserID: ");	
-								int UserID  = loginScanner.nextInt();
+								String UserID  = loginScanner.next();
 								System.out.println("Please Enter Password: ");	
 								String Password  = loginScanner.next();
-								
-								if(UserID == Customer.getUserID() && Password == Customer.getPassword())
+								Customer identify = new Customer();
+								identify.setUserID(UserID);
+								identify.setPassword(Password);
+								if(UserID == identify.getUserID() && Password ==identify.getPassword())
 								{
 									
-									System.out.println("CUSTOMER MENU");
+									Scanner cusScanner = new Scanner(System.in);
 									
+									System.out.println("Enter 1 for withdrawl, Enter 2 for Deposit");
+									int cusscan = cusScanner.nextInt();	
+									
+									switch(cusscan) {
+									
+									case 1: Customer a = new Customer();
+									a.withdraw(cusscan);
+									break;
+										
+									case 2:Customer b = new Customer();
+											b.deposit(cusscan);
+									break;
+									
+									case 3:Customer c = new Customer();
+											c.getBalance();
+									break;
+										
 									
 								}
-								
+								}
 								else
 								{
 									
@@ -59,16 +74,33 @@ public class Driver {
 							
 								Scanner EmpusernameScanner = new Scanner(System.in);
 								System.out.println("Please Enter UserID: ");	
-								int EmpUserID  = loginScanner.nextInt();
+								String EmpUserID  = loginScanner.next();
 								System.out.println("Please Enter Password: ");	
 								String EmpPassword  = loginScanner.next();
-							
-								if(EmpUserID == Employee.getEmployeeID() && EmpPassword == Employee.getEmployeePassword())
+								Employee worker = new Employee();
+								worker.setEmployeeID(EmpUserID);
+								worker.setEmployeePassword(EmpPassword);
+								if(EmpUserID == worker.getEmployeeID() && EmpPassword == worker.getEmployeePassword())
 								{
 								
-									System.out.println("Employee MENU");
+									Scanner empScanner = new Scanner(System.in);
+									
+									System.out.println("Enter 1 to view Employee Accounts, Enter 2 to Approve Accounts:");
+									int empscan = empScanner.nextInt();	
+									
+									switch(empscan) {
+									
+									case 1: Employee e = new Employee();
+											e.viewCustomerAccount();
+										break;
+									case 2: Employee g = new Employee();
+											//g.approveAccounts
+										break;
+										
+
 								
 								
+								}
 								}
 							
 								else
@@ -94,3 +126,4 @@ public class Driver {
 
 	}
 }
+

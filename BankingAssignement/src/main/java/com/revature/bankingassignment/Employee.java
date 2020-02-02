@@ -2,19 +2,21 @@ package com.revature.bankingassignment;
 
 import java.io.Serializable;
 
-public class Employee extends Account implements Serializable {
+public class Employee{
 	
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 1L;
-	private int employeeID;
+
+	private String employeeID;
 	private String employeePassword;
 	
 	
+	public Employee() {
+		
+	}
 	
-	
-	public Employee(int userId, String password, int accountnumber, String firstname, String lastname, String email, int empid,
+	public Employee(int userId, String password, int accountnumber, String firstname, String lastname, String email, String empid,
 			String empassword) {
 		
 
@@ -24,14 +26,14 @@ public class Employee extends Account implements Serializable {
 
 
 
-	public int getEmployeeID() {
+	public String getEmployeeID() {
 		return employeeID;
 	}
 
 
 
 
-	public void setEmployeeID(int employeeID) {
+	public void setEmployeeID(String employeeID) {
 		this.employeeID = employeeID;
 	}
 
@@ -49,7 +51,7 @@ public class Employee extends Account implements Serializable {
 		this.employeePassword = employeePassword;
 	}
 	
-	Employee emp = new Employee(8000,"Password1", 8000, "Rob", "Rhamy", "robert.rhamy@gmail.com", 8000, "Yooo");
+	//Employee emp = new Employee(8000,"Password1", 8000, "Rob", "Rhamy", "robert.rhamy@gmail.com", 8000, "Yooo");
 	
 	
 
@@ -73,5 +75,4 @@ public class Employee extends Account implements Serializable {
 		
 		
 	}
-
 }
