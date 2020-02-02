@@ -30,7 +30,7 @@ public class MainDriver {
 	}
 	
 
-	
+	//compiled server side
 	public static void statExample(String f_name, String f_recipe) {
 		try(Connection conn = DriverManager.getConnection(url,username,password)){
 			String sql = "INSERT INTO food(food_name,recipe) VALUES('"
@@ -46,7 +46,8 @@ public class MainDriver {
 			e.printStackTrace();
 		}
 	}
-	//prepare
+	
+	//compiled java side
 	public static void prepExample(String f_name, String f_recipe) {
 		try(Connection conn = DriverManager.getConnection(url,username,password)){
 			
@@ -65,7 +66,7 @@ public class MainDriver {
 	}
 	
 	
-	//prepare
+	//call stored procedures
 	public static void callExample(String f_name, String f_recipe) {
 		try(Connection conn = DriverManager.getConnection(url,username,password)){
 			String sql= "{ call ins_food_null_id(?,?) }";
