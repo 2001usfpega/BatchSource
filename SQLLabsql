@@ -1,0 +1,326 @@
+--2.1
+SELECT * FROM employee;
+SELECT * FROM employee WHERE lastname = 'King';
+SELECT * FROM employee WHERE firstname = 'Andrew' AND reportsto IS NULL;
+--2.2
+SELECT * FROM album ORDER BY title DESC;
+SELECT firstname FROM customer ORDER BY city;
+
+SELECT * FROM genre;
+--2.3
+INSERT INTO genre VALUES (26, 'Goa');
+INSERT INTO genre VALUES (27, 'Vaporwave');
+INSERT INTO employee VALUES (9, 'Huginkys', 'Amanda', 'IT Staff', 6, '11-NOV-82','11-NOV-01', '1006 Pruitt Ct', 'Vienna', 'VA', 'USA', '22180', '1 (703) 303-3478', '1(703) 303-3478', 'attached@germail.com');
+INSERT INTO employee VALUES (10, 'Bixler-Zaval', 'Cedric', 'IT Staff', 6, '11-NOV-82','11-NOV-01', '7111 Jayhawk St', 'Annandale', 'VA', 'USA', '22003', '1 (703) 303-3478', '1(703) 303-3478', 'meditate@germail.com');
+INSERT INTO customer VALUES(60, 'Marcos', 'Rojo', 'Man U', 'Somewhere in Manchester', 'Manchester', 'Eng', 'England', '33229', '22 5503-4439', null, 'some@gmai', '2');
+INSERT INTO customer VALUES(61, 'Leo', 'Messi', 'Barca', 'Barca', 'Barca', 'Catalonia', 'Spain', '33229', '22 5503-4439', null, 'some@thebest.com', '5');
+--2.4
+UPDATE customer SET firstname = 'Robert', lastname = 'Walter' WHERE customerid = 1;
+SELECT * FROM artist;
+UPDATE artist SET name = 'CCR' WHERE name = 'Creedence Clearwater Revival';
+--2.5
+SELECT * FROM invoice WHERE billingaddress LIKE 'T%';
+--2.6
+SELECT * FROM invoice WHERE total >14 and total<50;
+
+SELECT* FROM employee WHERE hiredate BETWEEN '01-JUN-2003' AND '01-MAR-2004';
+
+--2.7
+ALTER TABLE invoice DROP CONSTRAINT FK_INVOICECUSTOMERID;
+
+DELETE FROM customer WHERE customerid = 1;
+
+-----------3.1
+
+--SYSTEM DEFINED
+ SELECT sysdate FROM DUAL;
+ SELECT length(name) FROM mediatype;
+
+ 
+ 
+ --User defined
+    
+    CREATE OR REPLACE FUNCTION get_cur_time
+    RETURN DATE
+    IS
+    cur_date DATE :=null;
+    BEGIN
+    SELECT sysdate INTO cur_date from dual ;
+    RETURN cur_date;
+    END;
+    /
+    --EXECUTION
+    DECLARE
+     today_day DATE := null;
+     BEGIN
+     today_day := get_cur_time();
+     DBMS_OUTPUT.PUT_LINE('THE DATE IS ' || today_day);
+     END;
+     /
+     
+                
+    CREATE OR REPLACE FUNCTION get_length(med_id IN NUMBER)
+    RETURN NUMBER
+    IS
+    length_num NUMBER;
+    BEGIN
+    SELECT length(name) INTO length_num FROM mediatype WHERE mediatypeid=med_id;
+     RETURN length_num;
+     END;
+     /
+     
+     --execution
+     
+     DECLARE
+     med_length NUMBER;
+     BEGIN
+     med_length:=get_length(1);
+     DBMS_OUTPUT.PUT_LINE('THE LENGTH OF THE FIRST ENTRY IS ' || med_length);
+     END;
+     /
+    
+    
+    --3.2
+    
+    --system defined
+    
+    SELECT AVG(total) FROM invoice;
+    SELECT MAX(unitprice) FROM track;
+    
+----USER DEFINED
+CREATE OR REPLACE FUNCTION get_avg
+RETURN NUMBER
+IS
+avg_number NUMBER;
+BEGIN
+SELECT AVG(total) INTO avg_number FROM invoice;
+RETURN avg_number;
+END;
+/
+
+--EXE
+
+DECLARE
+avg_num NUMBER;
+BEGIN
+avg_num:=get_avg;
+DBMS_OUTPUT.PUT_LINE('AVERAGE OF TOTALS: ' || avg_num);
+END;
+/
+
+
+CREATE OR REPLACE FUNCTION get_max_track
+RETURN NUMBER
+IS
+max_price NUMBER;
+BEGIN
+    SELECT max(unitprice) INTO max_price FROM track;
+RETURN max_price;
+END;
+/
+
+DECLARE
+max_price NUMBER;
+BEGIN
+max_price :=get_max_track();
+DBMS_OUTPUT.PUT_LINE('MOST EXPENSIVE TRACK COSTS ' || max_price);
+END;
+/
+    
+SELECT * FROM invoice;
+--example
+--SELECT billingcountry, sum(total) from INVOICE  GROUP BY billingcountry HAVING SUM(total)>50;
+SELECT avg(total) FROM invoice;
+
+
+--------3.3
+
+CREATE OR REPLACE FUNCTION get_avg_invoice
+RETURN NUMBER
+IS
+avg_number NUMBER;
+BEGIN
+SELECT AVG(unitprice) INTO avg_number FROM invoiceline;
+RETURN avg_number;
+END;
+/
+DECLARE
+avg_num NUMBER;
+BEGIN
+avg_num:=get_avg_invoice;
+DBMS_OUTPUT.PUT_LINE('AVERAGE OF invoice: ' || avg_num);
+END;
+/
+
+-----3.4
+
+
+SELECT * FROM employee;
+---system defined
+SELECT *  FROM employee where birthdate> '31-DEC-69';
+
+---userdefined
+
+    CREATE OR REPLACE FUNCTION older_than
+    RETURN SYS_REFCURSOR
+    IS
+    people SYS_REFCURSOR;
+    BEGIN
+    OPEN people FOR SELECT lastname, firstname, title FROM employee WHERE birthdate>'31-DEC-69';
+    RETURN
+    people;
+    END;
+    /
+
+
+    DECLARE
+    people SYS_REFCURSOR;
+    fname VARCHAR2(100);
+    lname VARCHAR2(100);
+    etitle VARCHAR2(100);
+    BEGIN
+    people :=older_than;
+        LOOP
+        FETCH people INTO fname, lname, etitle;
+        EXIT WHEN people%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(fname || ': ' || lname || ': '|| etitle);
+        END LOOP;
+        CLOSE people;
+        END;
+        /
+    
+--- 4.1 FOUND A WAY TO LOOP THROUGH THE REFCURSOR AND PRINT
+
+CREATE OR REPLACE PROCEDURE get_names1(namies OUT SYS_REFCURSOR)
+IS
+BEGIN
+OPEN namies FOR SELECT firstname, lastname FROM employee;
+END;
+/
+
+DECLARE
+namies SYS_REFCURSOR;
+fname VARCHAR2(100);
+lname VARCHAR2(100);
+BEGIN
+
+    get_names1(namies);
+    LOOP
+        FETCH namies INTO fname, lname;
+        EXIT WHEN namies%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(fname || '     ' || lname);
+    END LOOP;
+    CLOSE namies;
+END;
+/
+
+
+
+
+--4.2 USER PROCEDURES -------------------------------
+
+
+    CREATE OR REPLACE PROCEDURE update_address_city(e_id IN employee.employeeid%TYPE, new_ad IN employee.address%TYPE, new_city IN employee.city%TYPE)
+    IS
+    BEGIN
+    UPDATE employee SET address = new_ad, city = new_city WHERE e_id = employeeid;
+    END;
+    /
+    
+    DECLARE
+    BEGIN
+    update_address_city(3, '1006 Pruitt Ct', 'Annandale');
+    END;
+    /
+select * from employee;
+
+
+
+-------------PART 2----------------------------
+---I dont knwo why this one isn't working
+--When I run the procedure it says no function with name 'RETURN_BOSS' exists in this scope
+CREATE OR REPLACE PROCEDURE return_boss(e_id IN employee.employeeid%TYPE, manager_person OUT VARCHAR2)
+IS
+boss_id NUMBER;
+BEGIN
+SELECT reportsto INTO boss_id FROM employee WHERE e_id=employeeid;
+SELECT firstname || ' '||lastname INTO manager_person FROM employee WHERE employeeid=boss_id;
+END;
+/
+
+DECLARE
+man_person VARCHAR2(100);
+BEGIN
+man_person :=return_boss(3, man_person);
+DBMS_OUTPUT.PUT_LINE('THIS IS THE BOSS ' ||man_person);
+END;
+/
+
+
+---4.3-----------------
+
+
+SELECT * FROM customer;
+CREATE OR REPLACE PROCEDURE return_cus_info(c_id IN customer.customerid%TYPE, c_inf OUT VARCHAR2)
+IS
+BEGIN
+  SELECT firstname || ' '|| lastname||' '||company INTO c_inf FROM customer WHERE c_id=customerid;
+  END;
+  /
+  
+  DECLARE
+  c_info VARCHAR2(100);
+  BEGIN
+  c_info:=return_cus_info(2, c_info);
+  DBMS_OUTPUT.PUT_LINE('THIS IS THE PERSON' || c_info);
+  END;
+  /
+  
+  -----5.0
+  -- DID NOT FINISH SECTION 5 
+  ------6.1
+  CREATE OR REPLACE TRIGGER emp_insert
+AFTER INSERT ON employee
+
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('WE INSERTED SOMETHING');
+END;
+/
+
+  CREATE OR REPLACE TRIGGER album_update
+AFTER UPDATE ON album
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('WE UPDATED SOMETHING!');
+END;
+/
+
+CREATE OR REPLACE TRIGGER del_customer
+AFTER DELETE ON customer
+BEGIN
+DBMS_OUTPUT.PUT_LINE('WE DELETED SOMETHING');
+END;
+/
+
+SELECT*FROM customer;
+DELETE FROM customer WHERE customerid=59;
+UPDATE album SET title='Battlestar The Sun v Beatleguese' WHERE albumid = 2;
+INSERT INTO employee VALUES (11, 'Jason', 'Vorhees', 'Celebrity', 1, '18-FEB-62', '14-AUG-02', '225', 'SOMEWHERE', 'AB', 'CANADA', 'T5K 2N1', '443-4499-4', '33333333333','someemail@gmail.');
+---Jumping to section 7
+SELECT * FROM customer;
+SELECT * FROM album;
+SELECT *FROM artist;
+SELECT * FROM invoice;
+--7.1
+SELECT firstname, lastname, b.invoiceid FROM customer a INNER JOIN invoice b ON a.customerid = b.customerid;
+--7.2
+SELECT a.customerid, a.firstname, lastname, b.invoiceid, b.total FROM customer a FULL OUTER JOIN invoice b ON a.customerid = b.customerid;
+--7.3
+SELECT b.name, a.title FROM album a RIGHT JOIN artist b on a.artistid = b.artistid;
+--7.4
+SELECT * FROM album CROSS JOIN artist ORDER BY name;
+--7.5
+SELECT a.reportsto, b.reportsto
+FROM employee a, employee b
+WHERE a.reportsto = b.reportsto;
+
+
