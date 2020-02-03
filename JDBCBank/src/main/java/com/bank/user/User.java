@@ -1,7 +1,10 @@
 package com.bank.user;
 import java.util.List;
 
+import com.bank.dao.CustomerDaoImpl;
+
 public abstract class User{
+	protected static CustomerDaoImpl customerDao=new CustomerDaoImpl();
 	protected int userID;
 	protected String username;
 	protected String password;
@@ -14,13 +17,25 @@ public abstract class User{
 		this.userID=id;
 		this.username=name;
 		this.password=pw;
-		this.firstname = fName;
-		this.lastname = sName;
+		this.firstname=fName;
+		this.lastname=sName;
 	}
 
-//	public boolean isPassword(String test) {
-//		return password.equals(test);
-//	}
+	public int getUserID() {
+		return userID;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public String getFirstName() {
+		return firstname;
+	}
+	public String getLastName() {
+		return lastname;
+	}
 	
 	public void setFirstName(String fName) {
 		//server stuff
@@ -47,30 +62,23 @@ public abstract class User{
 		return null;
 	}
 	
-	public int getUserID() {
-		return userID;
-	}
 	
 	//Checking if username is exist
 	public static boolean checkUsername(String name) {
+		//User u = customerDao.selectByUserNameAndPassword(name);
+
+		
 		//server stuff
 		return false;
 	}
 	
 	//Find user with matching name and password
 	public static User getUser(String name,String pw) {
-		//server stuff
-//		for(User u:userList) {
-//			if(u.getName().equals(name)) {
-//				//username found but password incorrect
-//				if (!u.isPassword(pw)) {
-//					//System.out.println("The password is not correct!!!");
-//					return null;
-//				}else {
-//					return u;
-//				}				
-//			}
-//		}
+		User u = customerDao.selectByUserNameAndPassword(name, pw);
+		if(u!=null) {
+			return u;			
+		}
+		//System.out.println("The password is not correct!!!");
 		return null;
 	}
 	

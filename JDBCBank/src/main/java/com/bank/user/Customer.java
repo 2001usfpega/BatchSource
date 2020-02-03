@@ -26,6 +26,8 @@ public class Customer extends User {
 	
 	public static void createNewCustomer(String uname, String pw, String fName, String sName) {
 		//create a new customer on the server
+		customerDao.insertNewUser(uname, pw, fName, sName);
+		//should probably check for errors but...
 	}
 	
 	//return customer given an id

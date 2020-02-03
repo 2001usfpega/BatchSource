@@ -6,12 +6,12 @@ import com.bank.user.User;
 
 public interface UserDao {
 	//CREATE
-	public boolean insertUser(User u);
+	public boolean insertNewUser(String uname, String pw, String fName, String sName);
 	
 	//READ
 	public List<User> selectAllUsers();
 	public User selectByUserId(int id);
-	public User selectByUserName(String name);
+	public User selectByUsername(String uname);
 	public User selectByUserNameAndPassword(String name, String password);
 	//UPDATE
 	public boolean updateUser(User u);
