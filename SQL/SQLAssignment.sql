@@ -185,6 +185,40 @@ SELECT * FROM employee;
 
 
 
+---Question 6.1
+CREATE OR REPLACE TRIGGER employee_insertb
+AFTER INSERT
+ON employee
+FOR EACH ROW
+BEGIN
+    dbms_output.put_line('NEW EMPLOYEE');
+END;
+/
+CREATE OR REPLACE TRIGGER album_update
+AFTER UPDATE
+ON album
+FOR EACH ROW
+BEGIN
+    dbms_output.put_line('ALBUM UPDATED');
+END;
+/
+CREATE OR REPLACE TRIGGER delete_cust
+AFTER DELETE
+ON customer
+FOR EACH ROW
+BEGIN
+    dbms_output.put_line('CUSTOMER REMOVED');
+END;
+/
+---Question 7.1
+SELECT * FROM customer a INNER JOIN invoice b ON a.customerid = b.invoiceid;
+---Question 7.2
+SELECT * FROM customer a LEFT OUTER JOIN invoice b ON b.invoiceid = a.customerid;
+---Question 7.3
+SELECT * FROM artist a RIGHT OUTER JOIN album b ON b.artistid = A.ARTISTID;
+---Question 7.4
+SELECT * FROM artist CROSS JOIN album;
+
 
 COMMIT;
 ROLLBACK;
