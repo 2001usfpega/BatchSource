@@ -22,16 +22,25 @@ public class BankDriver {
 	 * successfully logged in
 	 */
 	private static Customer activeCustomer;
-
+	
+	/**
+	 * The reference of the active employee
+	 */
 	private static Employee emp = new Employee();
 
+	/**
+	 * The location of the customer file
+	 */
 	private static final String CUST_FILE = "ApprovedCustomers.txt";
 
 	/**
 	 * Holds a list of all approved customers - stored in ApprovedCustomers.txt
 	 */
 	private static ArrayList<Customer> customers = new ArrayList<Customer>();
-
+	
+	/**
+	 * The refence of the current admin
+	 */
 	private static Admin ad = new Admin(customers);
 
 	/**
@@ -94,7 +103,7 @@ public class BankDriver {
 						break;
 					case 3:
 					}
-					// Fires when there is a returning employee
+					// Fires when there is a returning employee.
 					// returning employee
 					break;
 				case 9:
@@ -254,10 +263,13 @@ public class BankDriver {
 				// Allows the customer to perform a withdraw
 				System.out.println("What account do you want to make a withdraw from?");
 				int with = 1;
+				
+				//Printing out all open accounts
 				for (Account a : activeCustomer.getAccounts()) {
 					System.out.println(with + ") " + a.getAccountNumber());
 					with++;
 				}
+				
 				int accountNum1 = scan.nextInt() - 1;
 				Account act1 = activeCustomer.getAccounts().get(accountNum1);
 				System.out.println("Enter how much you would like to withdraw ");
@@ -297,7 +309,10 @@ public class BankDriver {
 		}
 		activeCustomer = null;
 	}
-
+	
+	/**
+	 * 
+	 */
 	private static void processJared() {
 		// emp = new Employee("Jred","a","Jared","McGillicudy",new Address("Foxy Lane",
 		// "Hammertown","NE","75748"),"8008675309","gilliboi@yahoo.com", customers);
@@ -370,6 +385,8 @@ public class BankDriver {
 				customers = ad.getCustomers();
 				printAllToFile();
 				break;
+				
+			//All of these cases are joke cases, have no implementation only print statements.
 			case 4:
 				System.out.println("You are now committing treason...");
 				break;
@@ -420,22 +437,10 @@ public class BankDriver {
 			e.printStackTrace();
 		}
 	}
-
+	
 	/**
-	 * Fills all of the accounts to a list from the Accounts.txt file.
+	 * Prints all of the serialized objects to the file. Only customers due to time limitations.
 	 */
-//	private static void fillAccounts() {
-//		
-//	}
-
-	/**
-	 * Takes all of the accounts from the list and adds them to the users list of
-	 * accounts based on the userID of both the customer and the Account
-	 */
-//	private static void addAccounts() {
-//		
-//	}
-
 	private static void printAllToFile() {
 		ObjectOutputStream oos;
 		try {
