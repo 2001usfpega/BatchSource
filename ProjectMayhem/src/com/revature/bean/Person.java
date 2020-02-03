@@ -12,13 +12,15 @@ public class Person implements Hunt, Serializable {
 	private static final long serialVersionUID = 282854016993150252L;
 
 	/*
-	 * Code Block- defined by {} {Things between} static code block - runs once when
-	 * class is used by compiler instance code block- run every time an object is
-	 * instantiated (for that class)
+	 * Code Block - defined by {} {Things between} 
+	 * static code block - runs once when class is used by compiler
+	 * instance code block - run every time an object is instantiated (for that class)
 	 * 
-	 * Java Bean Represents some entity More for data structure than logic Made up
-	 * of: private fields No-Arg Constructor Constructor w/ fields Getters and
-	 * Setters toString() equals()
+	 * Java Bean 
+	 * Represents some entity 
+	 * More for data structure than logic 
+	 * Made up of: private fields, No-Arg Constructor, Constructor w/ fields, Getters and
+	 * Setters, toString(), equals()
 	 */
 	// Static code block
 //	static {
