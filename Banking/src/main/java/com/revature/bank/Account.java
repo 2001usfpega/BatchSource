@@ -29,7 +29,9 @@ public static void main(String[] args) {
 	{
 	case 1:
 		System.out.println("Hey Customer");
-		
+		System.out.println("Will You Be Logging In?");
+		System.out.println("1. New User");
+		System.out.println("2. Login");
 		
 		Bank b = new Bank();
 		b.Menu();
@@ -88,7 +90,8 @@ class Bank{
 		}	
 			else if(previousTrans <0) 
 			{
-			System.out.println("Withdrawn " +Math.abs(previousTrans));	
+			System.out.println("Withdrawn "
+					+ "" +Math.abs(previousTrans));	
 			}
 			else 
 			{
