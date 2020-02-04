@@ -20,6 +20,7 @@ public class CustomerInfo {
 	private String email;
 	
 	private List<Accounts> accounts;
+	private List<CustomerInfo> customers;
 
 	public CustomerInfo() {
 		super();
@@ -144,5 +145,15 @@ public class CustomerInfo {
 		
 		return accounts;
 	}
+
+	public List<CustomerInfo> getCustomers() {
+		return customers;
+	}
+
+	public void setCustomers(List<CustomerInfo> customers) {
+		this.customers = customers;
+	}
+	
+	
 
 }

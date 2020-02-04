@@ -31,6 +31,7 @@ public class BankDriver {
 	 * successfully logged in
 	 */
 	private static CustomerInfo activeCustomer;
+	private static Accounts activeAccount;
 
 	private static Employee emp = new Employee();
 
@@ -81,7 +82,7 @@ public class BankDriver {
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 
 			String sql = "INSERT INTO customer(customerid, username, password, fname, lname, address, city, state, zipcode, phone, email) VALUES(null,?,?,?,?,?,?,?,?,?,?)";
-																																											
+
 			PreparedStatement ps = conn.prepareStatement(sql);
 			// first question mark
 			ps.setString(1, user); // second question mark
@@ -111,7 +112,7 @@ public class BankDriver {
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				accts.add(new Accounts(rs.getInt(1), rs.getString(2), rs.getInt(3)));
+				accts.add(new Accounts(rs.getInt(1), rs.getInt(2), rs.getDouble(3)));
 
 			}
 
@@ -131,7 +132,6 @@ public class BankDriver {
 			// first question mark
 			ps.setInt(1, customerid);
 			ps.setInt(2, 0);
-			
 
 			ps.executeUpdate();
 
@@ -139,15 +139,14 @@ public class BankDriver {
 			e.printStackTrace();
 		}
 	}
-	
-	
+
 	public static void userLogin(String user, String pass) {
-		String password2 ="";
-		String username2 ="";
-		try(Connection conn = DriverManager.getConnection(url, username, password)){
-						
-			 String sql= "SELECT * FROM customer WHERE username = '" + user + "'";
-			
+		String password2 = "";
+		String username2 = "";
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			String sql = "SELECT * FROM customer WHERE username = '" + user + "'";
+
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
@@ -155,43 +154,31 @@ public class BankDriver {
 				activeCustomer = new CustomerInfo(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),
 						rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9),
 						rs.getString(10), rs.getString(11));
-				
+
 				password2 = rs.getString("password");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
-//		try(Connection conn2 = DriverManager.getConnection(url, username, password)){
-//			
-//			 String sql2= "SELECT username FROM customer WHERE customerid=" + customerid;
-//			
-//			PreparedStatement ps2 = conn2.prepareStatement(sql2);
-//			ResultSet rs2 = ps2.executeQuery();
-//
-//			while (rs2.next()) {
-//				password2 = rs2.getString("password");
-//			}	
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
+
 		if (pass == activeCustomer.getPassword()) {
 			processCustomer();
 		}
-			
+
 	}
+
 	public static List<Accounts> fillAll(int customerid) {
 		List<Accounts> accounts = new ArrayList<>();
-		try(Connection conn = DriverManager.getConnection(url, username, password)){
-						
-			 String sql= "SELECT * FROM accounts WHERE customerid = '" + customerid + "'";
-			
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			String sql = "SELECT * FROM accounts WHERE customerid = '" + customerid + "'";
+
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 
 			while (rs.next()) {
-				accounts.add(new Accounts(rs.getInt(1), rs.getString(2), rs.getDouble(3)));
-				
+				accounts.add(new Accounts(rs.getInt(1), rs.getInt(2), rs.getDouble(3)));
+
 				customerid = rs.getInt("customerid");
 			}
 		} catch (SQLException e) {
@@ -237,7 +224,7 @@ public class BankDriver {
 					break;
 				case 8:
 
-					System.out.println("1) Returning Employee\n2) Returning Admin\n3) Exit program");
+					System.out.println("1) Returning Admin\n2) Exit program");
 					System.out.print(">> ");
 					input = scan.nextInt();
 					switch (input) {
@@ -245,9 +232,6 @@ public class BankDriver {
 						processJared();
 						break;
 					case 2:
-						// processAdmin();
-						break;
-					case 3:
 					}
 					// Fires when there is a returning employee
 					// returning employee
@@ -263,7 +247,7 @@ public class BankDriver {
 				default:
 					// defaults and tells the user to enter a valid number ([1-3] for user, 8 and 9
 					// are hidden values only for employees)
-					System.out.println("Please enter a valid number [1-3]");
+					System.out.println("Please enter a valid number [1-2]");
 				}
 			} else {
 
@@ -325,25 +309,110 @@ public class BankDriver {
 		String user = scan.nextLine();
 		System.out.println("Enter your password");
 		String pass = scan.nextLine();
-		loggingOn(user,pass);
+		loggingOn(user, pass);
+		getAccountsByID(activeCustomer.getCustomerid());
 	}
 
 	private static void loggingOn(String user, String pass) {
 		userLogin(user, pass);
 	}
-	
-	
-	public static void createAccnt(int customerid){
+
+	public static void createAccnt(int customerid) {
 		prepStateAcct(customerid);
 	}
-	
+
 	public static void setAccnt(List<Accounts> accounts) {
 
 	}
-	
 
-	
-	
+	public static List<Accounts> getAccountsByID(int customerID) {
+		List<Accounts> accounts = new ArrayList<>();
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			String sql = "SELECT * FROM accounts WHERE customerid = " + customerID;
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				accounts.add(new Accounts(rs.getInt(1), rs.getInt(2), rs.getDouble(3)));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return accounts;
+	}
+
+	public static void withUpdate(int accountid, double bal, int customerid) {
+		double balance = 0;
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			String sql = "SELECT balance FROM accounts WHERE accountid = '" + accountid + "'";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				balance = rs.getDouble("balance");
+				System.out.println("Balance: $");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		if (balance > bal) {
+			balance -= bal;
+		}
+
+		else {
+			System.out.println("Enter in an amount that won't overdraft your account.");
+		}
+
+		try (Connection conn2 = DriverManager.getConnection(url, username, password)) {
+
+			String sql2 = "UPDATE accounts SET balance =" + balance + " WHERE accountid='" + accountid + "'";
+
+			PreparedStatement ps2 = conn2.prepareStatement(sql2);
+			int rs2 = ps2.executeUpdate();
+
+			System.out.println("Your new balance is: $" + balance);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void depoUpdate(int accountid, double bal, int customerid) {
+		double balance = 0;
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			String sql = "SELECT balance FROM accounts WHERE accountid = '" + accountid + "'";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+
+			while (rs.next()) {
+
+				balance = rs.getDouble("balance");
+			}
+
+			if (bal > 0) {
+				balance += bal;
+			}
+
+			else {
+				System.out.println("You can't deposit $0.00, please try again");
+			}
+
+			String sql2 = "UPDATE accounts SET balance =" + balance + " WHERE accountid='" + accountid + "'";
+
+			PreparedStatement ps2 = conn.prepareStatement(sql2);
+			int rs2 = ps2.executeUpdate();
+
+			System.out.println("Your new balance is: $" + balance);
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
+	}
+
 	/**
 	 * Processes the logged in customer, allows them to check their balance, make a
 	 * withdraw, make a deposit, open a new account, and view their accounts
@@ -351,7 +420,7 @@ public class BankDriver {
 	private static void processCustomer() {
 		Scanner scan = new Scanner(System.in);
 		boolean running = true;
-
+		getAccountsByID(activeCustomer.getCustomerid());
 		// While running Print out the user menu and allow the customer
 		// to perform actions
 		while (running) {
@@ -365,45 +434,50 @@ public class BankDriver {
 
 				// Allows the customer to open a new account and prints the new account to the
 				// Accounts.txt file
-						createAccnt(activeCustomer.getCustomerid());
-						activeCustomer.setAccnt(fillAll(activeCustomer.getCustomerid()));
-				
-				
+				createAccnt(activeCustomer.getCustomerid());
+				activeCustomer.setAccnt(fillAll(activeCustomer.getCustomerid()));
+
 				break;
-//			case 2:
-//				// Allows the customer to perform a withdraw
-//				System.out.println("What account do you want to make a withdraw from?");
-//				int with = 1;
-//				for (Accounts a : activeCustomer.getAccounts()) {
-//					System.out.println(with + ") " + a.getAccountid());
-//					with++;
-//				}
-//				int accountNum1 = scan.nextInt() - 1;
-//				Accounts act1 = activeCustomer.getAccounts().get(accountNum1);
-//				System.out.println("Enter how much you would like to withdraw ");
-//				double amount1 = scan.nextDouble();
-//				act1.withdraw(amount1);
-//				//printAllToFile();
-//				break;
-//			case 3:
-//				// Allows the customer to to make a deposit
-//				System.out.println("What account do you want to make a deposit?");
-//				int dep = 1;
-//				for (Accounts a : activeCustomer.getAccounts()) {
-//					System.out.println(dep + ") " + a.getAccountid());
-//					dep++;
-//				}
-//				int accountNum2 = scan.nextInt() - 1;
-//				Accounts act2 = activeCustomer.getAccounts().get(accountNum2);
-//				System.out.println("Enter how much you would like to deposit ");
-//				double amount = scan.nextDouble();
-//				act2.deposit(amount);
-//				//printAllToFile();
-//				break;
+			case 2:
+				// Allows the customer to perform a withdraw
+				System.out.println("What account do you want to make a withdraw from?");
+				int with = 1;
+				List<Accounts> accnt2 = getAccountsByID(activeCustomer.getCustomerid());
+
+				for (Accounts a : accnt2) {
+					System.out.println(with + ") " + a.getAccountid() + " :  Balance: $" + a.getBal());
+					with++;
+				}
+				int accountNum1 = scan.nextInt() - 1;
+				Accounts act1 = accnt2.get(accountNum1);
+
+				System.out.println("Enter how much you would like to withdraw ");
+				double amount1 = scan.nextDouble();
+				// act1.withdraw(amount1);
+				withUpdate(act1.getAccountid(), amount1, activeCustomer.getCustomerid());
+				break;
+			case 3:
+				// Allows the customer to to make a deposit
+				System.out.println("What account do you want to make a deposit?");
+				int dep = 1;
+				List<Accounts> accnt = getAccountsByID(activeCustomer.getCustomerid());
+
+				for (Accounts a : accnt) {
+					System.out.println(dep + ") " + a.getAccountid() + " :  Balance: $" + a.getBal());
+					dep++;
+				}
+				int accountNum2 = scan.nextInt() - 1;
+				Accounts act2 = accnt.get(accountNum2);
+
+				System.out.println("Enter how much you would like to deposit ");
+				double amount = scan.nextDouble();
+				// act2.deposit(amount);
+				depoUpdate(act2.getAccountid(), amount, activeCustomer.getCustomerid());
+				break;
 			case 4:
 				// Allows the user to view all of their open accounts
-				for (Accounts a : activeCustomer.getAccounts()) {
-					System.out.println("Account # " + a.getAccountid() + " Balance " + a.getBal());
+				for (Accounts a : getAccountsByID(activeCustomer.getCustomerid())) {
+					System.out.println("Account # " + a.getAccountid() + " Balance $" + a.getBal());
 				}
 				break;
 			case 5:
@@ -418,6 +492,19 @@ public class BankDriver {
 		activeCustomer = null;
 	}
 
+	public static void delete(int accountid) {
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+
+			String sql = "DELETE FROM accounts WHERE accountid = '" + accountid + "'";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+			System.out.println("Account "+accountid+ " has been deleted");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	private static void processJared() {
 		// emp = new Employee("Jred","a","Jared","McGillicudy",new Address("Foxy Lane",
 		// "Hammertown","NE","75748"),"8008675309","gilliboi@yahoo.com", customers);
@@ -428,24 +515,29 @@ public class BankDriver {
 		// to perform actions
 		while (running) {
 			System.out.println(
-					"What action do you want to perform?\n1) View customers\n2) View all accounts\n3) Log out");
+					"What action do you want to perform?\n1) View customers\n2) View all accounts\n3) Delete account \n4) Log out");
 			int res = scan.nextInt();
 			switch (res) {
 			case 1:
-				for (Customer c : emp.getCustomers()) {
-					System.out.print(c.toString());
+
+				for (CustomerInfo c : selectAllCusts()) {
+					System.out.println(c.toString());
 				}
 				break;
 			case 2:
-				ArrayList<Customer> cust = emp.getCustomers();
-				for (int i = 0; i < cust.size(); i++) {
-					for (Account a : cust.get(i).getAccounts()) {
-						System.out.println("UserID >> " + a.getUserID() + " Account # >> " + a.getAccountNumber()
-								+ " Balance >> " + a.getBalance());
-					}
+
+				for (Accounts c : selectAllAccts()) {
+					System.out.println(c.toString());
 				}
 				break;
 			case 3:
+				for (Accounts c : selectAllAccts()) {
+					System.out.println(c.toString());
+				}
+				System.out.println("Which account would you like to delete?");
+				int acc = scan.nextInt();
+				delete(acc);
+			case 4:
 				running = !running;
 				break;
 			default:

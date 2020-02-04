@@ -1,0 +1,57 @@
+
+/* THIS IS A COMMENT IN A CSS FILE!
+barnacles
+*/
+
+/* THIS IS THE CSS STRUCTURE:
+	selector {
+		property-1:		value-1;
+		property-2:		value-2;	
+		property-3:		value-3;
+	}
+*/
+
+	h2{
+		text-align: right;
+	}
+/*class example*/	
+.taco12{
+		text-align: center;
+		color: blueviolet;
+	}
+/*id example*/
+#burrito13{
+	color: pink
+}
+
+/*MORE COMPLICATED EXAMPLE*/
+
+/* this specific example selects tags of type "wedabess" SPECIFICALLY AND ONLY if it is a child
+of another class of type "anotha1"*/
+.anotha1 > .wedabess{
+	color: orange
+}
+
+/* this specific example selects ANY child of div tag*/
+div > * {
+	
+}
+
+
+/* this specific example selects all h1 tags that have the class name "myClass"*/
+h1.myClass{
+	
+}
+
+/*BOX MODEL DEMO*/
+.spidey {
+	border-style: solid;
+	border-width: 3px;
+	border-color: chocolate;
+	padding: 10px;
+	margin: 50x;
+}
+
+
+
+

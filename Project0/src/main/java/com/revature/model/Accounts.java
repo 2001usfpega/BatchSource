@@ -1,27 +1,31 @@
 package com.revature.model;
 
+import java.util.List;
+
 public class Accounts {
 
 	private Integer accountid;
 	private String userid;
 	private Double bal;
+	private int customerid;
 
+	private List<Accounts> accounts;
 		
 	public Accounts() {
 		super();
 		
 	}
 
-	public Accounts(Integer accountid, String userid, Double bal) {
+	public Accounts(Integer accountid, Integer customerid, Double bal) {
 		super();
 		this.accountid = accountid;
-		this.userid = userid;
+		this.customerid = customerid;
 		this.bal = bal;
 	}
 
 	@Override
 	public String toString() {
-		return "Accounts [accountid=" + accountid + ", userid=" + userid + ", bal=" + bal + "]";
+		return "Accounts [customerid=" + customerid + ", accountid=" + accountid + ", bal=" + bal + "]";
 	}
 
 	public Integer getAccountid() {
@@ -32,20 +36,23 @@ public class Accounts {
 		this.accountid = accountid;
 	}
 
-	public String getUserid() {
-		return userid;
+	public Integer getCustomerid() {
+		return customerid;
 	}
 
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
 
 	public Double getBal() {
 		return bal;
 	}
+	
 
 	public void setBal(Double bal) {
 		this.bal = bal;
+	}
+	
+public List<Accounts> getAccounts() {
+		
+		return accounts;
 	}
 
 }
