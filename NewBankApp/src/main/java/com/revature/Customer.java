@@ -91,7 +91,7 @@ public class Customer implements User {
 	@Override
 	public void getAccount(int acctID) {
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
-			String sql = "SELECT * FROM revature_bank_account WHERE rb_acct_id="+acctID;
+			String sql = "SELECT * FROM revature_bank_account WHERE rb_acct_id=" + acctID;
 			PreparedStatement prepState = connection.prepareStatement(sql);
 			ResultSet revAccnts = prepState.executeQuery();
 			while (revAccnts.next()) {
@@ -135,19 +135,20 @@ public class Customer implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(withdraw <= balance) {
-		balance -= withdraw;
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
-			PreparedStatement ps = conn.prepareStatement(sql);
-			int newBalance = ps.executeUpdate();
-			System.out.println("You have withdrawn $" + withdraw + " and your new balance is $" + balance);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		}
-		else {
+		if (withdraw <= 0) {
 			System.out.println("Please enter a valid withdrawal amount");
+		} else if (withdraw <= balance) {
+			balance -= withdraw;
+			try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
+				PreparedStatement ps = conn.prepareStatement(sql);
+				int newBalance = ps.executeUpdate();
+				System.out.println("You have withdrawn $" + withdraw + " and your new balance is $" + balance);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Please enter a valid withdrawl amount");
 		}
 	}
 
@@ -165,17 +166,19 @@ public class Customer implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if(deposit > 0) {
-		balance += deposit;
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
-			PreparedStatement ps = conn.prepareStatement(sql);
-			int newBalance = ps.executeUpdate();
-			System.out.println("You deposited $" + deposit + " and your new balance is $" + balance);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (deposit > 0) {
+			balance += deposit;
+			try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
+				PreparedStatement ps = conn.prepareStatement(sql);
+				int newBalance = ps.executeUpdate();
+				System.out.println("You deposited $" + deposit + " and your new balance is $" + balance);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Please enter a valid deposit amount");
 		}
-		}else {System.out.println("Please enter a valid deposit amount");}
 	}
 
 	@Override
@@ -189,35 +192,35 @@ public class Customer implements User {
 			while (rs1.next()) {
 				balance1 = rs1.getInt("balance");
 			}
-		}catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-			try (Connection conn2 = DriverManager.getConnection(url, username, password)) {
-				String sql2 = "SELECT balance FROM revature_bank_account WHERE rb_acct_id=" + acctID2;
-				PreparedStatement ps2 = conn2.prepareStatement(sql2);
-				ResultSet rs2 = ps2.executeQuery();
-				while (rs2.next()) {
-					balance2 = rs2.getInt("balance");
-				}
-			}catch (SQLException e1) {
-					e1.printStackTrace();
-				}
-				balance1+=transfer;
-				balance2-=transfer;
-				try (Connection conn3 = DriverManager.getConnection(url, username, password)) {
-					String sql3 = "UPDATE revature_bank_account SET balance=" + balance1 + " WHERE rb_acct_id=" + acctID1;
-					PreparedStatement ps3 = conn3.prepareStatement(sql3);
-					int newBalance1 = ps3.executeUpdate();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				try (Connection conn = DriverManager.getConnection(url, username, password)) {
-					String sql4 = "UPDATE revature_bank_account SET balance=" + balance2 + " WHERE rb_acct_id=" + acctID2;
-					PreparedStatement ps4 = conn.prepareStatement(sql4);
-					int newBalance2 = ps4.executeUpdate();
-					System.out.println("You have transferred $"+transfer+" from "+acctID2+" into "+acctID1);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
 		}
+		try (Connection conn2 = DriverManager.getConnection(url, username, password)) {
+			String sql2 = "SELECT balance FROM revature_bank_account WHERE rb_acct_id=" + acctID2;
+			PreparedStatement ps2 = conn2.prepareStatement(sql2);
+			ResultSet rs2 = ps2.executeQuery();
+			while (rs2.next()) {
+				balance2 = rs2.getInt("balance");
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		balance1 += transfer;
+		balance2 -= transfer;
+		try (Connection conn3 = DriverManager.getConnection(url, username, password)) {
+			String sql3 = "UPDATE revature_bank_account SET balance=" + balance1 + " WHERE rb_acct_id=" + acctID1;
+			PreparedStatement ps3 = conn3.prepareStatement(sql3);
+			int newBalance1 = ps3.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			String sql4 = "UPDATE revature_bank_account SET balance=" + balance2 + " WHERE rb_acct_id=" + acctID2;
+			PreparedStatement ps4 = conn.prepareStatement(sql4);
+			int newBalance2 = ps4.executeUpdate();
+			System.out.println("You have transferred $" + transfer + " from " + acctID2 + " into " + acctID1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+}

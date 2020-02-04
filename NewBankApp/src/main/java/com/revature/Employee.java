@@ -89,7 +89,9 @@ public class Employee implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		if (withdraw <= balance) {
+		if (withdraw <= 0) {
+			System.out.println("Please enter a valid withdrawal amount");
+		} else if (withdraw <= balance) {
 			balance -= withdraw;
 			try (Connection conn = DriverManager.getConnection(url, username, password)) {
 				String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
@@ -99,9 +101,7 @@ public class Employee implements User {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		} else {
-			System.out.println("Please enter a valid withdrawal amount");
-		}
+		} 
 	}
 
 	@Override
