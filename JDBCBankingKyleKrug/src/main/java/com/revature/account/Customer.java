@@ -32,8 +32,7 @@ public class Customer extends Account implements CustomerInterface {
 		DatabaseAccess db = new DatabaseAccess();
 		Customer b = db.employeeGetCustomer(id);
 		if(b.getFirstname() != null) {
-			if(amount > a.getBalance()) {
-				System.out.println("Invalid Funds");
+			if(amount < a.getBalance()) {
 				if(b.isApproved() == false ) {
 					System.out.println("Person is not approved cannot transfer");
 				}else {
@@ -42,8 +41,10 @@ public class Customer extends Account implements CustomerInterface {
 					db.updateCustomer(b);
 				}
 			}else {
-				System.out.println("Person does not exisit");
+				System.out.println("Invalid Funds");
 			}
+		}else {
+			System.out.println("Person does not exisit");
 		}
 
 

@@ -61,8 +61,8 @@ public class Input_Scanner {
 		}
 		while(password == "") {
 			System.out.println("Enter your password: ");
-			System.out.println("##########################################################");
 			password = in.next();
+			System.out.println("##########################################################");
 		}
 		customer = db.getCustomer(username, password);
 		if(customer.getFirstname() == null) {
@@ -258,6 +258,8 @@ public class Input_Scanner {
 			System.out.println("##########################################################");
 			db.unapprovedAccounts();
 			System.out.println("##########################################################");
+			employeeMenu(employee);
+			break;
 		case "8":
 			System.out.println("Logging out...");
 			break;
