@@ -1,0 +1,47 @@
+@charset "ISO-8859-1";
+
+
+
+
+
+p 
+{
+	text-align: center;
+	color: blueviolet;
+}
+
+/*id example*/
+h2 
+{
+	text-align: right;
+}
+
+/*complicated example*/
+/* this example select tags of type "wedabess specifically and only if it is a direct child of a class*/
+.anotha > .wedabess
+{
+	color: orange;
+}
+/* select any child of a div*/
+div > *
+{
+	
+}
+
+/*select all tags that have the class name myClass*/
+h1.my class
+{
+	
+}
+
+/*box model*/
+.spidey
+{
+	border-style: solid;
+	border-width: 3px;
+	border-color: chocolate;
+	padding: 10px;
+	msrgin: 50px;
+	
+}
+
