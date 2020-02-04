@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Servlet Demo</title>
+</head>
+<body>
+
+	<div class="supervillain-container">
+		<h1> Welcome to SuperVillain Sevlets</h1>
+		<p>Where all minions serve their overlords~! Get it? "Serve".</p>
+	</div>
+</body>
+</html>

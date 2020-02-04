@@ -1,0 +1,11 @@
+package com.example.directservlet;
+
+import javax.servlet.http.HttpServlet;
+
+/*
+ * Http methods include: get, post, put, delete, patch, head, options,
+ * trace, connect, etc
+ */
+public class DirectServlet extends HttpServlet {
+
+}

@@ -1,0 +1,8 @@
+p {
+	text-align: center;
+	color: blueviolet;
+}
+
+h2 {
+	text-align: right;
+}

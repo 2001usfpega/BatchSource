@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HELLO TITLE!!!!!!!!!!!!</title>
+</head>
+<body>
+	hello world!
+	
+	<!-- THIS IS A COMMENT!!!! -->
+	
+	<!-- Below are headers 1 through 6 -->
+	<h1>This is a header</h1>
+	<h2>This is ALSO a header</h2>
+	<h3>Is he going to keep doing this?</h3>
+	<h4>The answer is yes</h4>
+	<h5> is this the last one?</h5>
+	<h6> NOPE! This is though.</h6>
+	
+	<!-- paragraph tag -->
+	<p>Muffin pie ice cream. Lemon drops danish dragée sugar plum
+		gingerbread cheesecake. Ice cream dessert fruitcake sweet roll jujubes
+		toffee. Lemon drops apple pie gingerbread dragée cupcake bonbon cookie
+		chocolate cake fruitcake. Cheesecake muffin chocolate toffee gummi
+		bears. Apple pie bonbon icing lollipop liquorice apple pie biscuit
+		sweet caramels. Pudding biscuit macaroon cake topping cotton candy
+		chocolate lemon drops.</p>
+
+	<!-- anchor -->
+	<a href="https://pirateipsum.me/">Click me!</a>
+	
+	<!-- the "br" tag creates a new line character -->
+	<br/><br/><br/>
+	
+	<!-- table -->
+	<table border="2">
+		<tr> <!-- table row -->
+			<th>Star Wars</th> <!-- table head -->
+			<th>Star Trek</th>
+		</tr>
+		<tr>
+			<td>Row1, Column1</td><!-- table data -->
+			<td>Row1, Column2</td>
+		</tr>
+		<tr>
+			<td>Row2, Column1</td>
+			<td>Row2, Column2</td>
+		</tr>
+	</table>
+	
+	<!-- unordered list -->
+	<ul>
+		<li>Marvel Comics</li>
+		<li>DC Comics</li>
+	</ul>
+	
+	<!--ordered list  -->
+	<ol>
+		<h3>Best Superheroes of all time:</h3>
+		<li>Spider-man</li>
+		<li>Static Shock</li>
+		<li>Storm</li>
+		<li>Squirrel Girl</li>
+		<li>Shaggy from Scooby Doo</li>
+	</ol>
+	
+	<!-- creating forms -->
+	<form>
+		<h4>This is our form</h4>
+		<input type="text" name="heroname" placeholder="Billy. He can't tell time."/>
+		<br>
+		<input type="number" name="numba" placeholder="numba"/>
+		<br>
+		Enter Password:
+		<br>
+		<input type="password" placeholder="super secret password"/>
+		<br><br>
+		<input type="submit" value="Submit A Hero"/>
+		<br><br>
+		<input type="radio" name="cereal" value="milk first">
+		Milk first, then cereal....like an animal
+		<br><input type="radio" name="cereal" value="cereal first">
+		Cereal first, then milk...like a human
+		<br>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,7 @@
+package com.example.directservlet;
+
+import javax.servlet.http.HttpServlet;
+
+public class DirectServlet extends HttpServlet {
+
+}

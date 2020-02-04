@@ -1,0 +1,48 @@
+package com.example;
+
+//ctrl+shift+o
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class MainDriver {
+
+	/*
+	 * For ORACLE DBMS specifically the url patter is:
+	 * 
+	 * private static String url=
+	 * "jdbc:oracle:thin:@[endpoint]:[port]:[database-name]";
+	 * 
+	 * for local dbms:
+	 * "jdbc:oracle:thin:@localhost:1521:xe";
+	 */
+	private static String url= System.getenv("TRAINING_DB_URL");
+	private static String username= System.getenv("TRAINING_DB_USERNAME");
+	private static String password=System.getenv("TRAINING_DB_PASSWORD");
+	
+	public static void main(String[] args) {
+		System.out.println(url);
+		System.out.println(username);
+		System.out.println(password);
+
+	}
+	
+	//statement
+	public static void statementExample(String f_name, String f_recipe) {
+		try(Connection conn = DriverManager.getConnection(url, username, password)){
+			
+			String sql = "INSERT INTO food(food_name, recipe) VALUES('"
+					+f_name+"','"+f_recipe+"')";
+			
+			Statement statement = conn.createStatement();
+			
+			int numOfRowsChanged = statement.executeUpdate(sql);
+			System.out.println("The # of rows changed: "+ numOfRowsChanged);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

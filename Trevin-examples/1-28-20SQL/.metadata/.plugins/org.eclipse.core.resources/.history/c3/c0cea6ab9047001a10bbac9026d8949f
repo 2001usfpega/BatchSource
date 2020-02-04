@@ -1,0 +1,32 @@
+package com.example.sessionservlet;
+
+import java.io.IOException;
+
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+public class HelperSessionServlet extends HttpServlet{
+
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+		throws IOException, ServletException
+	{
+		//GENERAL JAVA CODE
+		System.out.println("In HelperSession GET!!!!");
+		
+		//SESSION CODE
+		HttpSession session = req.getSession();
+		SuperVillain = 
+				(SuperVillain) session.getAttribute("currentVillain");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse res)
+		throws IOException, ServletException
+	{
+		System.out.println("In HelperSession POST!!!!");
+	}
+}

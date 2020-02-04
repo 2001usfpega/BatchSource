@@ -1,0 +1,14 @@
+
+
+.taco12 {
+	text-align: center;
+	color: blueviolet;
+}
+
+h2 {
+	text-align: right;
+}
+
+#burrito13{
+	color: pink;
+}

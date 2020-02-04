@@ -1,0 +1,102 @@
+package com.example;
+
+import java.sql.CallableStatement;
+//ctrl+shift+o
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class MainDriver {
+	
+	/*
+	 * For ORACLE DBMS specifically the url patter is:
+	 * 
+	 * private static String url=
+	 * "jdbc:oracle:thin:@[endpoint]:[port]:[database-name]";
+	 * 
+	 * for local dbms:
+	 * "jdbc:oracle:thin:@localhost:1521:xe";
+	 */
+	private static String url= System.getenv("TRAINING_DB_URL");
+	private static String username= System.getenv("TRAINING_DB_USERNAME");
+	private static String password=System.getenv("TRAINING_DB_PASSWORD");
+	
+	public static void main(String[] args) {
+		/*
+		 * System.out.println(url); System.out.println(username);
+		 * System.out.println(password);
+		 */
+		//statementExample("omele du fromage", "Dexters lab");
+		//preparedStatementExample("ham", "store bought");
+		callableStatementExample("hawaiian rolls", "store bought");
+		System.out.println("done");
+	}
+	
+	//callable statement example
+		public static void callableStatementExample(String f_name, String f_recipe) {
+			try(Connection conn = DriverManager.getConnection(url, username, password)){
+				
+				/*
+				 * callable statement guard against sql injection because it is pre-compiled
+				 *  (which also makes it faster)
+				 */
+				String sql= "{ call insert_food_null_id(?,?) }"; //{ } are necessary if you want to return values
+				
+				CallableStatement cs = conn.prepareCall(sql);
+				cs.setString(1, f_name); //first question mark
+				cs.setString(2, f_recipe); //second question mark
+				
+				int status = cs.executeUpdate();
+				System.out.println("Callable statement returns: "+status);
+				
+			}catch(SQLException e) {
+				e.printStackTrace();
+			}
+		}
+	
+	//prepared statement example
+	public static void preparedStatementExample(String f_name, String f_recipe) {
+		try(Connection conn = DriverManager.getConnection(url, username, password)){
+			
+			/*
+			 * prepared statement guard against sql injection because it is pre-compiled
+			 *  (which also makes it faster)
+			 */
+			String sql= "INSERT INTO food(food_name, recipe) VALUES(?, ?)";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setString(1, f_name); //first question mark
+			ps.setString(2, f_recipe); //second question mark
+			
+			ps.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	//statement
+	public static void statementExample(String f_name, String f_recipe) {
+		try(Connection conn = DriverManager.getConnection(url, username, password)){
+			
+			String sql = "INSERT INTO food(food_name, recipe) VALUES('"
+					+f_name+"','"+f_recipe+"')";
+			/*
+			 * f_recipe = "; DROP TABLE food;";
+			 * 
+			 * THIS is SQL injection
+			 */
+			
+			Statement statement = conn.createStatement();
+			
+			int numOfRowsChanged = statement.executeUpdate(sql);
+			System.out.println("The # of rows changed: "+ numOfRowsChanged);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+}

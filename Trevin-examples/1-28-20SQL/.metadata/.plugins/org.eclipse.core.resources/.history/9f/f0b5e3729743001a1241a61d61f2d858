@@ -1,0 +1,14 @@
+package com.example;
+
+public class MainDriver {
+
+	private static String url="";
+	private static String username="fooddb";
+	private static String password="p4ssw0rd";
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}

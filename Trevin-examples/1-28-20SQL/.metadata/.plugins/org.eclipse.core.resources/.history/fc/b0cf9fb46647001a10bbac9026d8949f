@@ -1,0 +1,8 @@
+package com.example.model;
+
+public class SuperVillain {
+
+	private String name;
+	private String superpower;
+	private int bounty;
+}

@@ -1,0 +1,25 @@
+
+/* THIS IS A COMMENT IN A CSS FILE! 
+barnacles
+*/
+
+/* THIS IS THE CSS STRUCTURE:
+	selector {
+		property-1:		value-1;
+		property-2:		value-2;
+		property-n:		value-n;
+	}
+ */
+
+.taco12 {
+	text-align: center;
+	color: blueviolet;
+}
+
+h2 {
+	text-align: right;
+}
+
+#burrito13{
+	color: pink;
+}

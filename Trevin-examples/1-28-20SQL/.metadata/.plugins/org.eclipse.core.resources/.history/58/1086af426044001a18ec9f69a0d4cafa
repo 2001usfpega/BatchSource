@@ -1,0 +1,13 @@
+package com.example;
+
+import com.example.service.FoodService;
+import com.example.service.FoodServiceImpl;
+
+public class MainDriver {
+
+	public static void main(String[] args) {
+		FoodService foodServ = new FoodServiceImpl();
+
+	}
+
+}

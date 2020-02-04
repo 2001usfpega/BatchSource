@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>HELLO TITLE!!!!!!!!!!!!</title>
+
+<!-- we're able to cascade our styles down the page by putting them in
+the head tag -->
+<!-- <style>
+	p{
+		text-align: center;
+		color: blueviolet;
+	}
+	h2{
+		text-align: right;
+	}
+</style> -->
+
+<!-- this line will link our CSS file to THIS HTML file -->
+<link rel="stylesheet" type="text/css" href="helloCSS.css"/>
+
+</head>
+<body>
+	<!-- NOW, let's look at some simple styling -->
+	<!-- <div style="color: blue"> --> <!-- divider, used to group elements together-->
+	<div>
+		<p class="taco12"><i>Myparagraph</i></p>
+		<p id="burrito13"><b>Some other paragraph</b></p>
+		<p style="color: green; text-align: right">Nani!?!</p>
+		<p class="taco12">Sugoi!</p>
+	</div>
+	<div>
+		<p style="color: rgb(200,32,100)">I got nothing</p>
+		<!-- span is used for inline smaller grouping.
+		notice how "span" DOESN'T have a newline at the end like "div" does -->
+		<p>STR<span style="color: red">ANGER</span> DANGER!</p>
+	</div>
+	<div class="anotha1">
+		<p class="wedabess">inspirational</p>
+		<p>music</p>
+	</div>
+	<p class="wedabess">yell my name</p>
+	
+
+	<br><br><br><br><br><br><br>
+	hello world!
+	
+	<!-- THIS IS A COMMENT!!!! -->
+	
+	<!-- Below are headers 1 through 6 -->
+	<h1>This is a header</h1>
+	<h2>This is ALSO a header</h2>
+	<h3>Is he going to keep doing this?</h3>
+	<h4>The answer is yes</h4>
+	<h5> is this the last one?</h5>
+	<h6> NOPE! This is though.</h6>
+	
+	<!-- paragraph tag -->
+	<p>Muffin pie ice cream. Lemon drops danish dragée sugar plum
+		gingerbread cheesecake. Ice cream dessert fruitcake sweet roll jujubes
+		toffee. Lemon drops apple pie gingerbread dragée cupcake bonbon cookie
+		chocolate cake fruitcake. Cheesecake muffin chocolate toffee gummi
+		bears. Apple pie bonbon icing lollipop liquorice apple pie biscuit
+		sweet caramels. Pudding biscuit macaroon cake topping cotton candy
+		chocolate lemon drops.</p>
+
+	<!-- anchor -->
+	<a href="https://pirateipsum.me/">Click me!</a>
+	
+	<!-- the "br" tag creates a new line character -->
+	<br/><br/><br/>
+	
+	<!-- table -->
+	<table border="2">
+		<tr> <!-- table row -->
+			<th>Star Wars</th> <!-- table head -->
+			<th>Star Trek</th>
+		</tr>
+		<tr>
+			<td>Row1, Column1</td><!-- table data -->
+			<td>Row1, Column2</td>
+		</tr>
+		<tr>
+			<td>Row2, Column1</td>
+			<td>Row2, Column2</td>
+		</tr>
+	</table>
+	
+	<!-- unordered list -->
+	<ul>
+		<li>Marvel Comics</li>
+		<li>DC Comics</li>
+	</ul>
+	
+	<!--ordered list  -->
+	<ol>
+		<h3>Best Superheroes of all time:</h3>
+		<li>Spider-man</li>
+		<li>Static Shock</li>
+		<li>Storm</li>
+		<li>Squirrel Girl</li>
+		<li>Shaggy from Scooby Doo</li>
+	</ol>
+	
+	<!-- creating forms -->
+	<form>
+		<h4>This is our form</h4>
+		<input type="text" name="heroname" placeholder="Billy. He can't tell time."/>
+		<br>
+		<input type="number" name="numba" placeholder="numba"/>
+		<br>
+		Enter Password:
+		<br>
+		<input type="password" placeholder="super secret password"/>
+		<br><br>
+		<input type="submit" value="Submit A Hero"/>
+		<br><br>
+		<input type="radio" name="cereal" value="milk first">
+		Milk first, then cereal....like an animal
+		<br><input type="radio" name="cereal" value="cereal first">
+		Cereal first, then milk...like a human
+		<br>
+		I have a pen~:<input type="checkbox" value="pen">
+		I have a apple~:<input type="checkbox" value="apple">
+		Apple-pen~:<input type="checkbox" value="applepen">
+	</form>
+	
+	<!-- how do we display an image? -->
+	<img src="https://images-na.ssl-images-amazon.com/images/I/81D%2BXXEnHBL._SY445_.jpg" 
+	style="width:auto" class="spidey"/>
+	
+	<iframe src="https://images-na.ssl-images-amazon.com/images/I/81D%2BXXEnHBL._SY445_.jpg" 
+	width="300" height="100" class="spidey"></iframe>
+	
+	<textarea rows="3" cols="40">
+		Muffin pie ice cream. Lemon drops danish dragée sugar plum
+		gingerbread cheesecake. Ice cream dessert fruitcake sweet roll jujubes
+		toffee. Lemon drops apple pie gingerbread dragée cupcake bonbon cookie
+		chocolate cake fruitcake. Cheesecake muffin chocolate toffee gummi
+		bears. Apple pie bonbon icing lollipop liquorice apple pie biscuit
+		sweet caramels. Pudding biscuit macaroon cake topping cotton candy
+		chocolate lemon drops.
+	</textarea>
+	
+	<button>muffin buttons</button>
+</body>
+</html>
+
+
+
+
+
+
+

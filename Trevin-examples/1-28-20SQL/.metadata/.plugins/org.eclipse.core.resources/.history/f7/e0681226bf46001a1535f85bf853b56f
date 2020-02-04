@@ -1,0 +1,39 @@
+
+/* THIS IS A COMMENT IN A CSS FILE! 
+barnacles
+*/
+
+/* THIS IS THE CSS STRUCTURE:
+	selector {
+		property-1:		value-1;
+		property-2:		value-2;
+		property-n:		value-n;
+	}
+	
+	if "#" precedes the selector then the selector is targeting an id
+	if "." precedes the selector then the selector is targeting a class
+ */
+
+
+/*tag example*/
+h2 {
+	text-align: right;
+}
+
+/*class example*/
+.taco12 {
+	text-align: center;
+	color: blueviolet;
+}
+
+/*id example*/
+#burrito13{
+	color: pink;
+}
+
+/*MORE COMPLICATED EXAMPLE*/
+
+/**/
+.anotha1 > .wedabess {
+	color: orange;
+}

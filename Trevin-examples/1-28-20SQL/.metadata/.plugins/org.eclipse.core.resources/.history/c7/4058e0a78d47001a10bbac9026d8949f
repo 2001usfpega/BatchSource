@@ -1,0 +1,7 @@
+package com.example.sessionservlet;
+
+import javax.servlet.http.HttpServlet;
+
+public class HelperSessionServlet extends HttpServlet{
+
+}

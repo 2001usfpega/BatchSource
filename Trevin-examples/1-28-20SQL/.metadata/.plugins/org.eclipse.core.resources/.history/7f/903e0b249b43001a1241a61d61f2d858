@@ -1,0 +1,25 @@
+package com.example;
+
+public class MainDriver {
+
+	/*
+	 * For ORACLE DBMS specifically the url patter is:
+	 * 
+	 * private static String url=
+	 * "jdbc:oracle:thin:@[endpoint]:[port]:[database-name]";
+	 * 
+	 * for local dbms:
+	 * "jdbc:oracle:thin:@localhost:1521:xe";
+	 */
+	//private static String url="";
+	private static String url =
+			"jdbc:oracle:thin:@revychan.c4wt8faaxlgp.us-east-2.rds.amazonaws.com:1521:orcl";
+	private static String username="fooddb";
+	private static String password="p4ssw0rd";
+	
+	public static void main(String[] args) {
+		
+
+	}
+
+}
