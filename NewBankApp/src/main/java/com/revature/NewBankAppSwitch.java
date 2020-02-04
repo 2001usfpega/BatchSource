@@ -26,6 +26,7 @@ public class NewBankAppSwitch {
 			try {
 				option = scanner.nextLine().charAt(0);
 			} catch (InputMismatchException e) {
+			} catch (StringIndexOutOfBoundsException e) {
 			}
 
 			switch (option) {
@@ -42,7 +43,8 @@ public class NewBankAppSwitch {
 					System.out.println("5. Transfer between accounts");
 					System.out.println("6. Exit to the Main Menu");
 
-					try {choice = scanner.nextInt();
+					try {
+						choice = scanner.nextInt();
 					} catch (InputMismatchException e) {
 					}
 					scanner.nextLine();

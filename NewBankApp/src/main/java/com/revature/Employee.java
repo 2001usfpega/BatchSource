@@ -89,14 +89,18 @@ public class Employee implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		balance -= withdraw;
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
-			PreparedStatement ps = conn.prepareStatement(sql);
-			int newBalance = ps.executeUpdate();
-			System.out.println("You have withdrawn $" + withdraw + " and your new balance is $" + balance);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (withdraw <= balance) {
+			balance -= withdraw;
+			try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
+				PreparedStatement ps = conn.prepareStatement(sql);
+				int newBalance = ps.executeUpdate();
+				System.out.println("You have withdrawn $" + withdraw + " and your new balance is $" + balance);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Please enter a valid withdrawal amount");
 		}
 	}
 
@@ -113,14 +117,18 @@ public class Employee implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		balance += deposit;
-		try (Connection conn = DriverManager.getConnection(url, username, password)) {
-			String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
-			PreparedStatement ps = conn.prepareStatement(sql);
-			int newBalance = ps.executeUpdate();
-			System.out.println("You have deposited $" + deposit + " and your new balance is $" + balance);
-		} catch (SQLException e) {
-			e.printStackTrace();
+		if (deposit > 0) {
+			balance += deposit;
+			try (Connection conn = DriverManager.getConnection(url, username, password)) {
+				String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
+				PreparedStatement ps = conn.prepareStatement(sql);
+				int newBalance = ps.executeUpdate();
+				System.out.println("You have deposited $" + deposit + " and your new balance is $" + balance);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		} else {
+			System.out.println("Please enter a valid deposit amount");
 		}
 	}
 
@@ -194,7 +202,7 @@ public class Employee implements User {
 			String sql = "DELETE FROM revature_bank_account WHERE rb_acct_id=" + acctID;
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.executeUpdate();
-			System.out.println("You have deleted an account with Account ID "+acctID);
+			System.out.println("You have deleted an account with Account ID " + acctID);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -244,19 +252,19 @@ public class Employee implements User {
 	}
 
 	public void createCustomer(String uName, double pword, String fName, String lName) {
-			try(Connection conn = DriverManager.getConnection(url, username, password)){
-				String sql = "{ call insert_emp_null_ (?,?,?,?)}"; 
-				CallableStatement cs = conn.prepareCall(sql);
-				cs.setString(1, uName);
-				cs.setDouble(2, pword);
-				cs.setString(3, fName);
-				cs.setString(4, lName);
-				int status = cs.executeUpdate();
-				System.out.println("New Customer has been added to the table");
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+		try (Connection conn = DriverManager.getConnection(url, username, password)) {
+			String sql = "{ call insert_emp_null_ (?,?,?,?)}";
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setString(1, uName);
+			cs.setDouble(2, pword);
+			cs.setString(3, fName);
+			cs.setString(4, lName);
+			int status = cs.executeUpdate();
+			System.out.println("New Customer has been added to the table");
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
+	}
 
 	public void getCustomer() {
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {

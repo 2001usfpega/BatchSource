@@ -135,6 +135,7 @@ public class Customer implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(withdraw <= balance) {
 		balance -= withdraw;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
@@ -143,6 +144,10 @@ public class Customer implements User {
 			System.out.println("You have withdrawn $" + withdraw + " and your new balance is $" + balance);
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		}
+		else {
+			System.out.println("Please enter a valid withdrawal amount");
 		}
 	}
 
@@ -160,6 +165,7 @@ public class Customer implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		if(deposit > 0) {
 		balance += deposit;
 		try (Connection conn = DriverManager.getConnection(url, username, password)) {
 			String sql = "UPDATE revature_bank_account SET balance=" + balance + " WHERE rb_acct_id=" + acctID;
@@ -169,6 +175,7 @@ public class Customer implements User {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		}else {System.out.println("Please enter a valid deposit amount");}
 	}
 
 	@Override
