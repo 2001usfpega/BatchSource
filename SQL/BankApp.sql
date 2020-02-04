@@ -75,5 +75,46 @@ BEGIN
 END;
 /
 
-select * FROM customer;
+CREATE SEQUENCE employee_seq
+    START WITH 10
+    INCREMENT BY 2;
+
+CREATE OR REPLACE TRIGGER insert_employeeb
+BEFORE INSERT on employee
+FOR EACH ROW
+BEGIN
+    IF :new.employeeid IS NULL THEN
+        SELECT employee_seq.NEXTVAL INTO :new.employeeid FROM dual;
+    END IF;
+END;
+/
+
+CREATE OR REPLACE PROCEDURE delete_account_0_balance(acctid IN NUMBER)
+IS
+    bal NUMBER;
+BEGIN
+    SELECT balance INTO bal FROM accounts WHERE accountid = acctid;
+    IF bal = 0 THEN
+        DELETE FROM accounts WHERE accountid = acctid;
+    END IF;
+    COMMIT;
+END;
+/
+
+BEGIN
+    delete_account_0_balance(12);
+END;
+/
+
+
 SELECT * FROM accounts;
+Insert into accounts Values(1,10,0);
+
+INSERT INTO EMPLOYEE VALUES(null, 'JGWentworth', 'NeedCashNow', 'JG', 'Wentworth', '1123 MadeUp Street', 'Fakesville', 'NY', 12345, '(866) 930-6480','JGWentworth@jgwentworth.org');
+UPDATE employee set username = 'jg' WHERE employeeid = 10;
+
+SELECT * FROM employee WHERE username = 'jg';
+SELECT * FROM customer;
+SELECT * FROM accounts;
+SELECT * FROM employee;
+commit;
