@@ -1,4 +1,4 @@
-package com.revature.bank;
+package com.revature.bank.data;
 
 import java.io.Serializable;
 import java.util.HashSet;
@@ -10,21 +10,23 @@ public class Account implements Serializable {
     private final int id;
 
     private boolean approved;
-    private double amount;
+    private double balance;
 
     private Set<String> holders = new HashSet<>();
 
-    public Account(int id) {
+    public Account(int id, boolean approved, double balance) {
         this.id = id;
-    }
-
-    public int getId() {
-        return id;
+        this.approved = approved;
+        this.balance = balance;
     }
 
     @Override
     public String toString() {
-        return "Account [id=" + id + ", approved=" + approved + ", amount=" + amount + ", holders=" + holders + "]";
+        return "Account [id=" + id + ", approved=" + approved + ", amount=" + balance + ", holders=" + holders + "]";
+    }
+
+    public int getId() {
+        return id;
     }
 
     public boolean isApproved() {
@@ -35,12 +37,12 @@ public class Account implements Serializable {
         this.approved = approved;
     }
 
-    public double getAmount() {
-        return amount;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setAmount(double amount) {
-        this.amount = amount;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
 
     public Set<String> getHolders() {

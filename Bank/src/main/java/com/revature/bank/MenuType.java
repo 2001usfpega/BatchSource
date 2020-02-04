@@ -1,7 +1,10 @@
 package com.revature.bank;
 
+import com.revature.bank.data.Account;
+import com.revature.bank.data.User;
+import com.revature.bank.storage.StorageService;
+
 import java.util.function.Consumer;
-import java.util.stream.Collectors;
 
 public enum MenuType {
     /**
@@ -16,22 +19,26 @@ public enum MenuType {
                     Bank.printError("Invalid Name, please try again.");
                 }
 
-                if (bank.getUsers().containsKey(name)) {
+                if (bank.getStorage().getUser(name, "Validating") != null) {
                     Bank.printError("That user already exists!");
                     return;
                 }
 
                 System.out.print("Enter a password: ");
 
-                bank.getUsers().put(name, new User(name, Bank.readPassword()));
-                bank.save();
+                User user = new User(name, Bank.readPassword());
+
+                StorageService.databaseAction("Creating user", () -> {
+                    bank.getStorage().insertUser(user);
+                    return null;
+                });
             }),
 
             new Element("Login to a user.", bank -> {
                 System.out.print("Name: ");
 
                 String name = Bank.SCANNER.nextLine();
-                User user = bank.getUsers().get(name);
+                User user = bank.getStorage().getUser(name, "Pulling user info");
 
                 if (user == null) {
                     Bank.printError("Unknown user '" + name + "'");
@@ -53,7 +60,7 @@ public enum MenuType {
      */
     USER(new Element[]{
             new Element("Change Password", bank -> {
-                System.out.println("Please enter a new password: ");
+                System.out.print("Please enter a new password: ");
                 String password = Bank.readPassword();
 
                 if (User.validPassword(password)) {
@@ -61,15 +68,17 @@ public enum MenuType {
 
                     bank.getLoggedIn().setSalt(salt);
                     bank.getLoggedIn().setPasswordHash(User.hashPassword(password, salt));
+                    bank.getStorage().updateUser(bank.getLoggedIn());
                 } else {
                     Bank.printError("Invalid password. Make sure you have at least 1 letter, number, and symbol and 4-16 characters long");
                 }
             }),
 
             new Element("Change Address", bank -> {
-                System.out.println("Please enter a new address: ");
+                System.out.print("Please enter a new address: ");
 
                 bank.getLoggedIn().setAddress(Bank.SCANNER.nextLine());
+                bank.getStorage().updateUser(bank.getLoggedIn());
             })
     }),
 
@@ -78,14 +87,12 @@ public enum MenuType {
      */
     ACCOUNT(new Element[]{
             new Element("Open a new account", bank -> {
-                Account account = new Account(Bank.ACCOUNT_ID.getAndIncrement());
+                Account account = bank.getStorage().createAccount(bank.getLoggedIn());
 
                 account.getHolders().add(bank.getLoggedIn().getName());
                 bank.getLoggedIn().getAccounts().add(account.getId());
-                bank.getAccounts().put(account.getId(), account);
-                bank.save();
 
-                System.out.println("New account has been created, awaiting admin approval.");
+                Bank.printMessage("New account has been created, awaiting admin approval.");
             }),
 
             new Element("Deposit to an account", bank -> {
@@ -96,48 +103,52 @@ public enum MenuType {
                     return;
                 }
 
-                System.out.println("Please Enter the Amount you would like to deposit.");
-                selected.setAmount(selected.getAmount() + Bank.readDouble());
+                System.out.print("Please Enter the Amount you would like to deposit: ");
+                selected.setBalance(selected.getBalance() + Bank.readDouble());
+                bank.getStorage().updateAccount(selected);
             }),
 
             new Element("Withdraw from an account", bank -> {
                 Account selected = bank.readAccount();
 
                 if (selected == null || !selected.getHolders().contains(bank.getLoggedIn().getName())) {
-                    System.out.println("That account doesn't exist");
+                    Bank.printError("That account doesn't exist");
                     return;
                 }
 
-                System.out.println("Please Enter the Amount you would like to withdraw.");
+                System.out.print("Please Enter the Amount you would like to withdraw: ");
 
                 double withdrawal = Bank.readDouble();
 
-                while (selected.getAmount() < withdrawal) {
+                while (selected.getBalance() < withdrawal) {
                     Bank.printError("Please enter a positive amount. We're a bank, not a charity.");
                     withdrawal = Bank.readDouble();
                 }
 
-                selected.setAmount(selected.getAmount() - withdrawal);
+                selected.setBalance(selected.getBalance() - withdrawal);
+                bank.getStorage().updateAccount(selected);
             }),
 
             new Element("Add an authorized user to an account", bank -> {
-                for (Integer id : bank.getLoggedIn().getAccounts()) {
-                    System.out.println("Account ID: " + id + ", Account Balance: " + bank.getAccounts().get(id));
+                for (int id : bank.getLoggedIn().getAccounts()) {
+                    Bank.printMessage("  Account ID: " + id + ", Account Balance: " + bank.getStorage().getAccount(id).getBalance());
                 }
 
-                System.out.println("Please Select which account you are adding an authorized user.");
+                System.out.print("Please Select which account you are adding an authorized user: ");
 
-                int ID = Bank.readInt();
+                int id = Bank.readInt();
 
-                System.out.println("Please enter the username of the person to which you are authorizing access.");
+                System.out.print("Please enter the username of the person to which you are authorizing access: ");
 
                 String jointUser = Bank.SCANNER.nextLine();
-                User newUser = bank.getUsers().get(jointUser);
-                Account newAccount = bank.getAccounts().get(ID);
+                User newUser = bank.getStorage().getUser(jointUser);
+                Account newAccount = bank.getStorage().getAccount(id);
 
                 newAccount.getHolders().add(newUser.getName());
                 newUser.getAccounts().add(newAccount.getId());
-                System.out.println("We've authorized user" + jointUser + " your account. We hope this was a wise choice. ");
+                bank.getStorage().updateAccount(newAccount);
+
+                Bank.printMessage("We've authorized user" + jointUser + " your account. We hope this was a wise choice.");
             }),
 
             new Element("Transfer money between accounts", bank -> {
@@ -148,16 +159,17 @@ public enum MenuType {
                     return;
                 }
 
-                System.out.println("Please select which account to which you would like to transfer. ");
+                System.out.print("Please select which account to which you would like to transfer: ");
                 int id = Bank.readInt();
-                Account selected2 = bank.getAccounts().get(bank.getLoggedIn().getAccounts().stream().filter(accId -> accId == id).findAny().orElse(null));
 
-                if (selected2 == null || !selected.getHolders().contains(bank.getLoggedIn().getName())) {
+                if (!bank.getLoggedIn().getAccounts().contains(id)) {
                     Bank.printError("That account doesn't exit!");
                     return;
                 }
 
-                System.out.println("Please Enter the Amount you would like to transfer.");
+                Account selected2 = bank.getStorage().getAccount(id);
+
+                System.out.print("Please Enter the Amount you would like to transfer: ");
                 double transferAmount = Bank.readDouble();
 
                 while (transferAmount < 0) {
@@ -165,15 +177,17 @@ public enum MenuType {
                     transferAmount = Bank.readDouble();
                 }
 
-                while (selected.getAmount() - transferAmount < 0) {
+                while (selected.getBalance() - transferAmount < 0) {
                     Bank.printError("Not enough funds. Get your bread up.");
                     transferAmount = Bank.readDouble();
                 }
 
-                selected.setAmount(selected.getAmount() - transferAmount);
-                selected2.setAmount(selected2.getAmount() + transferAmount);
+                selected.setBalance(selected.getBalance() - transferAmount);
+                selected2.setBalance(selected2.getBalance() + transferAmount);
+                bank.getStorage().updateAccount(selected);
+                bank.getStorage().updateAccount(selected2);
 
-                System.out.println("Your transfer has been completed, " + bank.getLoggedIn().getName() + "!");
+                Bank.printMessage("Your transfer has been completed, " + bank.getLoggedIn().getName() + "!");
             })
     }),
 
@@ -186,40 +200,37 @@ public enum MenuType {
             new Element("Account options", bank -> bank.openMenu(ACCOUNT)),
 
             new Element("List all users", User.Permission.EMPLOYEE, bank -> {
-                for (User user : bank.getUsers().values()) {
-                    System.out.println(user.getName() + "");
+                for (User user : bank.getStorage().getAllUsers()) {
+                    Bank.printMessage(user.getName());
                 }
             }),
 
             new Element("List accounts needing approval", User.Permission.EMPLOYEE,
-                    bank -> bank.getLoggedIn().getAccounts().stream().map(integer -> bank.getAccounts().get(integer))
-                            .filter(acc -> !acc.isApproved()).forEach(account -> {
-                                System.out.println(account.getId() + " - " + account.getHolders().stream()
-                                        .map(name -> bank.getUsers().get(name).getName()).collect(Collectors.joining(", ")));
-                            })
+                    bank -> bank.getStorage().getAccountsNeedingApproval().forEach(account -> {
+                        Bank.printMessage(account.getId() + " - " + String.join(", ", account.getHolders()));
+                    })
             ),
 
             new Element("Approve an account", User.Permission.EMPLOYEE, bank -> {
                 System.out.print("What account would you like to get approved today? ");
 
                 int id = Bank.readInt();
-                Account account = bank.getAccounts().get(id);
+                Account account = bank.getStorage().getAccount(id);
 
                 account.setApproved(true);
-                System.out.println("Your account has been approved");
+                bank.getStorage().updateAccount(account);
+                Bank.printMessage("The requested account has been approved.");
             }),
 
             new Element("Cancel an account", User.Permission.ADMIN, bank -> {
                 System.out.print("Please tell us what account you would like to cancel today: ");
 
                 int id = Bank.readInt();
-                Account account = bank.getAccounts().remove(id);
 
-                if (account == null) {
-                    Bank.printError("That account doesn't exist.");
+                if (bank.getStorage().deleteAccount(id)) {
+                    Bank.printMessage("The requested account has been canceled.");
                 } else {
-                    account.getHolders().forEach(name -> bank.getUsers().get(name).getAccounts().remove(id));
-                    System.out.println("The requested account has been canceled.");
+                    Bank.printError("That account doesn't exist.");
                 }
             })
     });

@@ -1,4 +1,4 @@
-package com.revature.bank;
+package com.revature.bank.data;
 
 import java.io.Serializable;
 import java.nio.charset.StandardCharsets;
@@ -29,9 +29,11 @@ public class User implements Serializable {
         this.passwordHash = hashPassword(password, salt = genSalt());
     }
 
-    public User(String name, byte[] passwordHash, byte[] salt, Permission permission) {
+    public User(String name, byte[] passwordHash, byte[] salt, String address, Permission permission) {
         this.name = name;
         this.passwordHash = passwordHash;
+        this.salt = salt;
+        this.address = address;
         this.permission = permission;
     }
 
@@ -46,6 +48,18 @@ public class User implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", passwordHash=" + Arrays.toString(passwordHash) +
+                ", salt=" + Arrays.toString(salt) +
+                ", address='" + address + '\'' +
+                ", permission=" + permission +
+                ", accounts=" + accounts +
+                '}';
     }
 
     public boolean correctPassword(String password) {
@@ -64,8 +78,16 @@ public class User implements Serializable {
         this.permission = permission;
     }
 
+    public byte[] getPasswordHash() {
+        return passwordHash;
+    }
+
     public void setPasswordHash(byte[] passwordHash) {
         this.passwordHash = passwordHash;
+    }
+
+    public byte[] getSalt() {
+        return salt;
     }
 
     public void setSalt(byte[] salt) {

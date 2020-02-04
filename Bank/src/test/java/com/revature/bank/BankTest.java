@@ -3,11 +3,12 @@ package com.revature.bank;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 
 public class BankTest {
 
     @Test
-    public void bankTest() {
+    public void bankTest() throws IOException {
         StringBuilder builder = new StringBuilder();
 
         builder.append("2\n");

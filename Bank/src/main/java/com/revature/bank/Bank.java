@@ -1,20 +1,16 @@
 package com.revature.bank;
 
+import com.revature.bank.data.Account;
+import com.revature.bank.data.User;
+import com.revature.bank.storage.StorageService;
+import com.revature.bank.storage.OracleSQLService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -25,109 +21,50 @@ public class Bank {
     public static final Logger LOGGER = LogManager.getLogger(Bank.class);
     public static final Scanner SCANNER = new Scanner(System.in);
 
-    public static final String RED = "\u001B[31m";
     public static final String RESET = "\u001B[0m";
+    public static final String RED = "\u001B[31m";
+    public static final String GREEN = "\u001b[32m";
 
-    public static final AtomicInteger ACCOUNT_ID = new AtomicInteger(0);
-
-    public static final File USERS_DIR = new File("users");
-    public static final File ACCOUNTS_DIR = new File("accounts");
-
-    private final Map<Integer, Account> accounts = new HashMap<>();
-    private final Map<String, User> users = new HashMap<>();
+    private final StorageService storage;
 
     private User loggedIn;
 
-    public static void main(String[] args) {
-        System.out.println("Welcome to Revature Bank!");
-
+    public static void main(String[] args) throws IOException {
         Bank bank = new Bank();
 
-        bank.load();
         bank.openMenu(MenuType.LOGIN);
-        bank.save();
+        bank.shutdown();
     }
 
-    {
+    Bank() throws IOException {
+        storage = new OracleSQLService();
+
+        System.out.println("Welcome!");
+
         // Create the default admin user if it doesn't exist
+      /*  database.getUser("admin", null);
         users.computeIfAbsent("admin", create -> {
             User admin = new User("admin", "admin");
 
             admin.setPermission(User.Permission.ADMIN);
+            database.insertUser(admin);
             return admin;
-        });
+        });*/
 
         // Create the default employee user if it doesn't exist
+      /*  database.getUser("employee", null);
         users.computeIfAbsent("employee", create -> {
-            User admin = new User("employee", "employee");
+            User employee = new User("employee", "employee");
 
-            admin.setPermission(User.Permission.ADMIN);
-            return admin;
-        });
+            employee.setPermission(User.Permission.EMPLOYEE);
+            database.insertUser(employee);
+            return employee;
+        });*/
     }
 
-    void save() {
-        if (!USERS_DIR.exists()) {
-            USERS_DIR.mkdir();
-        }
-
-        users.values().forEach(user -> {
-            try {
-                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(USERS_DIR.getPath() + "\\" + user.getName()));
-
-                out.writeObject(user);
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-
-        if (!ACCOUNTS_DIR.exists()) {
-            ACCOUNTS_DIR.mkdir();
-        }
-
-        accounts.values().forEach(account -> {
-            try {
-                ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(ACCOUNTS_DIR.getPath() + "\\" + account.getId()));
-
-                out.writeObject(account);
-                out.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        });
-    }
-
-    private void load() {
-        if (USERS_DIR.exists()) {
-            for (File file : USERS_DIR.listFiles()) {
-                try {
-                    ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-                    User user = (User) in.readObject();
-
-                    users.put(user.getName(), user);
-                    in.close();
-                } catch (IOException | ClassNotFoundException | ClassCastException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        if (ACCOUNTS_DIR.exists()) {
-            for (File file : ACCOUNTS_DIR.listFiles()) {
-                try {
-                    ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-                    Account account = (Account) in.readObject();
-
-                    accounts.put(account.getId(), account);
-                    in.close();
-                } catch (IOException | ClassNotFoundException | ClassCastException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-
-        ACCOUNT_ID.set(1 + accounts.values().stream().mapToInt(Account::getId).max().orElse(0));
+    void shutdown() {
+        System.out.println("Goodbye!");
+        storage.close();
     }
 
     public void openMenu(MenuType type) {
@@ -149,13 +86,13 @@ public class Bank {
             if (option > 0 && option <= size) {
                 elements.get(option - 1).select(this);
             } else if (option != size + 1) {
-                System.out.println("Invalid selection!");
+                printError("Invalid selection!");
             }
         } while (option != size + 1);
     }
 
     void login(User user) {
-        System.out.println("Welcome, " + user.getName() + "!");
+        printMessage("Welcome, " + user.getName() + "!");
 
         loggedIn = user;
         LOGGER.info("User '" + user.getName() + "' logged in.");
@@ -164,26 +101,22 @@ public class Bank {
 
     public Account readAccount() {
         for (Integer id : loggedIn.getAccounts()) {
-            System.out.println("Account ID: " + id + ", Balance: " + accounts.get(id).getAmount());
+            printMessage("Account ID: " + id + ", Balance: " + 0 /*accounts.get(id).getAmount()*/);
         }
 
-        System.out.println("Please select and account ID.");
+        System.out.print("Please select and account ID: ");
 
         int id = Bank.readInt();
 
-        return accounts.get(loggedIn.getAccounts().stream().filter(aacId -> aacId == id).findAny().orElse(null));
+        return storage.getAccount(id);
     }
 
-    public Map<Integer, Account> getAccounts() {
-        return accounts;
-    }
-
-    public Map<String, User> getUsers() {
-        return users;
+    public StorageService getStorage() {
+        return storage;
     }
 
     /**
-     * Gets the current user logged into the bank app
+     * @return The current user logged into the bank app
      */
     public User getLoggedIn() {
         return loggedIn;
@@ -206,7 +139,7 @@ public class Bank {
             return i;
         } catch (InputMismatchException e) {
             SCANNER.nextLine();
-            return -1;
+            return 0;
         }
     }
 
@@ -215,16 +148,26 @@ public class Bank {
      */
     static double readDouble() {
         try {
-            double i = SCANNER.nextDouble();
+            double d = SCANNER.nextDouble();
             SCANNER.nextLine();
-            return i;
+            return d;
         } catch (InputMismatchException e) {
             SCANNER.nextLine();
-            return -1;
+            return 0;
         }
     }
 
+    /**
+     * Prints a red message to console
+     */
     static void printError(String message) {
         System.out.println(RED + message + RESET);
+    }
+
+    /**
+     * Prints a green message to console
+     */
+    static void printMessage(String message) {
+        System.out.println(GREEN + message + RESET);
     }
 }
