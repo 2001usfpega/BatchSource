@@ -102,6 +102,25 @@ public class Employee implements UserInterface {
 		verifyConn(employeeUN, Passwords);
 
 	}
+	
+	@Override
+	public void deleteaccount() {
+		
+
+		Scanner balanceScanner = new Scanner(System.in);
+
+		System.out.println("Enter Customer ID to delete: ");
+		String fk_customerID = balanceScanner.next();
+
+
+		deleteConn(fk_customerID);
+
+		System.out.println("Account has been deleted!");
+		System.out.println("");
+		Driver.main(null);
+
+		
+	}
 
 	private static String url = System.getenv("TRAINING_DB_URL");
 	private static String username = System.getenv("BANKING_DB_USERNAME");
@@ -157,6 +176,21 @@ public class Employee implements UserInterface {
 		}
 
 	}
+	
+	public static void deleteConn(String fk_customerID) {
+		try (Connection conn = DriverManager.getConnection(url, username, DBpassword)) {
+			String sql = "DELETE FROM accounts Where fk_customer_id=" + "'"+fk_customerID+ "'";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.executeUpdate();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+
+	}
+
+
 
 
 

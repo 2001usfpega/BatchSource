@@ -9,5 +9,5 @@ public interface UserInterface {
 	void createCustomer();
 	void viewAccount();
 	void verifyEmployee();
-	
+	void deleteaccount();
 }

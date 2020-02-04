@@ -91,15 +91,13 @@ public class Customer implements UserInterface {
 			Withdrawlconn(customerID, Passwords, withdrawalamt);
 			System.out.println();
 			Driver.main(null);
-		}
-		else
-		{
-			
-			System.out.println("Amount Exceedes Account Balance");
-			
+		} else {
+
+			System.out.println("Enter a Valid Amount to Withdrawl");
+
 			System.out.println();
 			Driver.main(null);
-			
+
 		}
 
 	}
@@ -149,6 +147,13 @@ public class Customer implements UserInterface {
 	public void getAccount() {
 
 	}
+	
+	@Override
+	public void deleteaccount() {
+		// TODO Auto-generated method stub
+		
+	}
+
 
 	@Override
 	public void createCustomer() {
@@ -167,21 +172,17 @@ public class Customer implements UserInterface {
 		System.out.println("Create a CustomerId: ");
 		String customerID = accountScanner.next();
 
-		System.out.println("Create a Username: ");
-		String userName = accountScanner.next();
-
 		System.out.println("Create a Password: ");
 		String password = accountScanner.next();
 
 		setCustomerID(customerID);
-		setUserName(userName);
 		setPassword(password);
 		setFname(fname);
 		setLname(lname);
 		setEmail(email);
 
 		// accountScanner.close();
-		accountCreateStatement(customerID, userName, password, fname, lname, email);
+		accountCreateStatement(customerID, password, fname, lname, email);
 
 		System.out.println(fname + " " + lname + " Your Account has been created.");
 
@@ -200,17 +201,16 @@ public class Customer implements UserInterface {
 	private static String DBpassword = System.getenv("TRAINING_DB_PASSWORD");
 
 	// Prepared statement example
-	public static void accountCreateStatement(String customerID, String userName, String password, String fname,
+	public static void accountCreateStatement(String customerID, String password, String fname,
 			String lname, String email) {
 		try (Connection conn = DriverManager.getConnection(url, username, DBpassword)) {
-			String sql = "INSERT INTO customer(customer_id, username, passwords, fname, lname, email) VALUES(?,?,?,?,?,?)";
+			String sql = "INSERT INTO customer(customer_id, passwords, fname, lname, email) VALUES(?,?,?,?,?)";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setString(1, customerID);
-			ps.setString(2, userName);
-			ps.setString(3, password);
-			ps.setString(4, fname);
-			ps.setString(5, lname);
-			ps.setString(6, email);
+			ps.setString(2, password);
+			ps.setString(3, fname);
+			ps.setString(4, lname);
+			ps.setString(5, email);
 
 			ps.executeUpdate();
 
@@ -230,7 +230,7 @@ public class Customer implements UserInterface {
 			ResultSet rset = prepstate.executeQuery();
 			while (rset.next()) {
 				double balance = rset.getDouble("balance");
-				System.out.println("Balance: " + balance);
+				System.out.println("Balance: $" + balance);
 
 			}
 
@@ -254,7 +254,7 @@ public class Customer implements UserInterface {
 			ResultSet rset = prepstate.executeQuery();
 			while (rset.next()) {
 				balance = rset.getDouble("balance");
-				System.out.println("Previous Balance: " + balance);
+				System.out.println("Balance Before Deposit: $" + balance);
 
 			}
 
@@ -265,17 +265,28 @@ public class Customer implements UserInterface {
 
 		}
 
-		balance += depositamt;
+		if (depositamt > 0) {
 
-		try (Connection Updateconn = DriverManager.getConnection(url, username, DBpassword)) {
-			String sql2 = "UPDATE accounts SET balance=" + balance + "WHERE fk_customer_id=" + "'" + customerID + "'";
-			PreparedStatement prepstate = Updateconn.prepareStatement(sql2);
-			double changedBalance = prepstate.executeUpdate();
-			System.out.println("Your New Balance:" + balance);
+			balance += depositamt;
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			try (Connection Updateconn = DriverManager.getConnection(url, username, DBpassword)) {
+				String sql2 = "UPDATE accounts SET balance=" + balance + "WHERE fk_customer_id=" + "'" + customerID
+						+ "'";
+				PreparedStatement prepstate = Updateconn.prepareStatement(sql2);
+				double changedBalance = prepstate.executeUpdate();
+				System.out.println("Your New Balance: $" + balance);
+
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		else {
+			System.out.println();
+			System.out.println("Please enter a deposit amount greater then $0");
+			
+
 		}
 
 	}
@@ -291,7 +302,7 @@ public class Customer implements UserInterface {
 			ResultSet rset = prepstate.executeQuery();
 			while (rset.next()) {
 				balance = rset.getDouble("balance");
-				System.out.println("Previous Balance: " + balance);
+				System.out.println("Previous Balance: $" + balance);
 
 			}
 
@@ -301,18 +312,25 @@ public class Customer implements UserInterface {
 			e.printStackTrace();
 
 		}
+		if (withdrawalamt < balance) {
+			balance -= withdrawalamt;
 
-		balance -= withdrawalamt;
+			try (Connection Updateconn = DriverManager.getConnection(url, username, DBpassword)) {
+				String sql2 = "UPDATE accounts SET balance=" + balance + "WHERE fk_customer_id=" + "'" + customerID
+						+ "'";
+				PreparedStatement prepstate = Updateconn.prepareStatement(sql2);
+				double changedBalance = prepstate.executeUpdate();
+				System.out.println("Balance after Withdrawl: $" + balance);
 
-		try (Connection Updateconn = DriverManager.getConnection(url, username, DBpassword)) {
-			String sql2 = "UPDATE accounts SET balance=" + balance + "WHERE fk_customer_id=" + "'" + customerID + "'";
-			PreparedStatement prepstate = Updateconn.prepareStatement(sql2);
-			double changedBalance = prepstate.executeUpdate();
-			System.out.println("Your New Balance:" + balance);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		} else {
 
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("");
+			System.out.println("Withdrawl amount exceedes account balance!");
+
 		}
 
 	}
@@ -322,5 +340,7 @@ public class Customer implements UserInterface {
 		// TODO Auto-generated method stub
 
 	}
+
+
 
 }

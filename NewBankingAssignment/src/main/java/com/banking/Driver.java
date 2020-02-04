@@ -13,7 +13,7 @@ public class Driver {
 		Scanner verificationScanner = new Scanner(System.in);
 		Scanner loginScanner = new Scanner(System.in);
 
-		System.out.println("==========\nWelcome to the Bank of Rob!!!\n==========\nEnter 1 to Create New Account:\nEnter 2 for Login:");
+		System.out.println("===============================\nWelcome to the Bank of Rob!\n===============================\nEnter 1 to Create New Account:\nEnter 2 for Login:");
 		int login = loginScanner.nextInt();
 
 		switch (login) {
@@ -23,7 +23,7 @@ public class Driver {
 			customer.createCustomer();
 			break;
 		case 2:
-			System.out.println("==========\nWelcome to the Bank of Rob!!!\\n==========\\nEnter 1 for CUSTOMER\nEnter 2 for EMPLOYEE ");
+			System.out.println("===============================\nWelcome to the Bank of Rob!\n===============================\nEnter 1 for CUSTOMER\nEnter 2 for EMPLOYEE ");
 			int verification = verificationScanner.nextInt();
 
 			switch (verification) {
@@ -34,7 +34,7 @@ public class Driver {
 
 				Scanner cusScanner = new Scanner(System.in);
 
-				System.out.println("==========\\nWelcome to the Bank of Rob!!!\\n==========\\nEnter 1 for Withdrawl:\nEnter 2 for Deposit:\nEnter 3 to Check Balance:");
+				System.out.println("===============================\nWelcome to the Bank of Rob!\n===============================\nEnter 1 for Withdrawl:\nEnter 2 for Deposit:\nEnter 3 to Check Balance:");
 				int cusscan = cusScanner.nextInt();
 
 				switch (cusscan) {
@@ -65,7 +65,7 @@ public class Driver {
 
 				Scanner empScanner = new Scanner(System.in);
 
-				System.out.println("==========\\nWelcome to the Bank of Rob!!!\\n==========\\nEnter 1 to View Customer Accounts");
+				System.out.println("===============================\nWelcome to the Bank of Rob!\n===============================\nEnter 1 to View Customer Accounts\nEnter 2 to delete account");
 				int empscan = empScanner.nextInt();
 
 				switch (empscan) {
@@ -75,6 +75,12 @@ public class Driver {
 					e.verifyEmployee();
 					e.viewAccount();
 					break;
+					
+				case 2:
+					Employee e2 = new Employee();
+					e2.verifyEmployee();
+					e2.deleteaccount();
+					
 
 				}
 			}
