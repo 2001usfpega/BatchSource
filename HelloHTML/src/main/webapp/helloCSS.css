@@ -1,0 +1,68 @@
+@charset "ISO-8859-1";
+
+/*This is a COMMENT in a CSS file!!
+barnacles
+*/
+
+/*THIS IS THE CSS STRUCTURE:
+selector{
+	property-1: value-1;
+	property-2: value-2;
+	property-n: value-3;
+	}
+	if "#" precedes the selector then the selector is targeting an id;
+	if "c" precedes the selector then the selector is targeting a class;
+	*/
+/*class example*/
+.taco12 {
+	text-align: center;
+	color: turquoise;
+}
+/*tag example*/
+h2 {
+	text-align: center;
+}
+/* id example*/
+#burrito13 {
+	color: pink;
+}
+
+#27 {
+	text-align: center;
+}
+
+
+/*MORE COMPLICATED EXAMPE*/
+/*This specific example selects tages of type "wedabess" specifically and only 
+if it is a child of another class or type "another1"*/
+
+.anotha1 > .wedabess{
+	color: orange;
+}
+
+/*this specific example selects any child of a div tag*/
+div > * {
+	
+}
+/*this specific example selects all h1 tags that have the class name "myClass"  */
+h1.myClass {
+	
+}
+
+/* BOX MODEL DEMONSTRATION*/
+.spidey{
+	padding: 10px;
+	margin: 50px;
+	border-style: dotted;
+	border-width: 5px;
+	border-color: chocolate;
+}
+
+
+
+
+
+
+
+
+

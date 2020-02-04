@@ -1,0 +1,13 @@
+@charset "ISO-8859-1";
+
+body{
+	background-image: url(beach-background_090607511_305.jpg);
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+}
+
+form{
+	style="background-color: rgba(0,191,255,.75)"
+}
+
