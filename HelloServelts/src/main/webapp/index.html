@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Servlet Demo</title>
+<link rel="stylesheet" type ="text/css" href ="/HelloServelts/mystyles.css"/>
+
+</head>
+<body>
+<div class = "supervillain-container">
+<h1> Welcome to SuperVillain Servlets</h1>
+<h2> Where all minions serve their overlord</h2>
+<form method ="get" action ="https://www.google.com/">
+	<input type ="submit" value ="goto google">
+</form>
+<form method ="get" action ="/HelloServelts/dirserv"> 
+<p> Direct Servlet, Get</p>
+<input type ="submit" value ="Direct Text Response"/>
+
+</form>
+<form method ="post" action ="/HelloServelts/dirserv">
+<p> Direct Servlet, Post</p>
+<input type ="submit" value ="Direct Text Response"/>
+</form>
+</div>
+</body>
+</html>
