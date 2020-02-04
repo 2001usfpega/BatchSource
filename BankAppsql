@@ -1,0 +1,92 @@
+CREATE TABLE customer_bank(
+customerid NUMBER(15) --PRIMARY KEY
+, customername VARCHAR2 (100) NOT NULL
+, cuspass VARCHAR2 (100) NOT NULL
+, email VARCHAR2(25)
+, cusaddress VARCHAR2(100)
+, cusphone VARCHAR2(100)
+, department NUMBER
+, account_enabled NUMBER
+, cus_applied NUMBER
+, PRIMARY KEY (customerid)
+);
+
+TRUNCATE TABLE customer_bank;
+Drop TABLE account_bank;
+Drop Table customer_bank;
+SELECT * FROM customer_bank;
+
+CREATE TABLE account_bank(
+accountid NUMBER(15)
+, accountbalance NUMBER(15)
+, c_fk NUMBER(15)
+, PRIMARY KEY (accountid)
+, FOREIGN KEY (c_fk) REFERENCES customer_bank(customerid)
+ ON DELETE CASCADE
+);
+
+
+INSERT INTO customer_bank VALUES (50, 'Employee', 'password', 'emanuel@gmail.com', '1006 Pruitt Ct', '703-303-3478', 1, 1,0);
+
+SELECT * FROM account_bank;
+
+commit;
+
+SELECT * FROM food;
+
+
+------SEQUENCES---------
+--a sequence is a number generator
+CREATE SEQUENCE cus_seq
+    START WITH 100
+    INCREMENT BY 1;
+    
+    DROP SEQUENCE acct_seq;
+    CREATE SEQUENCE acct_seq
+    START WITH 100
+    INCREMENT BY 1;
+--how to drop a sequence?
+DROP SEQUENCE cus_seq;
+DROP SEQUENCE acct_seq;
+
+CREATE OR REPLACE TRIGGER cus_insert
+BEFORE INSERT ON customer_bank
+FOR EACH ROW
+BEGIN
+    IF :new.customerid IS NULL THEN
+        SELECT cus_seq.NEXTVAL INTO :new.customerid FROM dual;
+        
+    END IF;
+END;
+/
+
+CREATE OR REPLACE TRIGGER acct_insert
+BEFORE INSERT ON account_bank
+FOR EACH ROW
+BEGIN
+    IF :new.accountid IS NULL THEN
+        SELECT acct_seq.NEXTVAL INTO :new.accountid FROM dual;
+        
+    END IF;
+END;
+/
+
+---- I want to create a procedure that does the deposit on the sql side.
+--IT WORKED!
+CREATE OR REPLACE PROCEDURE cus_deposit(cus_id IN NUMBER, cus_dep IN NUMBER)
+IS
+cur_balance NUMBER;
+BEGIN
+SELECT accountbalance INTO cur_balance FROM account_bank WHERE c_fk=cus_id;
+ UPDATE  account_bank SET accountbalance = (cur_balance+cus_dep) WHERE c_fk = cus_id;
+ END;
+ /
+ 
+ CREATE OR REPLACE PROCEDURE cus_withdraw(cus_id IN NUMBER, cus_with IN NUMBER)
+IS
+cur_balance NUMBER;
+BEGIN
+SELECT accountbalance INTO cur_balance FROM account_bank WHERE c_fk=cus_id;
+ UPDATE  account_bank SET accountbalance = (cur_balance-cus_with) WHERE c_fk = cus_id;
+ END;
+ /
