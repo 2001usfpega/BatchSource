@@ -91,7 +91,7 @@ public class Input_Scanner {
 		System.out.println("5. Delete account");
 		System.out.println("6. Logout");
 		System.out.println("##########################################################");
-		String c = in.nextLine();
+		String c = in.next();
 		switch(c) {
 		case "1":
 			System.out.println("##########################################################");
@@ -167,7 +167,7 @@ public class Input_Scanner {
 		}
 		employee = db.getEmployee(username,password);
 		if(employee.getFirstname() == null) {
-			System.out.println("This customer does not exist");
+			System.out.println("This employee does not exist");
 		}else {
 			System.out.println("Logging in ...");
 			employeeMenu(employee);
