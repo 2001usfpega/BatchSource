@@ -183,6 +183,8 @@ public class Customer implements UserInterface {
 
 		// accountScanner.close();
 		accountCreateStatement(customerID, password, fname, lname, email);
+		
+		System.out.println();
 
 		System.out.println(fname + " " + lname + " Your Account has been created.");
 
@@ -215,7 +217,12 @@ public class Customer implements UserInterface {
 			ps.executeUpdate();
 
 		} catch (SQLException e) {
-			e.printStackTrace();
+			
+			System.out.println();
+			System.out.println("ACCOUNT FAILURE: That Account ID is already in use; Please try again!");
+			Driver.main(null);
+			
+			
 
 		}
 
