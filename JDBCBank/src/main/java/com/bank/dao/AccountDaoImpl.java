@@ -25,14 +25,16 @@ public class AccountDaoImpl implements AccountDao {
 			
 			CallableStatement cs = conn.prepareCall(sql);
 			cs.setInt(1, c.getUserID());
-			cs.executeUpdate();
 			
-			//System.out.println(sql);
+			if(cs.executeUpdate()>0){
+				return true;
+			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
 	}
+	
 	
 	@Override
 	public boolean insertAccount(Customer a,Customer b) {
@@ -43,8 +45,9 @@ public class AccountDaoImpl implements AccountDao {
 			cs.setInt(1, a.getUserID());
 			cs.setInt(2, b.getUserID());
 			
-			cs.executeUpdate();
-			
+			if(cs.executeUpdate()>0){
+				return true;
+			}			
 			//System.out.println(sql);
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -75,16 +78,13 @@ public class AccountDaoImpl implements AccountDao {
 	public List<Account> selectAllAccountsForUser(Customer c) {
 		List<Account> accounts = new ArrayList<>();
 		try(Connection conn = DriverManager.getConnection(url,username,password)){
-			
-			String sql=  "SELECT * FROM accounts WHERE customerid=?";
-			
+			String sql= "SELECT * FROM accountholders INNER JOIN accounts ON accounts.accountid = accountholders.accountid WHERE customerid=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 			ps.setInt(1, c.getUserID());
-			
 			ResultSet rs = ps.executeQuery();
 			
 			while(rs.next()) {
-				accounts.add(new Account(rs.getInt(1), rs.getDouble(2)));
+				accounts.add(new Account(rs.getInt(3), rs.getDouble(4)));
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -94,25 +94,80 @@ public class AccountDaoImpl implements AccountDao {
 
 	@Override
 	public Account selectByAccountId(int id) {
-		// TODO Auto-generated method stub
+		//Account account = null;
+		try(Connection conn = DriverManager.getConnection(url,username,password)){
+			
+			String sql=  "SELECT * FROM accounts WHERE customerid=?";
+			
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setInt(1, id);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				return new Account(rs.getInt(1), rs.getDouble(2));
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	@Override
-	public boolean transferMoney(Account a, Account b, double amount) {
-		// TODO Auto-generated method stub
+	public boolean transferMoney(Account a, Account b) {
+		try(Connection conn = DriverManager.getConnection(url,username,password)){
+			String sql= "{ call transfer_money(?,?,?,?) }";
+			
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setInt(1, a.getAccNum());
+			cs.setDouble(2, a.getBalance());
+			cs.setInt(3, b.getAccNum());
+			cs.setDouble(4, b.getBalance());
+			
+			if(cs.executeUpdate()>0){
+				return true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
-	public boolean updateAccount(Account a, double amount) {
-		// TODO Auto-generated method stub
+	public boolean updateAccount(Account a) {
+		try(Connection conn = DriverManager.getConnection(url,username,password)){
+			//String sql= "{ call transfer_money(?,?,?,?) }";
+			String sql= "UPDATE accounts SET balance=? WHERE accountid=?";
+
+			PreparedStatement ps = conn.prepareStatement(sql);
+			ps.setDouble(1, a.getBalance());
+			ps.setInt(2, a.getAccNum());
+			
+			if(ps.executeUpdate()>0){
+				return true;
+			}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 
 	@Override
 	public boolean deleteAccount(Account a) {
-		// TODO Auto-generated method stub
+		try(Connection conn = DriverManager.getConnection(url,username,password)){
+			
+			//kill the children
+			String sql="{ call kill_account(?) }";
+			
+			CallableStatement cs = conn.prepareCall(sql);
+			cs.setInt(1, a.getAccNum());
+			if(cs.executeUpdate()>0) {
+				return true;
+			}			
+			//System.out.println(sql);
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 	

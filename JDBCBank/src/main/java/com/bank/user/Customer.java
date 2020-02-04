@@ -2,7 +2,6 @@ package com.bank.user;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 import com.bank.BankUtil;
 import com.bank.account.Account;
@@ -10,14 +9,14 @@ import com.bank.account.Account;
 public class Customer extends User {
 
 	private List<Account> myAccounts = new ArrayList<>();
-	private static Scanner scan =BankUtil.getScanner();
+
 
 	/*
 	 * Constructors
 	 */
 	public Customer(int id,String uname, String pw, String fName, String sName) {
 		super(id,uname, pw, fName, sName);
-	
+		this.updateMyAccounts();
 	}
 	public Customer(int id,String uname, String pw, String fName, String sName,List<Account> myaccs) {
 		super(id,uname, pw, fName, sName);
@@ -26,28 +25,52 @@ public class Customer extends User {
 	
 	public static void createNewCustomer(String uname, String pw, String fName, String sName) {
 		//create a new customer on the server
-		customerDao.insertNewUser(uname, pw, fName, sName);
+		customerDao.insertNewUser(uname, pw, fName, sName,0);
 		//should probably check for errors but...
 	}
 	
 	//return customer given an id
-	public static Customer searchCust(int custID) {
-		return null;
-	}
-	
-	//return list of customers with a given first name
-	public static List<Customer> searchCustFName(String custName) {
-		List<Customer> resList = new ArrayList<>();
-		return resList;
-	}
+//	public static Customer searchCust(int custID) {
+//		return customerDao.selectByUserId(custID);
+//	}
+
+//	//return list of customers with a given first name
+//	public static List<Customer> searchCustFName(String custName) {
+//		return customerDao.se;
+//	}
 	
 	public List<Account> getMyAccounts() {
-		return null;
+		return myAccounts;
 	}
 //	
 //	public static ArrayList<Customer> getCustList() {
 //		return custList;
 //	}
+	
+
+	public void createAccount() {
+		accountDao.insertAccount(this);
+		updateMyAccounts();
+	}
+	
+	public void createJointAccount(Customer c) {
+		accountDao.insertAccount(this,c);
+		updateMyAccounts();
+	}
+	
+	public void updateMyAccounts() {
+		myAccounts=accountDao.selectAllAccountsForUser(this);
+	}	
+	
+	@Override
+	public boolean deleteUser() {
+		if(myAccounts.size()>0) {
+			System.out.println("Cannot delete a customer with open accounts");
+			return false;
+		}
+		return customerDao.deleteUser(this);
+	}
+
 
 	@Override
 	public void userActions() {
@@ -68,7 +91,7 @@ public class Customer extends User {
 				System.out.println();
 				System.out.println("Are you sure you want to open a new account?");
 				System.out.print("(Y/N): ");
-				if( scan.nextLine().toLowerCase().equals("y")) {
+				if( scan.nextLine().toLowerCase().equals("y")) {		
 					createAccount();
 					System.out.println("New Account Created");
 				}
@@ -78,6 +101,10 @@ public class Customer extends User {
 				System.out.println();
 				System.out.println("Enter the username of the user you would like to share the account with:");
 				String jName = scan.nextLine();
+				if(username.equals(jName)) {
+					System.out.println("Cant join with yourself");
+					break;
+				}
 				System.out.println("Enter the password for that account:");
 
 				//check if name is taken
@@ -87,13 +114,8 @@ public class Customer extends User {
 				}
 				//is valid account to join with
 				else if (jUser instanceof Customer) {
-					if(jUser!=this) {
-						createJointAccount((Customer)jUser);
-						System.out.println("New account created with "+jName);
-					}
-					else {
-						System.out.println("Cant join with yourself");
-					}
+					createJointAccount((Customer)jUser);
+					System.out.println("New account created with "+jName);
 				}
 				else {
 					System.out.println("This user can not be joined with");
@@ -108,24 +130,6 @@ public class Customer extends User {
 		} while (true);
 	}
 
-	public void createAccount() {
-		//Account.createNewAccount();
-		//updateMyAccounts()
-		//create a new account on the server and update myaccounts
-	}
-	
-	public void createJointAccount(Customer c) {
-		//same as above with a second person
-	}
-	
-	public void updateMyAccounts() {
-		//ping server and update accountlist
-	}
-
-//
-//	public void addAccount(Account acc) {
-//		this.myAccounts.add(acc);
-//	}
 	
 		
 	public static void doTransAct(List<Account> list){
@@ -159,6 +163,7 @@ public class Customer extends User {
 				System.out.println("1 Withdraw");
 				System.out.println("2 Deposit");
 				System.out.println("3 Transfer");
+				System.out.println("4 Delete Account");
 				System.out.println("B Back");
 				double amount = 0.0;
 				switch (scan.nextLine()) {
@@ -234,6 +239,24 @@ public class Customer extends User {
 						System.out.println("Not a valid number");
 					}
 					break;
+				case "4":
+
+					System.out.println();
+					if(curAcc.getBalance()>0) {
+						System.out.println("Balance must be zero");
+						break;
+					}
+					System.out.println("Are you sure you want to delete this account?");
+					System.out.print("(Y/N): ");
+					if( scan.nextLine().toLowerCase().equals("y")) {		
+						accountDao.deleteAccount(curAcc);
+						list.remove(curAcc);
+						
+						System.out.println("Account Deleted");
+						return;
+					}
+					break;
+					
 				case "b":
 				case "B":
 					break accAccess;
@@ -243,6 +266,7 @@ public class Customer extends User {
 			} while (true);
 		}while(true);
 	}
+	
 	
 	@Override
 	public String toString() {

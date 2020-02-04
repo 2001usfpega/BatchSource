@@ -1,11 +1,13 @@
 package com.bank.account;
 
+import com.bank.dao.AccountDaoImpl;
 import com.bank.user.Customer;
 
 public class Account {
 
 	private int accNum;
 	private double balance = 0.0;
+	private static AccountDaoImpl accountDao=new AccountDaoImpl();
 
 	public Account() {
 	}
@@ -16,10 +18,12 @@ public class Account {
 	}
 	
 	public static void createNewAccount(Customer c) {
-		//server stuff
+		accountDao.insertAccount(c);
+		c.updateMyAccounts();
 	}
 	public static void createNewAccount(Customer a, Customer b) {
-		//server stuff
+		accountDao.insertAccount(a,b);
+		a.updateMyAccounts();
 	}
 	
 	/*
@@ -40,17 +44,14 @@ public class Account {
 	public boolean balanceUpdate(double amount) {
 		if (amount >= 0) { // Deposit case
 			balance += amount;
-			//BankUtil.saveAll();
-			//call server 
+			accountDao.updateAccount(this);
 			return true;
 		} else {
 			if (balance + amount < 0) {
 				return false;
 			} else {
 				balance += amount;
-				//BankUtil.saveAll();
-				//call server
-				
+				accountDao.updateAccount(this);
 				return true;
 			}
 		}

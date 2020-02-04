@@ -15,8 +15,8 @@ public interface AccountDao {
 	public Account selectByAccountId(int id);
 	
 	//UPDATE
-	public boolean transferMoney(Account a, Account b, double amount);
-	public boolean updateAccount(Account a, double amount);
+	public boolean transferMoney(Account a, Account b);
+	public boolean updateAccount(Account a);
 	
 	//DELETE
 	public boolean deleteAccount(Account a);

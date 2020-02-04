@@ -1,10 +1,15 @@
 package com.bank.user;
 import java.util.List;
+import java.util.Scanner;
 
+import com.bank.BankUtil;
+import com.bank.dao.AccountDaoImpl;
 import com.bank.dao.CustomerDaoImpl;
 
 public abstract class User{
 	protected static CustomerDaoImpl customerDao=new CustomerDaoImpl();
+	protected static AccountDaoImpl accountDao=new AccountDaoImpl();
+	protected static Scanner scan =BankUtil.getScanner();
 	protected int userID;
 	protected String username;
 	protected String password;
@@ -38,37 +43,36 @@ public abstract class User{
 	}
 	
 	public void setFirstName(String fName) {
-		//server stuff
 		firstname = fName;
+		this.updateUser();
 	}
 	
 	public void setLastName(String sName) {
-		//server stuff
 		lastname = sName;
+		this.updateUser();
 	}
 	
 	public void setUserName(String name) {
-		//server stuff
 		username = name;
+		this.updateUser();
 	}
 	
 	public void setPassword(String pw) {
-		//server stuff
 		password = pw;
+		this.updateUser();
 	}
 	
 	public static List<User> getUserList(){
-		//server stuff
-		return null;
+		return customerDao.selectAllUsers();
 	}
 	
 	
 	//Checking if username is exist
+	//returns true if taken
 	public static boolean checkUsername(String name) {
-		//User u = customerDao.selectByUserNameAndPassword(name);
-
-		
-		//server stuff
+		if(customerDao.selectByUsername(name)!=null) {
+			return true;
+		}
 		return false;
 	}
 	
@@ -82,12 +86,25 @@ public abstract class User{
 		return null;
 	}
 	
-	public static User getUser(int custID) {
-		//get user from server
-		return null;
+	public static User getUser(int uid) {
+		User user=customerDao.selectByUserId(uid);
+		if(user==null) {
+			//user=customerDao.selectByUserID(uid);
+		}
+		return user;
 	}
 	
 	public abstract void userActions();
+	
+	public boolean deleteUser() {
+		return customerDao.deleteUser(this);
+	}
+	
+	
+	public void updateUser() {
+		customerDao.updateUser(this);//new Customer(1141,"zen","123","Zen","Budah"));
+	}
+	
 	
 	//File saving supporting
 	@Override

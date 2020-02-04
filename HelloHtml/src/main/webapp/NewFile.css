@@ -1,0 +1,22 @@
+
+
+/* .c1parent > .c2child */
+
+
+/*         div > *      */
+
+/*          h1.c3       */
+
+#jef{
+	color: purple;
+}
+
+.spide{
+	border-style: solid;
+	border-width: 3px;
+	border-color: chocolate;
+	
+	
+	padding: 13px;
+	margin: 10px;
+}
