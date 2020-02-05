@@ -2,7 +2,7 @@ package com.revature.banking;
 
 public class Admin {
 	int adminid =1;
-	String password = "p4ssw0rd";
+	String password = "password";
 	int customerid;
 	String uname;
 	String pword;

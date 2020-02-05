@@ -1,11 +1,11 @@
-package com.revature.banking;
+package com.servlets.db;
 
 public class Customer {
 	int customerid;
 	String uname;
 	String pword;
 	public int getCustomerid() {
-		return customerid; 
+		return customerid;
 	}
 	public void setCustomerid(int customerid) {
 		this.customerid = customerid;
@@ -31,3 +31,4 @@ public class Customer {
 	
 
 }
+
