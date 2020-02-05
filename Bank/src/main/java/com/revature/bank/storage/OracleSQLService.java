@@ -156,7 +156,13 @@ public class OracleSQLService implements StorageService {
                 ResultSet result = con.prepareStatement("SELECT * FROM accounts WHERE id='" + id + "'").executeQuery();
 
                 if (result.next()) {
-                    return new Account(id, result.getBoolean(1), result.getDouble(2));
+                    Account account = new Account(id, result.getBoolean(1), result.getDouble(2));
+                    ResultSet held = con.prepareStatement("SELECT username FROM holdings WHERE account_id='" + account.getId() + "'").executeQuery();
+
+                    while (held.next()) {
+                        account.getHolders().add(held.getString("username"));
+                    }
+                    return account;
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
@@ -213,10 +219,11 @@ public class OracleSQLService implements StorageService {
         return StorageService.databaseAction("Deleting account " + id, () -> {
             try {
                 con.prepareStatement("DELETE FROM accounts WHERE id='" + id + "'").execute();
+                return true;
             } catch (SQLException e) {
                 e.printStackTrace();
+                return false;
             }
-            return true;
         });
     }
 

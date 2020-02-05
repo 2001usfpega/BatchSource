@@ -100,8 +100,8 @@ public class Bank {
     }
 
     public Account readAccount() {
-        for (Integer id : loggedIn.getAccounts()) {
-            printMessage("Account ID: " + id + ", Balance: " + 0 /*accounts.get(id).getAmount()*/);
+        for (int id : loggedIn.getAccounts()) {
+            printMessage("  Account ID: " + id + ", Balance: " + storage.getAccount(id).getBalance());
         }
 
         System.out.print("Please select and account ID: ");

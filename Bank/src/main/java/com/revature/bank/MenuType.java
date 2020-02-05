@@ -188,6 +188,21 @@ public enum MenuType {
                 bank.getStorage().updateAccount(selected2);
 
                 Bank.printMessage("Your transfer has been completed, " + bank.getLoggedIn().getName() + "!");
+            }),
+
+            new Element("Delete an account", bank -> {
+                Account account = bank.readAccount();
+
+                if (account == null || !account.getHolders().contains(bank.getLoggedIn().getName())) {
+                    Bank.printError("That account doesn't exist");
+                } else {
+                    if (account.getBalance() > 0) {
+                        Bank.printError("You can't delete an account that still has a balance!");
+                    } else {
+                        bank.getStorage().deleteAccount(account.getId());
+                        Bank.printMessage("That account has been deleted.");
+                    }
+                }
             })
     }),
 
