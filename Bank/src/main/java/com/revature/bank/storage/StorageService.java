@@ -25,6 +25,8 @@ public interface StorageService {
 
     Account getAccount(int id);
 
+    List<Account> getAccounts();
+
     List<Account> getAccountsNeedingApproval();
 
     void updateAccount(Account account);

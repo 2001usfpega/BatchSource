@@ -86,6 +86,11 @@ public class SerializedFileService implements StorageService {
     }
 
     @Override
+    public List<Account> getAccounts() {
+        return null;
+    }
+
+    @Override
     public List<Account> getAccountsNeedingApproval() {
         return null;
     }

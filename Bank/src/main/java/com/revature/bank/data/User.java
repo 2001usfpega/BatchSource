@@ -111,7 +111,7 @@ public class User implements Serializable {
     }
 
     public static boolean validPassword(String password) {
-        return password.matches("((?=.*[a-zA-Z])(?=.*d)(?=.*[@#$%]).{4,16})");
+        return password.matches("^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@#$%^&+=])(?=\\S+$).{4,}$");
     }
 
     public static byte[] hashPassword(String password, byte[] salt) {

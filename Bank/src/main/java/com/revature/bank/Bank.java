@@ -63,7 +63,7 @@ public class Bank {
     }
 
     void shutdown() {
-        System.out.println("Goodbye!");
+        printMessage("Goodbye!");
         storage.close();
     }
 

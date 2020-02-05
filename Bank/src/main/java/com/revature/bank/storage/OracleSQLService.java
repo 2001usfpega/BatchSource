@@ -172,6 +172,31 @@ public class OracleSQLService implements StorageService {
     }
 
     @Override
+    public List<Account> getAccounts() {
+        return StorageService.databaseAction("Fetching accounts", () -> {
+            try {
+                ResultSet result = con.prepareStatement("SELECT * FROM accounts").executeQuery();
+                List<Account> accounts = new ArrayList<>();
+
+                if (result.next()) {
+                    Account account = new Account(result.getInt("id"), result.getBoolean("approved"), result.getDouble("balance"));
+                    ResultSet held = con.prepareStatement("SELECT username FROM holdings WHERE account_id='" + account.getId() + "'").executeQuery();
+
+                    while (held.next()) {
+                        account.getHolders().add(held.getString("username"));
+                    }
+                    accounts.add(account);
+                }
+
+                return accounts;
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return Collections.emptyList();
+        });
+    }
+
+    @Override
     public List<Account> getAccountsNeedingApproval() {
         return StorageService.databaseAction("Fetching accounts needing approval", () -> {
             try {

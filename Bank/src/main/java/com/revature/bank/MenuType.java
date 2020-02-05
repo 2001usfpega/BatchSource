@@ -16,7 +16,7 @@ public enum MenuType {
                 String name;
 
                 while (!User.validName(name = Bank.SCANNER.nextLine())) {
-                    Bank.printError("Invalid Name, please try again.");
+                    Bank.printError("Invalid Name, please try again: ");
                 }
 
                 if (bank.getStorage().getUser(name, "Validating") != null) {
@@ -25,8 +25,13 @@ public enum MenuType {
                 }
 
                 System.out.print("Enter a password: ");
+                String pass;
 
-                User user = new User(name, Bank.readPassword());
+                while (!User.validPassword(pass = Bank.readPassword())) {
+                    Bank.printError("Invalid password. Make sure you have at least 1 letter, number, and symbol and 4-16 characters long");
+                }
+
+                User user = new User(name, pass);
 
                 StorageService.databaseAction("Creating user", () -> {
                     bank.getStorage().insertUser(user);
@@ -214,9 +219,15 @@ public enum MenuType {
 
             new Element("Account options", bank -> bank.openMenu(ACCOUNT)),
 
-            new Element("List all users", User.Permission.EMPLOYEE, bank -> {
+            new Element("List users", User.Permission.EMPLOYEE, bank -> {
                 for (User user : bank.getStorage().getAllUsers()) {
-                    Bank.printMessage(user.getName());
+                    Bank.printMessage(user.getName() + " - " + user.getPermission().name());
+                }
+            }),
+
+            new Element("List accounts", User.Permission.EMPLOYEE, bank -> {
+                for (Account account : bank.getStorage().getAccounts()) {
+                    Bank.printMessage("  Account ID: " + account.getId() + ", Balance: " + account.getBalance() /*+ ", Holders: " + String.join(", ", account.getHolders())*/);
                 }
             }),
 
@@ -231,6 +242,11 @@ public enum MenuType {
 
                 int id = Bank.readInt();
                 Account account = bank.getStorage().getAccount(id);
+
+                if (account == null) {
+                    Bank.printError("That account doesn't exist");
+                    return;
+                }
 
                 account.setApproved(true);
                 bank.getStorage().updateAccount(account);
