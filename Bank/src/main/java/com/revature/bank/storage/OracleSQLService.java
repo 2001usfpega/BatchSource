@@ -156,7 +156,7 @@ public class OracleSQLService implements StorageService {
                 ResultSet result = con.prepareStatement("SELECT * FROM accounts WHERE id='" + id + "'").executeQuery();
 
                 if (result.next()) {
-                    Account account = new Account(id, result.getBoolean(1), result.getDouble(2));
+                    Account account = new Account(id, result.getBoolean("approved"), result.getDouble("balance"));
                     ResultSet held = con.prepareStatement("SELECT username FROM holdings WHERE account_id='" + account.getId() + "'").executeQuery();
 
                     while (held.next()) {

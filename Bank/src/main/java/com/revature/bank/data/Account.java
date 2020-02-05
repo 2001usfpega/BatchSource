@@ -42,6 +42,9 @@ public class Account implements Serializable {
     }
 
     public void setBalance(double balance) {
+        if (balance < 0) {
+            throw new IllegalArgumentException("Balance is < 0");
+        }
         this.balance = balance;
     }
 
