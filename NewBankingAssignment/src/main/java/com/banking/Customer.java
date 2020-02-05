@@ -291,7 +291,7 @@ public class Customer implements UserInterface {
 
 		else {
 			System.out.println();
-			System.out.println("Please enter a deposit amount greater then $0");
+			System.out.println("INVLAID ENTRY");
 			
 
 		}
