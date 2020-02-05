@@ -33,6 +33,14 @@ public class NewBankAppSwitch {
 
 			case 'A':
 
+				System.out.println("Please enter a Customer ID");
+				int custAccntID = scanner.nextInt();
+				scanner.nextLine();
+				System.out.println("Please enter a Customer User Name");
+				String custName = scanner.nextLine();
+				System.out.println("Please enter a password");
+				String custPwrd = scanner.nextLine();
+				customer.customerLogin(custAccntID, custName, custPwrd);
 				do {
 					System.out.println("Hello, customer!! What a fine day at Revature Bank!");
 					System.out.println("How can we serve you today?:");
@@ -109,7 +117,14 @@ public class NewBankAppSwitch {
 				} while (choice != 6);
 				break;
 			case 'B':
-
+				System.out.println("Please enter an Employee ID");
+				int empAccntID = scanner.nextInt();
+				scanner.nextLine();
+				System.out.println("Please enter an Employee12 User Name");
+				String empName = scanner.nextLine();
+				System.out.println("Please enter a password");
+				String empPwrd = scanner.nextLine();
+				employee.employeeLogin(empAccntID, empName, empPwrd);
 				do {
 					System.out.println("Welcome, Employee!  It is a wonderful day at Revature Bank!");
 					System.out.println("Plese select from the following to perform your work tasks:");

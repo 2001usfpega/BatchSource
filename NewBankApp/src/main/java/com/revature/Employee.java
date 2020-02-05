@@ -283,4 +283,28 @@ public class Employee implements User {
 			e.printStackTrace();
 		}
 	}
-}
+		
+		public void employeeLogin(int employeeIDInfo, String empUseNm, String empPWRD) {
+			String empUN = "void";
+			String empPwrd = "also void";
+			try (Connection connection = DriverManager.getConnection(url, username, password)) {
+				String sql = "SELECT user_name, password FROM revature_employees WHERE rb_emp_id=" + employeeIDInfo;
+				PreparedStatement prepState = connection.prepareStatement(sql);
+				ResultSet revAccnts = prepState.executeQuery();
+				if (revAccnts.next()) {
+					empUN = revAccnts.getString("user_name");
+					empPwrd = revAccnts.getString("password");
+					if (empUN.equals(empUseNm) && empPwrd.equals(empPWRD)) {
+						System.out.println("Thank you for logging in");
+						return;
+					}
+				}
+				System.out.println("You're login credentials are invalid");
+				NewBankAppSwitch.showCustomerMenu();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+
+	}

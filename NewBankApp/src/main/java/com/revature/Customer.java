@@ -88,6 +88,29 @@ public class Customer implements User {
 		this.bankAccounts = bankAccounts;
 	}
 
+	public void customerLogin(int customerIDInfo, String custUseNm, String custPWRD) {
+		String custUN = "void";
+		String pwrd = "also void";
+		try (Connection connection = DriverManager.getConnection(url, username, password)) {
+			String sql = "SELECT user_name, password FROM revature_customers WHERE rb_cust_id=" + customerIDInfo;
+			PreparedStatement prepState = connection.prepareStatement(sql);
+			ResultSet revAccnts = prepState.executeQuery();
+			if (revAccnts.next()) {
+				custUN = revAccnts.getString("user_name");
+				pwrd = revAccnts.getString("password");
+				if (custUN.equals(custUseNm) && pwrd.equals(custPWRD)) {
+					System.out.println("Thank you for logging in");
+					return;
+				}
+			}
+			System.out.println("You're login credentials are invalid");
+			NewBankAppSwitch.showCustomerMenu();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
 	@Override
 	public void getAccount(int acctID) {
 		try (Connection connection = DriverManager.getConnection(url, username, password)) {
