@@ -43,7 +43,6 @@ public class Menus {
 			switch (numInput) {
 			case 1: {
 				currentUser = loginMenu(scan);
-
 				break;
 			}
 			case 2: {
@@ -56,7 +55,7 @@ public class Menus {
 				break;
 			case 4: {
 				System.out.println("Please enter the number next to the menu item you want to choose.");
-				break;
+				continue;
 			}
 
 			}
@@ -110,13 +109,13 @@ public class Menus {
 		System.out.println(
 				"Please enter a password that is greater than 8 characters long and contains both upper and lowercase characters.");
 		String pw = scan.nextLine();
-		System.out.println(isPwValid = userSvc.validatePassword(pw));
-		while (!isPwValid) {
-			System.out.println(
-					"Please enter a password that is greater than 8 characters long, contains at least one number, and contains both upper and lowercase characters.");
-			pw = scan.nextLine();
-			isPwValid = userSvc.validatePassword(pw);
-		}
+//		isPwValid = userSvc.validatePassword(pw);
+//		while (!isPwValid) {
+//			System.out.println(
+//					"Please enter a password that is greater than 8 characters long, contains at least one number, and contains both upper and lowercase characters.");
+//			pw = scan.nextLine();
+//			isPwValid = userSvc.validatePassword(pw);
+//		}
 		newUser.setPw(pw);
 		System.out.println("Please enter your first name:");
 		String fname = scan.nextLine();
@@ -160,9 +159,11 @@ public class Menus {
 			switch (type) {
 			case 1: {
 				newAccount.setType("checking");
+				break;
 			}
 			case 2: {
 				newAccount.setType("savings");
+				break;
 			}
 			}
 			delayTime(3);
@@ -171,8 +172,9 @@ public class Menus {
 			float deposit = scan.nextFloat();
 			newAccount.setBalance(deposit);
 			accSvc.createAccount(newAccount);
+			
 			break;
-
+			
 		}
 		case 3: {
 			mainMenu(scan);
@@ -252,11 +254,11 @@ public class Menus {
 			watDo(scan, thisAccount);
 			break;
 		case 3:
-			thisAccount = userAccs.get(whichOne);
+			thisAccount = userAccs.get(whichOne -1);
 			watDo(scan, thisAccount);
 			break;
 		case 4:
-			thisAccount = userAccs.get(whichOne);
+			thisAccount = userAccs.get(whichOne -1);
 			watDo(scan, thisAccount);
 			break;
 		}
@@ -291,6 +293,14 @@ public class Menus {
 			}
 
 			System.out.println("Your new account balance is $" + account.getBalance() + "0");
+
+			delayTime(3);
+			for (Account a : currUserAccs) {
+				System.out.println("------------------------------------------");
+				System.out.println(a.getType() + " account balance: " + "$" + a.getBalance() + "0");
+			}
+			delayTime(3);
+			whichAccount(currUserAccs, scan);
 			break;
 		}
 		}

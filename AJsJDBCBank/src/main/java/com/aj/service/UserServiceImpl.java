@@ -12,7 +12,7 @@ public class UserServiceImpl implements UserService {
 	private static UserDAO userDao = new UserDAOImpl();
 	private static List<User> userList = new ArrayList<>();
 	private static User currentUser = new User();
-	private static final String REGEX_PW_VALIDATION = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,12}$";
+	private static final String REGEX_PW_VALIDATION = "^(?=.*\\d)(?=.*[a-z]).{4,8}$";
 	private static final Pattern PASSWORD_PATTERN =
 			Pattern.compile(REGEX_PW_VALIDATION);
 
@@ -38,10 +38,10 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean validateUsername(String username) {
-		if (username.length() < 8) {
+		if (username.length() < 7) {
 			return false;
 		}
-			return true;
+		return true;
 	}
 	
 	@Override

@@ -143,7 +143,8 @@ public class AccDAOImpl implements AccDAO {
 		try {
 			connection = DaoConUtil.getConnection();
 			String sql = "UPDATE account SET balance=? "
-					+ "WHERE acc_id=?";
+					+ "WHERE acc_id=?;"
+					+ "COMMIT;";
 			stmt = connection.prepareStatement(sql);
 			
 			stmt.setFloat(1, acc.getBalance());

@@ -12,8 +12,6 @@ public class Main {
 
 	public static void main(String[] args) {
 
-		//UserServiceImpl usrsvc = new UserServiceImpl();
-		//usrsvc.getAllUsers();
 		currentUser = Menus.mainMenu(scan);
 	}
 }
