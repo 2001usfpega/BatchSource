@@ -203,12 +203,16 @@ new MainMenu();
 				//BankEmployee emp = new BankEmployee();
 				BankEmployee.emp_login(user, pass);
 				//BankEmployee.Menu2();
-				if("enter" != null);
+				if("enter" != null) {
+					do {
+						System.out.println("===============================");
+						System.out.println("What would you like to do?");
+						System.out.println();
+					}while(option != '5');
 				switch(option) {
 				case'1':
-					System.out.println("===============================");
-					System.out.println("What would you like to do?");
-					System.out.println();
+					
+				}
 				}
 			break;
 			default:
