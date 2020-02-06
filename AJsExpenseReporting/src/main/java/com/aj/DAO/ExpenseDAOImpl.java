@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.aj.model.Expense;
+import com.aj.model.User;
 import com.aj.utils.DAOxUtil;
 
 public class ExpenseDAOImpl implements ExpenseDAO {
@@ -15,26 +16,32 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 	PreparedStatement stmt = null;
 	List<Expense> expenses = new ArrayList<>();
 
-	public void createNewExpense(Expense ex) {
+	public void createNewExpense(Expense ex, User us) {
 		try {
 			connection = DAOxUtil.getConnection();
 			
-			String sql = "INSERT INTO expenses VALUES (?, ?, ?, ?, ?, ?, ?)";
+			//String sql = "INSERT INTO expenses VALUES (null, null, 1, null, null, 100.87, 'pending', 'desc')";
+			
+			String sql = "INSERT INTO expenses VALUES (null, 143, ?, null, null, ?, ?, ?)";
 			stmt = connection.prepareStatement(sql);
+			System.out.println(ex);
+			//stmt.setInt(1, ex.getExp_id());
+			//stmt.setInt(1, us.getU_id());
+			stmt.setInt(1, ex.getType());
+			//stmt.setDate(3, ex.getSubmitted());
+			//stmt.setDate(4, ex.getResolved());
+			stmt.setFloat(2, ex.getAmount());
+			stmt.setString(3, ex.getState());
+			stmt.setString(4, ex.getDesc());
 			
-			stmt.setLong(1, ex.getExp_id());
-			stmt.setLong(2, ex.getFk_e_id());
-			stmt.setInt(3, ex.getType());
-			stmt.setDate(4, ex.getSubmitted());
-			stmt.setDate(5, ex.getResolved());
-			stmt.setString(6, ex.getState());
-			stmt.setFloat(7, ex.getAmount());
+			if(stmt.executeUpdate() > 0) {
+				System.out.println("Successfully submitted new expense.");
+			}
 			
-			stmt.executeQuery();
-			System.out.println("Successfully submitted new expense.");
 		}
 		catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("In create new expense");
 		}
 		
 	}
@@ -53,13 +60,14 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 			while (rs.next()) {
 				Expense exp = new Expense();
 				
-				exp.setExp_id(rs.getLong(1));
-				exp.setFk_e_id(rs.getLong(2));
+				exp.setExp_id(rs.getInt(1));
+				exp.setFk_e_id(rs.getInt(2));
 				exp.setType(rs.getInt(3));
 				exp.setSubmitted(rs.getDate(4));
 				exp.setResolved(rs.getDate(5));
-				exp.setState(rs.getString(6));
-				exp.setAmount(rs.getFloat(7));
+				exp.setAmount(rs.getFloat(6));
+				exp.setState(rs.getString(7));
+				exp.setDesc(rs.getString(8));
 				
 				expenses.add(exp);
 			}
@@ -85,13 +93,14 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 			while (rs.next()) {
 				Expense exp = new Expense();
 				
-				exp.setExp_id(rs.getLong(1));
-				exp.setFk_e_id(rs.getLong(2));
+				exp.setExp_id(rs.getInt(1));
+				exp.setFk_e_id(rs.getInt(2));
 				exp.setType(rs.getInt(3));
 				exp.setSubmitted(rs.getDate(4));
 				exp.setResolved(rs.getDate(5));
-				exp.setState(rs.getString(6));
-				exp.setAmount(rs.getFloat(7));
+				exp.setAmount(rs.getFloat(6));
+				exp.setState(rs.getString(7));
+				exp.setDesc(rs.getString(8));
 				
 				expenses.add(exp);
 				

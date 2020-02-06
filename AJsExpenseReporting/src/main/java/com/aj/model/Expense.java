@@ -3,41 +3,43 @@ package com.aj.model;
 import java.sql.Date;
 
 public class Expense {
-	private long exp_id, fk_e_id;
+	private Integer exp_id, fk_u_id;
 	private int type;
 	private Date submitted, resolved;
 	private String state = "pending";
 	private float amount;
+	private String desc;
 
 	public Expense() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Expense(long exp_id, long fk_e_id, int type, Date submitted, Date resolved, String state, float amount) {
+	public Expense(Integer exp_id, Integer fk_u_id, int type, Date submitted, Date resolved, String state, float amount, String desc) {
 		super();
-		this.exp_id = exp_id;
-		this.fk_e_id = fk_e_id;
+		this.exp_id = null;
+		this.fk_u_id = null;
 		this.type = type;
 		this.submitted = submitted;
 		this.resolved = resolved;
 		this.state = state;
 		this.amount = amount;
+		this.desc = desc;
 	}
 
-	public long getExp_id() {
+	public Integer getExp_id() {
 		return exp_id;
 	}
 
-	public void setExp_id(long exp_id) {
+	public void setExp_id(Integer exp_id) {
 		this.exp_id = exp_id;
 	}
 
-	public long getFk_e_id() {
-		return fk_e_id;
+	public Integer getFk_e_id() {
+		return fk_u_id;
 	}
 
-	public void setFk_e_id(long fk_e_id) {
-		this.fk_e_id = fk_e_id;
+	public void setFk_e_id(Integer fk_u_id) {
+		this.fk_u_id = fk_u_id;
 	}
 
 	public int getType() {
@@ -80,10 +82,18 @@ public class Expense {
 		this.resolved = resolved;
 	}
 
+	public String getDesc() {
+		return desc;
+	}
+
+	public void setDesc(String desc) {
+		this.desc = desc;
+	}
+
 	@Override
 	public String toString() {
-		return "Expense [exp_id=" + exp_id + ", fk_e_id=" + fk_e_id + ", type=" + type + ", submitted=" + submitted
-				+ ", resolved=" + resolved + ", state=" + state + ", amount=" + amount + "]";
+		return "Expense [exp_id=" + exp_id + ", fk_u_id=" + fk_u_id + ", type=" + type + ", submitted=" + submitted
+				+ ", resolved=" + resolved + ", state=" + state + ", amount=" + amount + ", desc=" + desc + "]";
 	}
 
 	

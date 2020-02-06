@@ -141,6 +141,8 @@ public class AccDAOImpl implements AccDAO {
 
 			stmt.setFloat(1, acc.getBalance());
 			stmt.setString(2, acc.getAcc_id());
+			
+			stmt.executeUpdate();
 
 		} catch (SQLException e) {
 			e.printStackTrace();

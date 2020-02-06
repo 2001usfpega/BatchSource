@@ -22,8 +22,8 @@ public class UserDAOImpl implements UserDAO {
 			String sql = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)";
 			stmt = connection.prepareStatement(sql);
 
-			stmt.setString(1, user.getU_id());
-			stmt.setString(2, user.getUname());
+			stmt.setInt(1, user.getU_id());
+			stmt.setNString(2, user.getUname());
 			stmt.setString(3, user.getFname());
 			stmt.setString(4, user.getLname());
 			stmt.setString(5, user.getPw());
@@ -51,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
 			while (rs.next()) {
 				User user = new User();
 
-				user.setU_id(rs.getString(1));
+				user.setU_id(rs.getInt(1));
 				user.setUname(rs.getString(2));
 				user.setFname(rs.getString(3));
 				user.setLname(rs.getString(4));
@@ -85,7 +85,7 @@ public class UserDAOImpl implements UserDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				userReturned.setU_id(rs.getString(1));
+				userReturned.setU_id(rs.getInt(1));
 				userReturned.setUname(rs.getString(2));
 				userReturned.setFname(rs.getString(3));
 				userReturned.setLname(rs.getString(4));
