@@ -2,7 +2,8 @@ package com.aj.model;
 
 public class Expense {
 	private long exp_id, fk_e_id;
-	private String type, state;
+	private String type;
+	private String state = "pending";
 	private float amount;
 
 	public Expense() {
