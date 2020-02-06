@@ -11,14 +11,22 @@
 		<!-- FRONT CONTROLLER EXAMPLE -->
 		<h3>Front Controller Design Pattern Example</h3>
 		
-		<form method="post" action="/HelloFrontController/login.change">
+		<form method="get" action="/HelloFrontController/login.change">
 			<p>Please log in, arigato!</p>
 			<input placeholder="enter username" name="username"/><br>
 			<input placeholder="enter password" name="password"/><br>
 			<input type="submit" value="Login"/>
 		</form>
 		
-		
+		<!-- JSON SERVLET EXAMPLE -->
+		<form method="post" action="/HelloFrontController/dannyboy.json">
+			<p>Json Servlet Button</p>
+			<input type="submit" value="Find Danny Boy"/>
+		</form>
+		<form method="post" action="/HelloFrontController/billy.json">
+			<p>Json Servlet Button</p>
+			<input type="submit" value="Find Billy"/>
+		</form>
 	</div>
 </body>
 </html>

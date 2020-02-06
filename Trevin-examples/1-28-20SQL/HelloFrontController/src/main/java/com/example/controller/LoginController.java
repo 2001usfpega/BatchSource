@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 public class LoginController {
 
 	public static String login(HttpServletRequest req) {
-		if(!req.getMethod().equals("POST")) {
+		if(!req.getMethod().equals("GET")) {
 			return "resources/html/login.html";
 		}
 		

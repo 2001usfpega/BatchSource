@@ -4,6 +4,8 @@
   <welcome-file-list>
     <welcome-file>resources/html/login.html</welcome-file>
   </welcome-file-list>
+  
+  <!-- Forwarding Master Servlet -->
   <servlet>
     <servlet-name>MasterServlet</servlet-name>
     <servlet-class>com.example.servlets.MasterServlet</servlet-class>
@@ -12,8 +14,17 @@
     <servlet-name>MasterServlet</servlet-name>
     <url-pattern>*.change</url-pattern>
     <url-pattern>/api/*</url-pattern>
-    <!-- can you have multiple url-pattern tags? YES! You may -->
     <url-pattern>/MasterServlet</url-pattern>
     <url-pattern>/wumpus</url-pattern>
+  </servlet-mapping>
+  
+  <!-- JSON Master Servlet -->
+  <servlet>
+    <servlet-name>JSONMasterServlet</servlet-name>
+    <servlet-class>com.example.JSONmasterservlet.JSONMasterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONMasterServlet</servlet-name>
+    <url-pattern>*.json</url-pattern>
   </servlet-mapping>
 </web-app>
