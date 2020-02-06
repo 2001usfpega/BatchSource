@@ -1,8 +1,11 @@
 package com.aj.model;
 
+import java.sql.Date;
+
 public class Expense {
 	private long exp_id, fk_e_id;
-	private String type;
+	private int type;
+	private Date submitted, resolved;
 	private String state = "pending";
 	private float amount;
 
@@ -10,11 +13,13 @@ public class Expense {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Expense(long exp_id, long fk_e_id, String type, String state, float amount) {
+	public Expense(long exp_id, long fk_e_id, int type, Date submitted, Date resolved, String state, float amount) {
 		super();
 		this.exp_id = exp_id;
 		this.fk_e_id = fk_e_id;
 		this.type = type;
+		this.submitted = submitted;
+		this.resolved = resolved;
 		this.state = state;
 		this.amount = amount;
 	}
@@ -35,11 +40,11 @@ public class Expense {
 		this.fk_e_id = fk_e_id;
 	}
 
-	public String getType() {
+	public int getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(int type) {
 		this.type = type;
 	}
 
@@ -59,10 +64,26 @@ public class Expense {
 		this.amount = amount;
 	}
 
+	public Date getSubmitted() {
+		return submitted;
+	}
+
+	public void setSubmitted(Date submitted) {
+		this.submitted = submitted;
+	}
+
+	public Date getResolved() {
+		return resolved;
+	}
+
+	public void setResolved(Date resolved) {
+		this.resolved = resolved;
+	}
+
 	@Override
 	public String toString() {
-		return "Expenses [exp_id=" + exp_id + ", fk_e_id=" + fk_e_id + ", type=" + type + ", state=" + state
-				+ ", amount=" + amount + "]";
+		return "Expense [exp_id=" + exp_id + ", fk_e_id=" + fk_e_id + ", type=" + type + ", submitted=" + submitted
+				+ ", resolved=" + resolved + ", state=" + state + ", amount=" + amount + "]";
 	}
 
 	

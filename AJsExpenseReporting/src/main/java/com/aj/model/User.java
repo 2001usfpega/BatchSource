@@ -1,15 +1,15 @@
 package com.aj.model;
 
 public class User {
-	private long u_id;
+	private String u_id = null;
 	private String fname, lname, uname, pw, role;
 	
 	public User() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(long u_id, String fname, String lname, String uname, String pw, String role) {
-		this.u_id = u_id;
+	public User(String u_id, String fname, String lname, String uname, String pw, String role) {
+		this.u_id = null;
 		this.fname = fname;
 		this.lname = lname;
 		this.uname = uname;
@@ -17,11 +17,11 @@ public class User {
 		this.role = role;
 	}
 
-	public long getU_id() {
+	public String getU_id() {
 		return u_id;
 	}
 
-	public void setU_id(long u_id) {
+	public void setU_id(String u_id) {
 		this.u_id = u_id;
 	}
 

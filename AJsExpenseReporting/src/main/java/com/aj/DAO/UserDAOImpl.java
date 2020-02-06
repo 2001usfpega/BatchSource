@@ -22,13 +22,16 @@ public class UserDAOImpl implements UserDAO {
 			String sql = "INSERT INTO users VALUES (?, ?, ?, ?, ?, ?)";
 			stmt = connection.prepareStatement(sql);
 
-			stmt.setLong(1, user.getU_id());
-			stmt.setString(2, user.getFname());
-			stmt.setString(3, user.getLname());
-			stmt.setString(4, user.getUname());
+			stmt.setString(1, user.getU_id());
+			stmt.setString(2, user.getUname());
+			stmt.setString(3, user.getFname());
+			stmt.setString(4, user.getLname());
 			stmt.setString(5, user.getPw());
 			stmt.setString(6, user.getRole());
 
+			if (stmt.executeUpdate() > 0) {
+				System.out.println("YAY");
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -48,10 +51,10 @@ public class UserDAOImpl implements UserDAO {
 			while (rs.next()) {
 				User user = new User();
 
-				user.setU_id(rs.getLong(1));
-				user.setFname(rs.getString(2));
-				user.setLname(rs.getString(3));
-				user.setUname(rs.getString(4));
+				user.setU_id(rs.getString(1));
+				user.setUname(rs.getString(2));
+				user.setFname(rs.getString(3));
+				user.setLname(rs.getString(4));
 				user.setPw(rs.getString(5));
 				user.setRole(rs.getString(6));
 
@@ -82,10 +85,10 @@ public class UserDAOImpl implements UserDAO {
 			ResultSet rs = stmt.executeQuery();
 
 			while (rs.next()) {
-				userReturned.setU_id(rs.getLong(1));
-				userReturned.setFname(rs.getString(2));
-				userReturned.setLname(rs.getString(3));
-				userReturned.setUname(rs.getString(4));
+				userReturned.setU_id(rs.getString(1));
+				userReturned.setUname(rs.getString(2));
+				userReturned.setFname(rs.getString(3));
+				userReturned.setLname(rs.getString(4));
 				userReturned.setPw(rs.getString(5));
 				userReturned.setRole(rs.getString(6));
 

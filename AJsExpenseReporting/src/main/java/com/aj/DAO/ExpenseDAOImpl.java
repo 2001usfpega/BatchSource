@@ -19,14 +19,16 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 		try {
 			connection = DAOxUtil.getConnection();
 			
-			String sql = "INSERT INTO expenses VALUES (?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO expenses VALUES (?, ?, ?, ?, ?, ?, ?)";
 			stmt = connection.prepareStatement(sql);
 			
 			stmt.setLong(1, ex.getExp_id());
 			stmt.setLong(2, ex.getFk_e_id());
-			stmt.setString(3, ex.getType());
-			stmt.setString(4, ex.getState());
-			stmt.setFloat(5, ex.getAmount());
+			stmt.setInt(3, ex.getType());
+			stmt.setDate(4, ex.getSubmitted());
+			stmt.setDate(5, ex.getResolved());
+			stmt.setString(6, ex.getState());
+			stmt.setFloat(7, ex.getAmount());
 			
 			stmt.executeQuery();
 			System.out.println("Successfully submitted new expense.");
@@ -53,9 +55,11 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 				
 				exp.setExp_id(rs.getLong(1));
 				exp.setFk_e_id(rs.getLong(2));
-				exp.setType(rs.getString(3));
-				exp.setState(rs.getString(4));
-				exp.setAmount(rs.getFloat(5));
+				exp.setType(rs.getInt(3));
+				exp.setSubmitted(rs.getDate(4));
+				exp.setResolved(rs.getDate(5));
+				exp.setState(rs.getString(6));
+				exp.setAmount(rs.getFloat(7));
 				
 				expenses.add(exp);
 			}
@@ -83,9 +87,11 @@ public class ExpenseDAOImpl implements ExpenseDAO {
 				
 				exp.setExp_id(rs.getLong(1));
 				exp.setFk_e_id(rs.getLong(2));
-				exp.setType(rs.getString(3));
-				exp.setState(rs.getString(4));
-				exp.setAmount(rs.getFloat(5));
+				exp.setType(rs.getInt(3));
+				exp.setSubmitted(rs.getDate(4));
+				exp.setResolved(rs.getDate(5));
+				exp.setState(rs.getString(6));
+				exp.setAmount(rs.getFloat(7));
 				
 				expenses.add(exp);
 				

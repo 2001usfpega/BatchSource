@@ -13,27 +13,24 @@ import com.aj.utils.DaoConUtil;
 public class AccDAOImpl implements AccDAO {
 	Connection connection = null;
 	PreparedStatement stmt = null;
-	
-	
+
 	@Override
 	public void createNewAcc(Account acc) {
 
 		try {
 			connection = DaoConUtil.getConnection();
-			
-			String sql = "INSERT INTO account VALUES "
-					+ "(?, ?, ?, ?)";
-			
+
+			String sql = "INSERT INTO account VALUES " + "(?, ?, ?, ?)";
+
 			stmt = connection.prepareStatement(sql);
-			
-			stmt.setString(1,  acc.getAcc_id());
-			stmt.setString(2,  acc.getType());
-			stmt.setString(3,  acc.getCust_id());
-			stmt.setFloat(4,  acc.getBalance());
-			
+
+			stmt.setString(1, acc.getAcc_id());
+			stmt.setString(2, acc.getType());
+			stmt.setString(3, acc.getCust_id());
+			stmt.setFloat(4, acc.getBalance());
+
 			stmt.executeQuery();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		System.out.println("Account successfully created.");
@@ -42,99 +39,96 @@ public class AccDAOImpl implements AccDAO {
 	@Override
 	public List<Account> selectAllAccounts() {
 		List<Account> accounts = new ArrayList<>();
-		
+
 		try {
 			connection = DaoConUtil.getConnection();
-			
+
 			String sql = "SELECT * FROM account";
-			
+
 			stmt = connection.prepareStatement(sql);
-			
+
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
 				Account acc = new Account();
-				
+
 				acc.setAcc_id(rs.getString(1));
 				acc.setType(rs.getString(2));
 				acc.setCust_id(rs.getString(3));
 				acc.setBalance(rs.getFloat(4));
-				
+
 				accounts.add(acc);
 			}
 			rs.close();
-		}
-		catch (SQLException e) {
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		for (Account a : accounts) {
 			System.out.println(a);
 		}
-		
+
 		return accounts;
 	}
 
 	@Override
 	public Account selectAccByAccId(String acc_id) {
 		Account acc = new Account();
-		
+
 		try {
 			connection = DaoConUtil.getConnection();
-			
+
 			String sql = "SELECT * FROM account WHERE acc_id = ?";
-			
+
 			stmt.setString(1, acc_id);
-			
+
 			ResultSet rs = stmt.executeQuery();
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				acc.setAcc_id(rs.getString(1));
 				acc.setType(rs.getString(2));
 				acc.setCust_id(rs.getString(3));
 				acc.setBalance(rs.getFloat(4));
-				
+
 			}
-			
-		}
-		catch (SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return acc;
 	}
 
 	@Override
 	public List<Account> selectAccByCustId(Long cust_id) {
 		List<Account> accounts = new ArrayList<>();
-		
+
 		try {
 			connection = DaoConUtil.getConnection();
-			
+
 			String sql = "SELECT * FROM account WHERE fk_cust_id = ?";
-			
+
 			stmt = connection.prepareStatement(sql);
-			
+
 			stmt.setLong(1, cust_id);
-			
+
 			ResultSet rs = stmt.executeQuery();
-			
+
 			while (rs.next()) {
 				Account acc = new Account();
-				
+
 				acc.setAcc_id(rs.getString(1));
 				acc.setType(rs.getString(2));
 				acc.setCust_id(rs.getString(3));
 				acc.setBalance(rs.getFloat(4));
-			
+
 				accounts.add(acc);
 			}
-			
-		}
-		catch(SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
 		return accounts;
 	}
 
@@ -142,16 +136,13 @@ public class AccDAOImpl implements AccDAO {
 	public void updateAccount(Account acc) {
 		try {
 			connection = DaoConUtil.getConnection();
-			String sql = "UPDATE account SET balance=? "
-					+ "WHERE acc_id=?;"
-					+ "COMMIT;";
+			String sql = "UPDATE account SET balance=? " + "WHERE acc_id=?;" + "COMMIT;";
 			stmt = connection.prepareStatement(sql);
-			
+
 			stmt.setFloat(1, acc.getBalance());
 			stmt.setString(2, acc.getAcc_id());
-			
-		}
-		catch (SQLException e) {
+
+		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 	}
