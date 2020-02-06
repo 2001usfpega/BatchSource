@@ -1,15 +1,15 @@
 package com.aj.model;
 
-public class Expenses {
+public class Expense {
 	private long exp_id, fk_e_id;
 	private String type, state;
 	private float amount;
 
-	public Expenses() {
+	public Expense() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Expenses(long exp_id, long fk_e_id, String type, String state, float amount) {
+	public Expense(long exp_id, long fk_e_id, String type, String state, float amount) {
 		super();
 		this.exp_id = exp_id;
 		this.fk_e_id = fk_e_id;
