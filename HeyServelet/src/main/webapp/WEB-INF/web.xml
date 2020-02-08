@@ -16,7 +16,27 @@
   </servlet>
   <servlet-mapping>
   	<servlet-name>DSBB</servlet-name>
-  	<url-pattern>/dirser</url-pattern>
+  	<url-pattern>/sesserv</url-pattern>
+  
+   </servlet-mapping>
+<!--  <servlet>
+  	<servlet-name>sessS</servlet-name>
+  	<servlet-class>com.example.sessionservlet.SessionServ</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>sessS</servlet-name>
+  	<url-pattern>/helpsesserv</url-pattern>
   
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>HelpsessS</servlet-name>
+  	<servlet-class>com.example.sessionservlet.HelperSS</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>HelpsessS</servlet-name>
+  	<url-pattern>/helpsesserv</url-pattern>
+
+  </servlet-mapping>
+  
 </web-app>
