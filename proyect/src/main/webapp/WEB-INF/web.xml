@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>Proyect1Servlet</display-name>
+  <welcome-file-list>
+    <welcome-file>ProyectHtml/login.html</welcome-file>
+  </welcome-file-list>
+
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>RequestMaster</display-name>
+    <servlet-name>RequestMaster</servlet-name>
+    <servlet-class>com.proyect1.servlets.RequestMaster</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestMaster</servlet-name>
+    <url-pattern>*.test</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+    <description></description>
+    <display-name>RequestMasterAdmin</display-name>
+    <servlet-name>RequestMasterAdmin</servlet-name>
+    <servlet-class>com.proyect1.servlets.RequestMasterAdmin</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RequestMasterAdmin</servlet-name>
+    <url-pattern>/RequestMasterAdmin</url-pattern>
+  </servlet-mapping>
+  
+  
+</web-app>

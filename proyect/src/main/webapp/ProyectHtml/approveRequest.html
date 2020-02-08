@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>ApproveRequest</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+<form class="needs-validation" method="get" action="/Proyect1Servlet/approveRequest.test"  novalidate>
+
+
+  <div class="form-group mb-2">
+    <label for="formGroupExampleInput">Enter the Ticket Number</label>
+     <input type="number" placeholder="Enter the ticket ID" name="ticket_id"/><br>
+<!--     <input type="number"  name="ticket_id"> -->
+  </div>
+  
+  <button type="submit" class="btn btn-primary mb-2">Approve</button>
+</form>
+
+<form class="needs-validation" method="get" action="/Proyect1Servlet/pendinglist.test" novalidate>
+<div>
+  <button type="submit" class="btn btn-primary mb-2">Pending List</button>
+</div>
+</form>
+<form action="/Proyect1Servlet/finishApprove.test">
+<div>
+ <button class="btn btn-primary" type="submit">log out</button>
+ </div>
+</form>
+</body>
+</html>

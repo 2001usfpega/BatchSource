@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Submit Request</title>
+
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+</head>
+<body>
+<p>INSIDE SUBMIT REQUEST</p>
+<form class="needs-validation" method="get" action="/Proyect1Servlet/submittedRequest.test"  novalidate>
+
+<div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationTooltip03">Enter Your Employee ID</label>
+      <input type="number" class="form-control" id="validationTooltip03" name="emp_id" required>
+      <div class="invalid-tooltip">
+      
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip04"> Type of Request</label>
+      <select class="custom-select" id="validationTooltip04"  name="ticket_type" required>
+        <option selected disabled value="">Choose...</option>
+        <option>Travel</option>
+         <option>Food</option>
+          <option>logding</option>
+      </select>
+      <div class="invalid-tooltip">
+       
+      </div>
+    </div>
+    <div class="col-md-3 mb-3">
+      <label for="validationTooltip05">Enter Amount</label>
+      <input type="number" class="form-control" id="validationTooltip05" name="amount" required>
+      <div class="invalid-tooltip">
+     
+      </div>
+    </div>
+  </div>
+  <button class="btn btn-primary" type="submit">Submit Ticket</button>
+</form>
+<form action="/Proyect1Servlet/finishRequest.test">
+<div>
+ <button class="btn btn-primary" type="submit">log out</button>
+ </div>
+</form>
+
+
+</body>
+</html>
