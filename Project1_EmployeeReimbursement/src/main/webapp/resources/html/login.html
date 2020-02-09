@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+	<title>Login</title>
+	<style>
+		body{
+		background-image: url("mainBackGround.png");
+		background-size: 100%;
+		}
+		div{
+		background-image : url("reverseColor.png");
+		background-size: 100%;
+		opacity: .5;
+		}
+		div:hover{
+		opacity: 1;
+		}
+		.center{
+			margin: auto;
+			width: 50%;
+			border: 3px green;
+			padding 10px;
+		}
+	</style>
+	</head>
+	<body>
+		<div class="center" style="text-align:center;background-color:#b3ffcb; border-radius: 20px 0px 20px 0px;width: 200px; height: 180px; padding:20px; border: 2px solid;">
+			<h2>Employee Reimbursement</h2>
+			<form method="POST" action="/Project1_EmployeeReimbursement/login.change">
+				<p>Please log in</p>
+				<input type ="text" placeholder="enter username" name="username"/><br>
+				<input type ="password" placeholder="enter password" name="password"/><br>
+				<input type="submit" value="Login"/>
+			</form>
+		</div>
+	</body>
+</html>

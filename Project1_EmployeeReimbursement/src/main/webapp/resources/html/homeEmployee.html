@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Home Page</title>
+	<style>
+		body{
+		background-color: green;
+		background: url("mainBackGround.png");
+		background-size: 100%;
+		}
+		.center{
+			margin: auto;
+			width: 50%;
+			border: 3px green;
+			padding 10px;
+		}
+		div{
+		background: url("mainBackGround.png") repeat;
+		background-size: 100%;
+		}
+	</style>
+</head>
+<body style ="background-color : #92fe9d">
+	<div class ="center" style ="text-align:center; background-color: #00c9ff ;border-radius: 20px 0px 20px 0px;width: 200px; height: 200px; padding:200px; border: 2px solid;">
+		<h1> Welcome Employee</h1>
+		
+		<h3>View all your Reimbursement request</h3>
+		<form class = "center" style = "text-align:center; border-radius: 25px;width: 200px; height: 20px; padding:20px; border: 3px solid;" method="POST" action="./EmployeeMain">
+				<input type="submit" value="View "/>
+		</form>
+		<h3>Submit a new Reimbursement request</h3>
+		<form class = "center" style = "text-align:center; border-radius: 25px;width: 200px; height: 20px; padding:20px; border: 3px solid;"method="POST" action="/Project1_EmployeeReimbursement/newRequest.change">
+				<input type="submit" value="New Request"/>
+		</form>
+	</div>
+</body>
+</html>

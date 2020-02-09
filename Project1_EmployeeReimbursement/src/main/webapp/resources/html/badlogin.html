@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login</title>
+<style>
+		body{
+		background-image: url("mainBackGround.png");
+		background-size: 100%;
+		}
+		.center{
+			margin: auto;
+			width: 50%;
+			border: 3px green;
+			padding 10px;
+		}
+		div{
+		background-image : url("mainBackGround.png");
+		background-size: 100%;
+		opacity: .5;
+		}
+		div:hover{
+		opacity: 1;
+		}
+	</style>
+</head>
+<body>
+	<div class="login-container">
+		<!-- FRONT CONTROLLER EXAMPLE -->
+		<h3>Front Controller Design Pattern Example</h3>
+		
+		<form method="get" action="/Project1_EmployeeReimbursement/login.change">
+			<p>Please log in</p>
+			<input placeholder="enter username" name="username"/><br>
+			<input placeholder="enter password" name="password"/><br>
+			<input type="submit" value="Login"/>
+			<p style= "color:red;"> unknown username or password </p>
+		</form>
+	</div>
+</body>
+</html>

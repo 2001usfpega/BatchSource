@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Request For Reimbursement</title>
+<style>
+		body{
+		background-image: url("mainBackGround.png");
+		background-size: 100%;
+		}
+		div{
+		background: url("reverseColor.png");
+		background-size: 100%;
+		}
+		.center{
+			margin: auto;
+			width: 50%;
+			border: 3px green;
+			padding 10px;
+		}
+	</style>
+</head>
+<body style ="background-color : #92fe9d" >
+<div class ="center" style =" text-align:center; background-color: #00c9ff ;border-radius: 20px 0px 20px 0px;width: 200px; height: 200px; padding:200px; border: 2px solid;">
+<h2 style="text-align:center;">Form for New Reimbursement Request</h2>
+<form style="text-align:center;" method="POST" action="/Project1_EmployeeReimbursement/newRequestSubmit.change">
+			<p>Select the Expenses type</p>
+			<select id ="r_Type" name = "r_type">
+			<option value = 1 >Lodging</option>
+			<option value = 2>Travel</option>
+			<option value = 3>Food</option>
+			<option value = 4>Other</option> 
+			</select><br><br>
+			<p>Min amount to be Reimbursed is $10 and max is $500</p>
+			<input type ="number" min = "10.00" step = "0.01" max = "500.00" placeholder="Amount" name="amount"/><br><br>
+			<p>Please give a brief description of the Charge </p>
+			<input type= "text" placeholder="info" name="info"/><br><br>
+			<input type="submit" value="New Request"/>
+		</form>
+</div>
+</body>
+</html>
