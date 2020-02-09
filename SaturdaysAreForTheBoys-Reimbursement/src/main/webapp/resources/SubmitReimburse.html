@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Reimbursement Submission</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+
+<body id = "submitpagebground" style = "background-image: url('/resources/reimbursement.jpg'); background-repeat: no-repeat; background-size: cover">
+<div class="reimburse-container" align = "center" style = "margin: auto; width: 75%">
+    <h1>EMPLOYEE REIMBURSEMENT SUBMISSION PORTAL</h1>
+    <h2>Please submit <b>ALL</b> of the requested information to have your request considered.</h2>
+
+<div id = reimbursesubmitformcontainer style = "width: 75%">
+    <form method="post" action="/submit">
+        <div class="form-group">
+            <label for="exampleFormControlSelect1" style = "align: left; text-weight: 600; text-decoration: underline">Reimbursement Type</label>
+            <select class="form-control" name="reimbursement_type" >
+                <option value="" disabled selected hidden>Enter a reimbursement type</option>
+                <option value="1">Lodging</option>
+                <option value="2">Travel</option>
+                <option value="3"> Food</option>
+                <option value="4">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group" >
+            <label for="exampleFormControlInput1" style = "align: left; text-weight: 600; text-decoration: underline; align: left">Amount to be Reimbursed</label>
+            <input type="number" class="form-control" name="amount" placeholder="$0000.00" required>
+        </div>
+
+        <div class="form-group">
+            <label>
+                Description
+                <textarea class="form-control" name="description" rows="8" cols = "100"></textarea>
+            </label>
+        </div>
+        <input type="submit" value="Submit" class="btn btn-primary btn-sm" />
+    </form>
+    </div>
+</div>
+</body>
+</html>

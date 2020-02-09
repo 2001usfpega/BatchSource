@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+<title>Employee Reimbursement Login</title>
+<link rel="stylesheet"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	crossorigin="anonymous">
+
+<script type="text/javascript">
+	function login(event) {
+		event.preventDefault();
+
+		var ajax = new XMLHttpRequest();
+
+		ajax.onreadystatechange = function() {
+			if (this.readyState === 4 && this.status === 200) {
+				if (this.responseText === "Login has failed!") {
+					document.getElementById("failed").innerHTML = this.responseText;
+					document.getElementById("loginalertcontainer").style.display = "block"
+				} else {
+					window.location.href = this.responseURL;
+				}
+			}
+		};
+
+		ajax.open("POST", "/login", true);
+		ajax.setRequestHeader('Content-type',
+				'application/x-www-form-urlencoded');
+		ajax.send("username=" + event.target.elements.username.value
+				+ "&password=" + event.target.elements.password.value);
+	}
+</script>
+</head>
+<body id="loginpagebground"
+	style="background-image: url('/resources/loginbackground.jpg'); background-repeat: no-repeat; background-size: cover">
+
+	<div id="loginalertcontainer"
+		style="width: 60%; margin-right: auto; margin-left: auto; margin-top: 0px; display: none">
+		<div id="failedlogin"
+			class="alert alert-danger alert-dismissible fade show" role="alert">
+			<h4 class="alert-heading">
+				<i class="fa fa-warning">WARNING!</i>
+			</h4>
+			<p>
+				<strong>An invalid username/password combination has been
+					entered!!</strong><br />Please try again.
+			</p>
+			<hr>
+			<p class="mb-0">Please enter new information and click on the
+				'Login' button to continue.</p>
+			<button type="button" class="close" data-dismiss="alert">CLOSE</button>
+		</div>
+	</div>
+	<div style= "position: absolute; left: 30.5%; top: 200px; width: 40%">
+			<h3 style="font-weight: 750; text-align: center; color: rgb(204, 102, 0)">Expense
+				Reimbursement System Login</h3>
+			<form id="loginForm" method="post"
+				onsubmit="login(event)" style="text-align: center">
+				<fieldset class = "border p-2">
+						<p style="color: rgb(255, 128, 0); font-weight: 575">Abandon all hope, ye who
+							enter here - Dante Aighieri</p>
+						<input placeholder="enter username" name="username" required /><br> <br>
+						<input placeholder="enter password" name="password" required type = "password"/><br> 
+						<span style = "color: rgb(204, 102, 0)"
+							id="failed"></span> <br /> <br /> <input type="submit"
+							value="Login" />
+				</fieldset>
+			</form>
+			</div>
+</body>
+</html>

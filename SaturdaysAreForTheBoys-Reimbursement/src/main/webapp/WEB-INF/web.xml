@@ -1,0 +1,51 @@
+<!DOCTYPE web-app PUBLIC
+        "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+    <display-name>Reimbursement WebApp</display-name>
+
+    <welcome-file-list>
+        <welcome-file>resources/home.html</welcome-file>
+    </welcome-file-list>
+
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>com.revature.servlet.LoginServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReimbursementList</servlet-name>
+        <servlet-class>com.revature.servlet.ExpenseReimburseServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>ReimbursementList</servlet-name>
+        <url-pattern>/reimbursementlist</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Submit</servlet-name>
+        <servlet-class>com.revature.controller.SubmitReimburseController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Submit</servlet-name>
+        <url-pattern>/submit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Resolve</servlet-name>
+        <servlet-class>com.revature.controller.ResolveReimburseController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>Resolve</servlet-name>
+        <url-pattern>/resolve</url-pattern>
+    </servlet-mapping>
+</web-app>

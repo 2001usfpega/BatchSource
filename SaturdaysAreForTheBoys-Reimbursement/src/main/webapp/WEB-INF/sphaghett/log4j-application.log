@@ -1,0 +1,62 @@
+2020-02-08 18:35:03 DEBUG ExpenseLogger:14 - Hello World!
+2020-02-08 18:54:46 ERROR ExpenseLogger:38 - Failed login!
+2020-02-08 18:54:54 INFO  ExpenseLogger:166 - Login attempted
+2020-02-08 18:54:54 INFO  ExpenseLogger:34 - Finance Manager
+2020-02-08 18:55:46 INFO  ExpenseLogger:166 - Login attempted
+2020-02-08 18:55:46 INFO  ExpenseLogger:31 - Employee login
+2020-02-08 20:37:29 ERROR ExpenseLogger:38 - Failed login!
+2020-02-08 20:37:44 INFO  ExpenseLogger:165 - Login attempted
+2020-02-08 20:37:44 INFO  ExpenseLogger:31 - Employee login
+2020-02-08 20:38:46 INFO  ExpenseLogger:75 - Reimbursement request submitted
+2020-02-09 09:37:39 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 09:37:52 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 09:37:52 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 09:42:59 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 09:42:59 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 10:32:22 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 10:32:30 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 10:32:30 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 10:33:04 INFO  ExpenseLogger:75 - Reimbursement request submitted
+2020-02-09 10:33:17 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 10:33:17 INFO  ExpenseLogger:34 - Finance Manager login
+2020-02-09 10:58:31 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 10:58:42 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 10:58:42 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 10:59:12 INFO  ExpenseLogger:75 - Reimbursement request submitted
+2020-02-09 10:59:24 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 10:59:24 INFO  ExpenseLogger:34 - Finance Manager login
+2020-02-09 11:02:32 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:02:46 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:02:50 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:02:51 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:03:02 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 11:03:02 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 11:04:49 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:04:49 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:04:49 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:04:49 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:04:49 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:05:01 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 11:05:16 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 11:05:16 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 11:07:54 INFO  ExpenseLogger:75 - Reimbursement request submitted
+2020-02-09 11:08:04 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 11:08:04 INFO  ExpenseLogger:34 - Finance Manager login
+2020-02-09 15:45:47 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 15:45:59 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 15:45:59 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 15:46:15 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 15:46:15 INFO  ExpenseLogger:34 - Finance Manager login
+2020-02-09 15:56:47 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 15:56:56 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 15:56:56 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 15:58:11 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 15:58:11 INFO  ExpenseLogger:34 - Finance Manager login
+2020-02-09 16:03:54 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 16:03:54 INFO  ExpenseLogger:34 - Finance Manager login
+2020-02-09 16:34:53 ERROR ExpenseLogger:38 - Failed login!
+2020-02-09 16:35:03 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 16:35:03 INFO  ExpenseLogger:31 - Employee login
+2020-02-09 16:36:02 INFO  ExpenseLogger:75 - Reimbursement request submitted
+2020-02-09 16:36:12 INFO  ExpenseLogger:165 - Login attempted
+2020-02-09 16:36:12 INFO  ExpenseLogger:34 - Finance Manager login
