@@ -33,13 +33,13 @@ public class Customers{
 			amount = MainDriver.checkInputDouble();
 			if (hashMapAcc.get(cust_acc).getBalance() >= amount) {
 				hashMapAcc.get(cust_acc).balance -= amount;
-				System.out.println("#SUCCESS#: Withdrwal complete. The account balance is now: $" + hashMapAcc.get(cust_acc).balance);
-				logger.info("Account "+cust_acc + ": withdrawed $" + amount);
+				System.out.println(" Withdrwal complete. The account balance is now: $" + hashMapAcc.get(cust_acc).balance);
+				logger.info(" Account "+cust_acc + ": withdrawed $" + amount);
 			} else {
-				System.out.println("*ERROR*: Insufficient account balance. The account balance is: $" + hashMapAcc.get(cust_acc).balance);
+				System.out.println(" Insufficient funds. The account balance is: $" + hashMapAcc.get(cust_acc).balance);
 			}
 		} else {
-			System.out.println("*ERROR*: Sorry. The status of the account is: " + hashMapAcc.get(cust_acc).getStatus() );
+			System.out.println(" The status of the account is: " + hashMapAcc.get(cust_acc).getStatus() );
 		}
 		return hashMapAcc; 
 	}
@@ -50,11 +50,11 @@ public class Customers{
 		if (hashMapAcc.get(cust_acc).getStatus().equals("approved")) {
 			amount = MainDriver.checkInputDouble();
 			hashMapAcc.get(cust_acc).balance += amount;
-			System.out.println("#SUCCESS#: Deposit complete. The account balance is now: $" + hashMapAcc.get(cust_acc).balance);
-			logger.info("Account " + cust_acc + ": deposited $" + amount);
+			System.out.println(" Deposit complete. The account balance is now: $" + hashMapAcc.get(cust_acc).balance);
+			logger.info(" Account " + cust_acc + ": deposited $" + amount);
 			return hashMapAcc; 
 		}else {
-			System.out.println("*ERROR*: Sorry. The status of the account is: " + hashMapAcc.get(cust_acc).getStatus() );
+			System.out.println(" The status of the account is: " + hashMapAcc.get(cust_acc).getStatus() );
 		}
 		return hashMapAcc; 
 	}
@@ -65,34 +65,33 @@ public class Customers{
 		String transferAcc; 
 		if (hashMapAcc.get(cust_acc).getStatus().equals("approved")) {
 			amount = MainDriver.checkInputDouble();
-			System.out.println("[INPUT]: What is the account number of the reciepient?");
+			System.out.println(" What is the account number?");
 			transferAcc = sc.nextLine();
 			if (hashMapAcc.containsKey(transferAcc)==true && hashMapAcc.get(transferAcc).getStatus().equals("approved")) {
 				if (hashMapAcc.get(cust_acc).balance >= amount) {
 					hashMapAcc.get(cust_acc).balance -=  amount; 
 					hashMapAcc.get(transferAcc).balance += amount; //transfer account balance
-					System.out.println("#SUCCESS#: Withdrwal complete. The account balance is now: $" + hashMapAcc.get(cust_acc).balance);
+					System.out.println(" Withdrwal complete. The account balance is now: $" + hashMapAcc.get(cust_acc).balance);
 					logger.info("Account " + cust_acc + ": transferred $" + amount + " to " + "account " + transferAcc);
 				} else {
-					System.out.println("*ERROR*: Insufficient account balance. The account balance is: $" + hashMapAcc.get(cust_acc).balance);
+					System.out.println(" Insufficient funds. The account balance is: $" + hashMapAcc.get(cust_acc).balance);
 				}
 			} else {
-				System.out.println("*ERROR*: Either the account number provided does not exist or the status is still pending.");
+				System.out.println(" This account number does not exist or has a pending status.");
 			}
 		} else {
-			System.out.println("*ERROR*: Sorry. The status of the account is: " + hashMapAcc.get(cust_acc).getStatus() );
+			System.out.println(" The status of the account is: " + hashMapAcc.get(cust_acc).getStatus() );
 		}
 		return hashMapAcc;
 	}
 	
 	public String toString() {
-		return "[ID: "+id + "] [Password: "+password + "] [Name: "+name + "] [SSN: "+ssn +  "]\n[Accounts: " + arrayAcc+"]"; 
+		return "[ID: "+id + "] [Password: "+password + "] [Name: "+name + "] [SSN: "+ssn +  "] [Accounts: " + arrayAcc+"]"; 
 	}
 	
 	public static void printCustInfo(Customers cust) {
-		System.out.println("\n--------------------" + "Customer Info" + "--------------------");
+		System.out.println("Customer Info" );
 		System.out.println(cust);
-		System.out.println("------------------------Thanks------------------------");
 	}
 	
 	public String getId() {

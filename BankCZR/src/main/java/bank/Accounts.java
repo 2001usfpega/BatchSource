@@ -54,13 +54,13 @@ public class Accounts{
 		this.arrayCust.add(customer2.id);
 	}
 	
-	static String generateAccNum(int ssn){
+	public static String generateAccNum(int ssn){
 	    int acc = ssn * ssn; 
 		String st = Integer.toString(acc);
 	    return st;
 	}
 	
-	static String generateAccNum(int ssn1, int ssn2){
+	public static String generateAccNum(int ssn1, int ssn2){
 		int acc = ssn1 * ssn2; 
 		String st = Integer.toString(acc);
 	    return st;

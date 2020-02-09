@@ -8,7 +8,7 @@ public class Admin extends Employee{
 	static String password = "p4ssw0rd"; 
 	static String id = "admin";
 	
-	HashMaps getAdminOptions(HashMaps hashMaps) {
+	HashMaps getAdminMenu(HashMaps hashMaps) {
 		boolean logout = false; 
 		Scanner sc = new Scanner(System.in);
 		while (logout == false) {
@@ -18,15 +18,15 @@ public class Admin extends Employee{
 			System.out.println(" Please make a selection:");
 			String userInput = sc.nextLine();
 			if (userInput.equals("1")) {
-				emp_viewAllAcc(hashMaps);
+				empViewAllAcc(hashMaps);
 			}else if(userInput.equals("2")) {
-				emp_viewAcc(hashMaps);
+				empViewAcc(hashMaps);
 			}else if(userInput.equals("3")) {
-				emp_viewCust(hashMaps);	
+				empViewCust(hashMaps);	
 			}else if(userInput.equals("4")) {
-				hashMaps = emp_approveAcc(hashMaps);
+				hashMaps = empApproveAcc(hashMaps);
 			}else if(userInput.equals("5")) {
-				hashMaps = emp_denyAcc(hashMaps);
+				hashMaps = empDenyAcc(hashMaps);
 			}else if(userInput.equals("6")) {
 				hashMaps = adminCancel(hashMaps);
 			}else if(userInput.equals("7")) {
@@ -104,12 +104,12 @@ public class Admin extends Employee{
 				String id = hashMaps.hashMapAcc.get(accNum).arrayCust.get(i);
 				int arrayAccSize = hashMaps.hashMapCust.get(id).arrayAcc.size();
 				for (int x=0; i<arrayAccSize; i++) {
-					System.out.println("Customer #" + i + ": finding the right account...");
+					System.out.println("Customer #" + i );
 					if (hashMaps.hashMapCust.get(id).arrayAcc.get(x).equals(accNum)) {
 						System.out.println("Customer #" + i + ": correct account found.");
-						System.out.println("Executing cancellation...");
+						System.out.println("Cancelling account");
 						hashMaps.hashMapCust.get(id).arrayAcc.remove(x);
-						System.out.println("Customer #" + i + ": cancellation complete.");
+						System.out.println("Customer #" + i + ": account cancelled.");
 						break;
 					}
 				}				
