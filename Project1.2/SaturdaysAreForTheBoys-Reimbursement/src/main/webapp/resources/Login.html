@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="eng">
+<head>
+    <title>Employee Reimbursement Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <script type="text/javascript">
+        function login(event) {
+            event.preventDefault();
+
+            var ajax = new XMLHttpRequest();
+
+            ajax.onreadystatechange = function () {
+                if (this.readyState === 4 && this.status === 200) {
+                    if (this.responseText === "Failed!") {
+                        document.getElementById("failed").innerHTML = this.responseText;
+                    } else {
+                        window.location.href = this.responseURL;
+                    }
+                }
+            };
+
+            ajax.open("POST", "/login", true);
+            ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            ajax.send("username=" + event.target.elements.username.value + "&password=" + event.target.elements.password.value);
+        }
+    </script>
+</head>
+<body background="https://i.ytimg.com/vi/wHHdJYqBXVM/maxresdefault.jpg" style="background-size: 100%">
+
+<div style="border-radius: 15px 180px;background:rgba(20, 20, 20, 0.75);width: 700px; margin: 275px auto 0 auto">
+
+<div class="login-container" style="color:white;padding: 50px; width: 600px; margin: 200px auto 0 auto; text-align: center">
+    <h3>Employee Reimbursement Login</h3>
+    <form id="loginForm" method="post" onsubmit="login(event)">
+        <p>Please log in to submit.</p>
+        <p>Username:  <input placeholder="enter username" name="username"/><br>
+        <p>Password:  <input type= "password" placeholder="enter password" name="password"/><br>
+        <span id="failed"></span>
+        <input type="submit" value="Login"/>
+    </form>
+</div>
+</div>
+</body>
+</html>
