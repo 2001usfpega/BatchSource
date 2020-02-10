@@ -12,18 +12,16 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>MasterServlet</servlet-name>
-    <url-pattern>*.changed</url-pattern>    
+    <url-pattern>*.chang</url-pattern>
   </servlet-mapping>
-  
-  <!-- i dont need the below -->
-<!--   <servlet>
+  <servlet>
     <description></description>
-    <display-name>JsonMaster</display-name>
-    <servlet-name>JsonMaster</servlet-name>
-    <servlet-class>com.dnut.servlet.JsonMaster</servlet-class>
+    <display-name>MasterServlet2</display-name>
+    <servlet-name>MasterServlet2</servlet-name>
+    <servlet-class>com.dnut.servlet.MasterServlet2</servlet-class>
   </servlet>
   <servlet-mapping>
-    <servlet-name>JsonMaster</servlet-name>
-    <url-pattern>*.json</url-pattern>
-  </servlet-mapping> -->
+    <servlet-name>MasterServlet2</servlet-name>
+    <url-pattern>*.changes</url-pattern>
+  </servlet-mapping>
 </web-app>

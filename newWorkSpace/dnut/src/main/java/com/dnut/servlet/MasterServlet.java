@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dnut.bonus.Util;
 import com.dnut.controller.HomeController;
 import com.dnut.controller.LoginController;
 
@@ -13,11 +14,12 @@ import com.dnut.controller.LoginController;
 @SuppressWarnings("serial")
 public class MasterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-	//	System.out.println("triggered");
+		
 		System.out.println("help me");
+
 		req.getRequestDispatcher(process(req)).forward(req, res);
 
-		//res.getWriter().append("Served at: ").append(req.getContextPath());
+	//	res.getWriter().append("Served at: ").append(req.getContextPath());
 	}
 
 
@@ -38,7 +40,7 @@ public class MasterServlet extends HttpServlet {
 			return HomeController.home(req);
 		default:
 			System.out.println("in default case");
-			return "/badlogin.html";
+			return "/badlogin2.html";
 		}
 	}
 	
