@@ -9,6 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+import com.proyect1.controller.UpadateTicketRequetsController;
+import com.proyect1.model.Driver;
 import com.proyect1.model.Employee;
 import com.proyect1.model.Ticket;
 import com.proyect1.service.impl.RequestServiceImpl;
@@ -19,15 +24,21 @@ import com.proyect1.service.interf.RequestServiceInterface;
  */
 public class RequestMasterAdmin extends HttpServlet {
 	RequestServiceInterface serv=new RequestServiceImpl();
-	
+	final static Logger logger=Logger.getLogger(Driver.class);
 	protected void doGet(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
 List<Ticket> list = serv.getAllRequest();
 	List<Employee>	empList=serv.getAllEmployee();
 		String content="";
+		System.out.println(list);
+		System.out.println(empList);
 		resp.setContentType("text/html");
-		
+		logger.setLevel(Level.ALL);
+		if (logger.isInfoEnabled()) {
+			logger.info("this is info : manager has logged");
+			
+		}
 		PrintWriter out=resp.getWriter();
-		out.println("<thml><body><h1> This is the list of pending request</h1></body></html>");
+		out.println("<thml><body style='background_image:url(/Proyect1Servlet/resouces/image/admin.jpg)'><h1> This is the list of pending request</h1></body></html>");
 		String name=null;
 		String last=null;
 		for (Ticket ticket : list) {
@@ -41,8 +52,8 @@ List<Ticket> list = serv.getAllRequest();
 										
 			}
 			content+="<tr><td>"+ticket.getEmp_id()+"</td><td>"+name+"</td><td>"+last+"</td>"
-					+ "<td>"+ticket.getTicket_type()+"</td><td>"+ticket.getTicket_amount()+"</td><td>date submited"
-					+"</td><td>"+ticket.getTicket_status()+"</td><td>description<td>"+ticket.getTicket_id()
+					+ "<td>"+ticket.getTicket_type()+"</td><td>"+ticket.getTicket_amount()+"</td><td>"+ticket.getDateSubmited()
+					+"</td><td>"+ticket.getTicket_status()+"</td><td>"+ticket.getDescription()+"<td>"+ticket.getTicket_id()
 					+"</td></tr>";
 		}
 		
@@ -56,7 +67,7 @@ List<Ticket> list = serv.getAllRequest();
 				+ "</tr>"+content+  "</table></div></div></body></html>");
 		
 		
-		
+		//out.getClass().cast(UpadateTicketRequetsController.approve(request));
 		
 	}
 

@@ -37,19 +37,20 @@ public class Driver {
 		RequestDao mydao=new RequestDaoImpl();
 		
 	//	Scanner scan=new Scanner(System.in);
-	//int ticke_id=	mydao.insertRequest("travel", 25, 5);
+	//int ticke_id=	mydao.insertRequest("travel", 25, 120,"the gass expenses");
+	//System.out.println(ticke_id);
 	//List<Ticket> myTicket= mydao.selectAllTicket();
 	//System.out.println(myTicket);
-		/*
-		 * mydao.updateRequestStatus(200);
-		 * 
-		 * List<Ticket> requestList=mydao.selectAllTicket(); for (int i = 0; i
-		 * <requestList.size(); i++) {
-		 * 
-		 * System.out.println(requestList.get(i));
-		 * 
-		 * }
-		 */
+		
+		 // mydao.updateRequestStatus(200);
+		  
+		  List<Ticket> requestList=mydao.selectAllTicket(); 
+		  for (int i = 0; i<requestList.size(); i++) {
+		  
+		  System.out.println(requestList.get(i));
+		  
+		  }
+		 
 		System.out.println(mydao.selectAllEmployee());
 	}
 }

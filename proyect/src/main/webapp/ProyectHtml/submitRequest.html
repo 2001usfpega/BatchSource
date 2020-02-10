@@ -2,53 +2,77 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Submit Request</title>
+<title>Employee Home</title>
+<link rel="stylesheet" type="text/css" href="/Proyect1Servlet/resouces/css/helloCSS.css">
 
 <link rel="stylesheet"
-	href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-	integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
 	crossorigin="anonymous">
+<link rel=stylesheet type="text/css" href="../css/style.css">
+
 </head>
 <body>
-<p>INSIDE SUBMIT REQUEST</p>
-<form class="needs-validation" method="get" action="/Proyect1Servlet/submittedRequest.test"  novalidate>
+	<div class="mx-auto rounded  spacing p-3 mb-2 bg-light  centering">
 
-<div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationTooltip03">Enter Your Employee ID</label>
-      <input type="number" class="form-control" id="validationTooltip03" name="emp_id" required>
-      <div class="invalid-tooltip">
-      
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationTooltip04"> Type of Request</label>
-      <select class="custom-select" id="validationTooltip04"  name="ticket_type" required>
-        <option selected disabled value="">Choose...</option>
-        <option>Travel</option>
-         <option>Food</option>
-          <option>logding</option>
-      </select>
-      <div class="invalid-tooltip">
-       
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationTooltip05">Enter Amount</label>
-      <input type="number" class="form-control" id="validationTooltip05" name="amount" required>
-      <div class="invalid-tooltip">
-     
-      </div>
-    </div>
-  </div>
-  <button class="btn btn-primary" type="submit">Submit Ticket</button>
-</form>
-<form action="/Proyect1Servlet/finishRequest.test">
-<div>
- <button class="btn btn-primary" type="submit">log out</button>
- </div>
-</form>
+		<div class="container">
+			<div class="title">
+				<h3>Please fill out the form below in order to submit your
+					expense ticket.</h3>
+			</div>
+			<form class="needs-validation" id="TypeForm" method="get"
+				action="/Proyect1Servlet/submittedRequest.test">
+				<div class="dropdown">
+					<select class="btn-lg" class="ui dropdown" name="ticket_type"
+						form="TypeForm">
+						<option value="" selected disabled>Expense Type</option>
+						<option value="Lodging">Lodging</option>
+						<option value="Travel">Travel</option>
+						<option value="Food">Food</option>
+						<option value="Other">Other</option>
+					</select> <br /> <br />
+				</div>
+				<div class="input-group mb-3">
+					<div class="input-group-prepend">
+						<span class="input-group-text">Amount</span>
+					</div>
+					<input type="number" class="form-control" name="amount"
+						aria-label="Amount (to the nearest dollar)">
+				</div>
+
+				<div class="form-group">
+					<label for="exampleTextarea">Description</label>
+					<textarea class="form-control" id="exampleTextarea" name="descrip"
+						rows="3"></textarea>
+				</div>
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">Submit
+						Ticket</button>
+				</div>
+			</form>
+
+			<form action="/Proyect1Servlet/finishRequest.test">
+
+				<div class="form-group">
+					<button class="btn btn-primary" type="submit">log out</button>
+				</div>
+			</form>
+		</div>
 
 
+
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+			integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+			integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script
+			src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+			integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+			</div>
 </body>
 </html>

@@ -20,6 +20,10 @@ import com.proyect1.service.interf.RequestServiceInterface;
 public class UpadateTicketRequetsController {
 	private static RequestServiceInterface serv = new RequestServiceImpl();
 
+	public static String admLogout(){
+		return "ProyectHtml/login.html";
+	}
+	
 	public static String submit() {
 		return "ProyectHtml/approveRequest.html";
 	}

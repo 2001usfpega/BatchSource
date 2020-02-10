@@ -42,7 +42,8 @@ public class RequestMasterServletHelper {
 			  //5. if is an admin it go to the approve request page
 		case "/Proyect1Servlet/approveProcess.test":
 			return UpadateTicketRequetsController.submit();
-		
+		case "/Proyect1Servlet/adminlogout.test":
+			return UpadateTicketRequetsController.admLogout();
 			
 		/*
 		 * //7.admin log out case"/Proyect1Servlet/finishApprove.test": return

@@ -1,18 +1,23 @@
 package com.proyect1.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
+import com.proyect1.model.Driver;
 import com.proyect1.model.Employee;
 import com.proyect1.service.impl.RequestServiceImpl;
 import com.proyect1.service.interf.RequestServiceInterface;
 
 public class loginController {
 	private static RequestServiceInterface reqSer = new RequestServiceImpl();
-
+	final static Logger logger=Logger.getLogger(Driver.class);
 
 	public static String login(HttpServletRequest req) {
 
-		if(!req.getMethod().equals("GET")) {
+		if(!req.getMethod().equals("POST")) {
             return "Proyect1Servlet/login.html";
         }
         
@@ -24,16 +29,29 @@ public class loginController {
          * and find the ACTUAL password that should be used, base on the username they typed
          * in.
          */
+        
         Employee emp=reqSer.getEmployee(username);
+        // create session 
+        HttpSession session=req.getSession();
+        logger.setLevel(Level.ALL);
+        if (logger.isInfoEnabled()) {
+			logger.info("this is info : in login");
+			
+		}
+        
        System.out.println(emp.toString()); 
        if (emp.getEmp_username()!=null) {
     	   if (emp.getEmp_username().equals(username) && (emp.getEmp_pass().equals(password))){
            	System.out.println("FOUND ID");
            	if (username.equals("Teresa")) {
 				//return "approveRequest.test";
-           		return "RequestMasterAdmin";
+           		//add Admin object into the session
+           		session.setAttribute("adminsession", emp);
+           		
+           		return "approveRequest.test";
 			}else 
            	{
+				session.setAttribute("employeesession", emp);
 				return "submitRequest.test";
 			}
            	

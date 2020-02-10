@@ -45,12 +45,16 @@ public class RequestDaoImpl implements RequestDao {
 			String ql = "BEGIN INSERT INTO ticket(ticket_type,ticket_amount,ticket_status,emp_id,date_submited,description) VALUES(?,?,?,?,?,?) RETURNING ticket_id into ?; END;";
 
 			CallableStatement ps = conn.prepareCall(ql);
-
+System.out.println("in insert");
 			ps.setString(1, ticket_type);
 			ps.setDouble(2, Amount);
 			ps.setString(3, "pending");
 			ps.setInt(4, emp_id);
-			ps.setDate(5, (java.sql.Date) new Date(System.currentTimeMillis()));
+			
+			 java.util.Date date = new java.util.Date();
+		      long t = date.getTime();
+		      java.sql.Date sqlDate = new java.sql.Date(t);
+			ps.setDate(5, sqlDate);
 			ps.setString(6, descrip);
 
 			ps.registerOutParameter(7, Types.NUMERIC);
@@ -58,7 +62,7 @@ public class RequestDaoImpl implements RequestDao {
 			
 			ticke_id = ps.getInt(7);
 
-			System.out.println("new ticket_id is " + ps.getInt(5));
+			System.out.println("new ticket_id is " + ps.getInt(7));
 			ps.close();
 
 			System.out.println();
@@ -75,19 +79,23 @@ public class RequestDaoImpl implements RequestDao {
 
 		List<Ticket> ticketList = new ArrayList<Ticket>();
 		try (Connection conn = DriverManager.getConnection(url, username1, password1)) {
-
-			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ticket where ticket_status='pending'");
+System.out.println("in select ticket");
+			PreparedStatement ps = conn.prepareStatement("SELECT * FROM ticket WHERE ticket_status=?");
+			ps.setString(1, "pending");
 			ResultSet rs = ps.executeQuery();
-
+System.out.println(rs);
 			while (rs.next()) {
+				
 				ticketList.add(new Ticket(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getInt(5),rs.getDate(6),rs.getString(7)));
-
+				
 			}
 
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.getStackTrace();
 		}
+		System.out.println(ticketList);
+
 		return ticketList;
 
 	}
@@ -102,7 +110,7 @@ public class RequestDaoImpl implements RequestDao {
 			 ps.setInt(2,ticket_id);
 			ResultSet rs= ps.executeQuery();
 		
-		if (rs.next()!=false) {
+		if (rs.next()) {
 			System.out.println("your request has been approve");
 
 		}
@@ -143,6 +151,8 @@ public class RequestDaoImpl implements RequestDao {
 			emp.setEmp_id(rs.getInt(1));
 			emp.setEmp_username(rs.getString(2));
 			emp.setEmp_pass(rs.getString(3));
+			emp.setFirstname(rs.getString(4));
+			emp.setLastname(rs.getString(5));
 			System.out.println("PRINT OUT THE RESULT");
 			System.out.println(emp.toString());		
 				

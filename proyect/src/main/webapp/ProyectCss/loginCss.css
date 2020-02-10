@@ -1,0 +1,12 @@
+@charset "ISO-8859-1"
+{
+}
+
+html{
+	background-image: url("/Proyect1Servlet/images/project1Image.jpg");
+	
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
