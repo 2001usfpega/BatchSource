@@ -14,7 +14,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public Customer logIn(String u, String p) {
-		if(checkUsernameAndPassword(u,p)) {
+		if (checkUsernameAndPassword(u, p)) {
 			Customer cust = cd.getCustomerByUsername(u);
 			cust.setAccounts(as.fillAllAccounts(cust.getCustomerId()));
 			return cust;
@@ -26,12 +26,15 @@ public class CustomerServiceImpl implements CustomerService {
 	@Override
 	public boolean checkUsernameAndPassword(String u, String p) {
 		Customer customer = cd.getCustomerByUsername(u);
-		if(customer.getPassword().equals(p)) {
-			return true;
-		} else {
-			System.out.println("Invalid Password");
-			return false;
+		if (customer != null) {
+			if (customer.getPassword().equals(p)) {
+				return true;
+			} else {
+				System.out.println("Invalid Password");
+				return false;
+			}
 		}
+		return false;
 	}
 
 	@Override
@@ -47,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
 
 	@Override
 	public void deleteOnZeroBalance(Account account) {
-		if(account.getAccountID() == 0) {
+		if (account.getBalance() == 0) {
 			ad.deleteAccount(account.getAccountID());
 		} else {
 			System.out.println("Cannot delete an account that has a balance greater than 0.");

@@ -259,7 +259,7 @@ public class Driver {
 				case 5:
 					// Allows the user to view all of their open accounts
 					for (Account a : activeCustomer.getAccounts()) {
-						System.out.println("Account # " + a.getAccountID() + " Balance " + a.getBalance());
+						System.out.println("Account # " + a.getAccountID() + " Balance  $" + a.getBalance());
 					}
 					break;
 				case 6:

@@ -17,7 +17,11 @@ public class AccountServiceImpl implements AccountService {
 			ad.updateAccount(account);
 			return amount;
 		} else {
-			System.out.println("Invalid amount. Please enter positive amount.");
+			if(amount > 0) {
+				System.out.println("Cannot withdraw more than your balance");
+			} else {
+				System.out.println("Invalid amount. Please enter positive amount.");
+			}
 			return 0;
 		}
 	}

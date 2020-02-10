@@ -61,15 +61,14 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Employee emp = ed.getEmployeeByUsername(u);
 		System.out.println("Please enter your password > ");
 		String p = scan.nextLine();
-		if(p.equals(emp.getPassword())) {
-			emp.setCustomers(cd.getAllCustomers());
-			return emp;
-		} else {
-			
-			return null;
+		if (emp != null) {
+			if (p.equals(emp.getPassword())) {
+				emp.setCustomers(cd.getAllCustomers());
+				return emp;
+			}
 		}
-		
-		
+		return null;
+
 	}
 
 	@Override
@@ -82,9 +81,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		customer.setUsername(newUser);
 		customer.setPassword(newPass);
 		cd.updateCustomer(customer);
-		
-		
-		
+
 	}
 
 }

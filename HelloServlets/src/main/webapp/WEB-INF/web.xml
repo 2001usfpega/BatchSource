@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>HelloServlets</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+	<!-- DIRECT SERVLET CONFIGS -->
+	
+ </welcome-file-list>
+	<servlet>
+	<servlet-name>DirectServletObj</servlet-name>
+	<servlet-class>com.example.directservlet.DIrectServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DirectServletObj</servlet-name>
+		<url-pattern>/dirserv</url-pattern>
+	</servlet-mapping>
+	<!-- Indirect Servlet CONFIG -->
+	<servlet>
+		<servlet-name>IndirectServletObj</servlet-name>
+		<servlet-class>com.example.IndirectServlet.IndirectServlet</servlet-class>
+		</servlet>
+		<servlet-mapping>
+			<servlet-name>IndirectServletObj</servlet-name>
+			<url-pattern>/indirserv</url-pattern>
+		</servlet-mapping>
+		
+	<!-- Session Servlets Config -->
+	<servlet>
+		<servlet-name>SessionServletObj</servlet-name>
+		<servlet-class>com.example.sessionservlet.SessionServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>SessionServletObj</servlet-name>
+		<url-pattern>/sesserv</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>HelperSessionServletObj</servlet-name>
+		<servlet-class>com.example.sessionservlet.HelperSessionServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>HelperSessionServletObj</servlet-name>
+		<url-pattern>/helpsesserv</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>DbServletObj</servlet-name>
+		<servlet-class>com.example.dbservlet.ConnectingServlet</servlet-class>
+	</servlet>
+	
+	<servlet-mapping>
+		<servlet-name>DbServletObj</servlet-name>
+		<url-pattern>/dbserv</url-pattern>
+	</servlet-mapping>
+</web-app>

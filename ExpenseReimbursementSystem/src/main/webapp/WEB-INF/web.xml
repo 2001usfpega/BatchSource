@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
+  <display-name>ExpenseReimbursementSystem</display-name>
+  <welcome-file-list>
+    <welcome-file>resources/html/Login.html</welcome-file>
+  </welcome-file-list>
+  <servlet>
+    <description></description>
+    <display-name>ForwardMasterServlet</display-name>
+    <servlet-name>ForwardMasterServlet</servlet-name>
+    <servlet-class>com.ers.servlet.ForwardMasterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ForwardMasterServlet</servlet-name>
+    <url-pattern>/ForwardMasterServlet</url-pattern>
+    <url-pattern>*.do</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>JSONMasterServlet</display-name>
+    <servlet-name>JSONMasterServlet</servlet-name>
+    <servlet-class>com.ers.servlet.JSONMasterServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>JSONMasterServlet</servlet-name>
+    <url-pattern>/JSONMasterServlet</url-pattern>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+</web-app>
