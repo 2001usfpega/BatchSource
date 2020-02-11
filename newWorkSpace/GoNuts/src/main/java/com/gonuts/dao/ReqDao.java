@@ -101,13 +101,13 @@ public class ReqDao {// impliments super
 	}
 
 	// UpdateTicket
-	public boolean updateTicket(RequestForm ticket) {
+	public boolean updateTicket(int id,int status) {
 		try(Connection conn = DriverManager.getConnection(url,username,password)){
 			String sql= "{ call finish_ticket(?,?) }";
 			
 			CallableStatement cs = conn.prepareCall(sql);
-			cs.setInt(1, ticket.getType());
-			cs.setInt(2, ticket.getEid());
+			cs.setInt(2, status);
+			cs.setInt(1, id);
 			
 			if(cs.executeUpdate()>0) {
 				return true;

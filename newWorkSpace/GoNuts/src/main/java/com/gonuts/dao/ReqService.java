@@ -25,7 +25,7 @@ public class ReqService {
 	}
 	
 	//UpdateTicket
-	public boolean updateTicket(RequestForm ticket) {
-		return dao.updateTicket(ticket);
+	public boolean updateTicket(int id,int status) {
+		return dao.updateTicket(id,status);
 	}
 }

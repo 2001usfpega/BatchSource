@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 import com.gonuts.controler.LogOutControler;
 import com.gonuts.controler.LoginControler;
 import com.gonuts.controler.SubmitControler;
+import com.gonuts.controler.AdminControler;
 import com.gonuts.controler.BabyControler;
 
 public class MasterServlet3 extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-		System.out.println("starting servlet4");
+		System.out.println("starting servlet5");
 		req.getRequestDispatcher(process(req)).forward(req, res);
 
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
@@ -40,6 +41,8 @@ public class MasterServlet3 extends HttpServlet {
 			return BabyControler.badLogin(req);
 		case"/GoNuts/logout.chan":
 			return LogOutControler.logout(req);
+		case"/GoNuts/submit2.chan":
+			return AdminControler.adminSubmit(req);
 		default:
 			return BabyControler.idk(req);
 		}
